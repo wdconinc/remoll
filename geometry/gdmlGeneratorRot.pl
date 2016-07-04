@@ -11,7 +11,7 @@ use Getopt::Std;
 
 ### Declare variables explicitly so "my" not needed
 use strict 'vars';
-use vars qw($opt_D @numDetPerRing @quartzRad @quartzZ @quartzThickness @quartzHeight @quartzWidth @quartzTiltAngle @lgTiltAngle @refOpeningAngle @refLength @lgLength @zRing @detWidth @pmtWindowSize @wallThick @wtOverlap @range $x $y $z $i $j $k);
+use vars qw($opt_D @numDetPerRing @quartzRad @quartzZ @quartzThickness @quartzHeight @quartzWidth @quartzTiltAngle @lgTiltAngle @refOpeningAngle @refLength @lgLength @zRing @detWidth @pmtWindowSize @wallThick @wtOverlap @pmtWindowThickness @range $x $y $z $i $j $k);
 
 ###  Get the option flags.
 getopts('D:');
@@ -21,7 +21,7 @@ if ($#ARGV > -1){
     exit;
 }
 
-@range = (0,6); #range of rings to draw
+@range = (0,0); #range of rings to draw
 @numDetPerRing = (28, 28, 28, 28, 84, 28, 84); # number of detectors per ring
 @quartzTiltAngle = (-30, 10, 20, 20, 0, 20, -10); # angle of tilt of quartz with respect to xy-plane
 @quartzThickness =  (15, 15, 15, 15, 15, 15, 15); # thickness of quartz piece along z-axis
@@ -33,10 +33,11 @@ $quartzWidth[$i]= pi*(($quartzRad[$i]+$quartzHeight[$i]/2)*($quartzRad[$i]+$quar
 }  
 @quartzZ = (0, 400, 800, 1200, 1600, 1900, 2250); # position of the quartz ring along z-axis. Positive implies downstream. 
 @lgTiltAngle = (60, 25, 36, 25, 0, -15, -20); # light guide tilt angle with respect to quartz piece. 
-@lgLength = (485, 385, 325, 285, 165, 65, 165); # length of light guide
+@lgLength = (200, 385, 325, 285, 165, 65, 165); # length of light guide
 @refOpeningAngle = (19, 19, 19, 19, 19, 19, 19); # opening angle of reflector
 @refLength = (35, 35, 35, 35, 35, 35, 35); # length of reflector
 @pmtWindowSize= (76.2,76.2,76.2,76.2,76.2,76.2,76.2); # length of one side of square pmt window
+@pmtWindowThickness= (3,3,3,3,3,3,3); # thickness of pmt window which is an aluminium box with circular quartz window and detector at the center placed at the end of the lightguide.
 @wallThick = (1,1,1,1,1,1,1); #thickness of wall of reflector and light guide
 
 # Start definitions #
@@ -44,13 +45,21 @@ $quartzWidth[$i]= pi*(($quartzRad[$i]+$quartzHeight[$i]/2)*($quartzRad[$i]+$quar
 open(def, ">", "definitionsNew.xml") or die "cannot open > definitionsNew.xml: $!";
 print def "<define>\n\n";
 
-print  def "<matrix name=\"pmtSize\" coldim=\"1\" values=\"$pmtWindowSize[0]
+print  def "<matrix name=\"pmtSize\" coldim=\"1\" values=\"$pmtWindowSize[0] 
                                                   $pmtWindowSize[1]
                                                   $pmtWindowSize[2]
                                                   $pmtWindowSize[3]
                                                   $pmtWindowSize[4]
                                                   $pmtWindowSize[5]
                                                   $pmtWindowSize[6]\"/>\n\n";
+
+print  def "<matrix name=\"pmtThickness\" coldim=\"1\" values=\"$pmtWindowThickness[0] 
+                                                  $pmtWindowThickness[1]
+                                                  $pmtWindowThickness[2]
+                                                  $pmtWindowThickness[3]
+                                                  $pmtWindowThickness[4]
+                                                  $pmtWindowThickness[5]
+                                                  $pmtWindowThickness[6]\"/>\n\n";
 
 print  def "<matrix name=\"quartzTiltAngle\" coldim=\"1\" values=\"$quartzTiltAngle[0]
                                                   $quartzTiltAngle[1]
@@ -228,7 +237,7 @@ print def "<material Z=\"82\" name=\"Lead\" state=\"solid\">
 </element>
 
 <material name=\"Tyvek\" state=\"solid\">
-    <MEE unit=\"eV\" value=\"56.5182975271737\"/>
+    <MEE unit=\"eV\" value=\"56.5182975271737\"/> 
     <D unit=\"g/cm3\" value=\"0.96\"/>
     <fraction n=\"0.14396693036847\" ref=\"Hydrogen\"/>
     <fraction n=\"0.85603306963153\" ref=\"Carbon\"/>
@@ -326,6 +335,21 @@ print def "<subtraction name=\"lgSol_$j\_$i\">
          <rotationref ref=\"identity\"/>
 </subtraction>\n"; 
 
+
+print def "<box name=\"endCapSol_$j\_$i\" x=\"pmtSize[$j+1]\" y=\"pmtSize[$j+1]\" z=\"pmtThickness[$j+1]\" lunit=\"mm\"/>\n";
+print def "<tube name=\"pmtContainerSol_$j\_$i\" aunit=\"deg\" deltaphi=\"360\" lunit=\"mm\" rmax=\"(pmtSize[$j+1]-refLgWallThick[$j+1])/2\" rmin=\"0\" startphi=\"0\" z=\"pmtThickness[$j+1]\"/>\n";
+print def "<subtraction name=\"endCapFrameSol_$j\_$i\">
+         <first ref=\"endCapSol_$j\_$i\"/>
+         <second ref=\"pmtContainerSol_$j\_$i\"/>
+         <positionref ref=\"center\"/>
+         <rotationref ref=\"identity\"/>
+</subtraction>\n"; 
+print def "<tube name=\"pmtDetectorSol_$j\_$i\" aunit=\"deg\" deltaphi=\"360\" lunit=\"mm\" rmax=\"(pmtSize[$j+1]-refLgWallThick[$j+1])/2\" rmin=\"0\" startphi=\"0\" z=\"pmtThickness[$j+1]/3\"/>\n";
+print def "<tube name=\"pmtWindowSol_$j\_$i\" aunit=\"deg\" deltaphi=\"360\" lunit=\"mm\" rmax=\"(pmtSize[$j+1]-refLgWallThick[$j+1])/2\" rmin=\"0\" startphi=\"0\" z=\"2*pmtThickness[$j+1]/3\"/>\n";
+
+
+
+
 ## Forming the logical container for a detector system ##
 if ($lgTiltAngle[$j]!=0){
 print def "<union name=\"quartzBol_$j\_$i\">
@@ -349,12 +373,23 @@ print def "<union name=\"quartzDol_$j\_$i\">
 </union>\n"; 
 }
 
-print def "<union name=\"quartzSol_$j\_$i\">
+print def "<union name=\"quartzMol_$j\_$i\">
     <first ref=\"quartzDol_$j\_$i\"/>
     <second ref=\"lgOuterSol_$j\_$i\"/>
-    <position name=\"quartzCutSolPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+1*lgLength[$j+1])*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+1*lgLength[$j+1])*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
+    <position name=\"quartzCutMolPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+1*lgLength[$j+1])*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+1*lgLength[$j+1])*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
+    <rotation name=\"quartzCutMolRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"-lgTiltAngle[$j+1]*pi/180\" z=\"0\"/> 
+</union>\n"; 
+
+print def "<union name=\"quartzSol_$j\_$i\">
+    <first ref=\"quartzMol_$j\_$i\"/>
+    <second ref=\"endCapSol_$j\_$i\"/>
+    <position name=\"quartzCutSolPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+2*lgLength[$j+1]+pmtThickness[$j+1])*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+2*lgLength[$j+1]+pmtThickness[$j+1])*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
     <rotation name=\"quartzCutSolRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"-lgTiltAngle[$j+1]*pi/180\" z=\"0\"/> 
 </union>\n"; 
+
+
+
+
 
 ## -------------------------------------------------- ##
 
@@ -385,8 +420,8 @@ print def "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n
 
 for $j($range[0]..$range[1]){
 for $i(1..$numDetPerRing[$j]){
-$k= 1000+$j*100+$i;
-
+$k= $j*100+$i;
+$k =4000+$k;
 if ($lgTiltAngle[$j]!=0){
 print def "<volume name=\"detVol_$j\_$i\">
          <materialref ref=\"Quartz\"/>
@@ -405,21 +440,62 @@ print def "<volume name=\"detVol_$j\_$i\">
 </volume>\n";
 }
 
+$k = 1000+$k;
+
 print def "<volume name=\"refVol_$j\_$i\">
            <materialref ref=\"Aluminium\"/>
            <solidref ref=\"refSol_$j\_$i\"/>
-           <auxiliary auxtype=\"Color\" auxvalue=\"green\"/>  
+           <auxiliary auxtype=\"DetNo\" auxvalue=\"$k\"/> 
 </volume>\n";
+
+$k = 1000+$k;
+print def "<volume name=\"refInnerVol_$j\_$i\">
+           <materialref ref=\"Air\"/>
+           <solidref ref=\"refInnerSol_$j\_$i\"/>
+           <auxiliary auxtype=\"Color\" auxvalue=\"magenta\"/>  
+           <auxiliary auxtype=\"DetNo\" auxvalue=\"$k\"/>  
+</volume>\n";
+
+$k = 1000+$k;
 
 print def "<volume name=\"lgVol_$j\_$i\">
            <materialref ref=\"Aluminium\"/>
-           <solidref ref=\"lgSol_$j\_$i\"/>           
+           <solidref ref=\"lgSol_$j\_$i\"/>  
+           <auxiliary auxtype=\"DetNo\" auxvalue=\"$k\"/>          
 </volume>\n";
+
+$k = 1000+$k;
+print def "<volume name=\"lgInnerVol_$j\_$i\">
+           <materialref ref=\"Air\"/>
+           <solidref ref=\"lgInnerSol_$j\_$i\"/>  
+           <auxiliary auxtype=\"Color\" auxvalue=\"magenta\"/>  
+           <auxiliary auxtype=\"DetNo\" auxvalue=\"$k\"/>         
+</volume>\n";
+
+
+
+print def "<volume name=\"endCapVol_$j\_$i\">
+		<materialref ref=\"Aluminium\"/>
+		<solidref ref=\"endCapFrameSol_$j\_$i\"/>
+</volume>\n";
+
+print def "<volume name=\"pmtWindowVol_$j\_$i\">
+		<materialref ref=\"Quartz\"/>
+		<solidref ref=\"pmtWindowSol_$j\_$i\"/>
+                <auxiliary auxtype=\"Color\" auxvalue=\"red\"/>  
+</volume>\n";
+
+print def "<volume name=\"pmtDetectorVol_$j\_$i\">
+		<materialref ref=\"Photocathode\"/>
+		<solidref ref=\"pmtDetectorSol_$j\_$i\"/>
+                <auxiliary auxtype=\"Color\" auxvalue=\"blue\"/>  
+</volume>\n";
+
 
 
 
 print def "<volume name=\"quartzVol_$j\_$i\"> 
-	<materialref ref=\"Air\"/>
+	<materialref ref=\"Tyvek\"/>
 	<solidref ref=\"quartzSol_$j\_$i\"/> 
         <physvol name=\"det_$j\_$i\">
 			<volumeref ref=\"detVol_$j\_$i\"/>
@@ -431,10 +507,37 @@ print def "<volume name=\"quartzVol_$j\_$i\">
 			<position name=\"refPos_$j\_$i\" unit=\"mm\" x=\"refLength[$j+1]*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+refLength[$j+1]*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
 			<rotation name=\"refRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"lgTiltAngle[$j+1]*pi/180\" z=\"0\"/>
          </physvol> 
+         <physvol name=\"refInner_$j\_$i\">
+			<volumeref ref=\"refInnerVol_$j\_$i\"/>
+			<position name=\"refInnerPos_$j\_$i\" unit=\"mm\" x=\"refLength[$j+1]*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+refLength[$j+1]*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
+			<rotation name=\"refInnerRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"lgTiltAngle[$j+1]*pi/180\" z=\"0\"/>
+         </physvol> 
+         
           <physvol name=\"lg_$j\_$i\">
 			<volumeref ref=\"lgVol_$j\_$i\"/>
 			<position name=\"lgPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+1*lgLength[$j+1])*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+1*lgLength[$j+1])*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
 			<rotation name=\"lgRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"lgTiltAngle[$j+1]*pi/180\" z=\"0\"/>
+         </physvol> 
+             <physvol name=\"lgInner_$j\_$i\">
+			<volumeref ref=\"lgInnerVol_$j\_$i\"/>
+			<position name=\"lgInnerPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+1*lgLength[$j+1])*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+1*lgLength[$j+1])*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
+			<rotation name=\"lgInnerRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"lgTiltAngle[$j+1]*pi/180\" z=\"0\"/>
+         </physvol> 
+      
+         <physvol name=\"endCap_$j\_$i\">
+			<volumeref ref=\"endCapVol_$j\_$i\"/>
+			<position name=\"endCapPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+2*lgLength[$j+1]+pmtThickness[$j+1])*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+2*lgLength[$j+1]+pmtThickness[$j+1])*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
+			<rotation name=\"endCapRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"lgTiltAngle[$j+1]*pi/180\" z=\"0\"/>
+         </physvol> 
+          <physvol name=\"pmtWindow_$j\_$i\">
+			<volumeref ref=\"pmtWindowVol_$j\_$i\"/>
+			<position name=\"pmtWindowPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+2*lgLength[$j+1]++2*pmtThickness[$j+1]/3)*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+2*lgLength[$j+1]+2*pmtThickness[$j+1]/3)*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
+			<rotation name=\"pmtWindowRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"lgTiltAngle[$j+1]*pi/180\" z=\"0\"/>
+         </physvol> 
+         <physvol name=\"pmtDetector_$j\_$i\">
+			<volumeref ref=\"pmtDetectorVol_$j\_$i\"/>
+			<position name=\"pmtDetectorPos_$j\_$i\" unit=\"mm\" x=\"(2*refLength[$j+1]+2*lgLength[$j+1]++5*pmtThickness[$j+1]/3)*sin(-lgTiltAngle[$j+1]*pi/180)/2\" y=\"0\" z=\"quartzDim_$j\[$i,1\]/2+quartzDim_$j\[$i,3\]*tan(abs(lgTiltAngle[$j+1]*pi/180))/2+(2*refLength[$j+1]+2*lgLength[$j+1]+5*pmtThickness[$j+1]/3)*cos(lgTiltAngle[$j+1]*pi/180)/2\"/>
+			<rotation name=\"pmtDetectorRot_$j\_$i\" unit=\"rad\" x=\"0\" y=\"lgTiltAngle[$j+1]*pi/180\" z=\"0\"/>
          </physvol> 
 </volume>\n";
 
