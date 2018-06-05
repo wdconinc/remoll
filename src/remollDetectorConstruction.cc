@@ -1,5 +1,6 @@
 #include "remollDetectorConstruction.hh"
 
+#include "remollGDMLReadStructure.hh"
 #include "remollGenericDetector.hh"
 #include "remollBeamTarget.hh"
 #include "remollGlobalField.hh"
@@ -37,7 +38,8 @@ namespace { G4Mutex remollDetectorConstructionMutex = G4MUTEX_INITIALIZER; }
 G4ThreadLocal remollGlobalField* remollDetectorConstruction::fGlobalField = 0;
 
 remollDetectorConstruction::remollDetectorConstruction(const G4String& gdmlfile)
-: fGDMLFile("geometry/mollerMother.gdml"),fGDMLParser(0),
+: fGDMLFile("geometry/mollerMother.gdml"),
+  fGDMLReadStructure(0),fGDMLParser(0),
   fGDMLValidate(false),fGDMLOverlapCheck(true),
   fMessenger(0),fGeometryMessenger(0),
   fVerboseLevel(0),
@@ -147,8 +149,10 @@ G4VPhysicalVolume* remollDetectorConstruction::ParseGDMLFile()
 {
     // Clear parser
     //fGDMLParser->Clear(); // FIXME doesn't clear auxmap
+    if (fGDMLReadStructure) delete fGDMLReadStructure;
+    fGDMLReadStructure = new remollGDMLReadStructure();
     if (fGDMLParser) delete fGDMLParser;
-    fGDMLParser = new G4GDMLParser();
+    fGDMLParser = new G4GDMLParser(fGDMLReadStructure);
 
     // Print GDML warning
     PrintGDMLWarning();

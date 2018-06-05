@@ -14,6 +14,7 @@ class G4VSensitiveDetector;
 class G4GenericMessenger;
 
 class remollGlobalField;
+class remollGDMLReadStructure;
 
 class remollDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -34,6 +35,8 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
   private:
 
     G4String fGDMLFile;
+
+    remollGDMLReadStructure* fGDMLReadStructure;
     G4GDMLParser *fGDMLParser;
 
     G4bool fGDMLValidate;
