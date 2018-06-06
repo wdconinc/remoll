@@ -8,26 +8,29 @@
      <position unit="mm" name="trackingCenter" x="0" y="0" z="25635."/>
      <position unit="mm" name="detectorCenter" x="0" y="0" z="28500."/>
      <position unit="mm" name="pionDetectorCenter" x="0" y="0" z="32000."/>
+     <position unit="mm" name="dumpWindowCenter" x="0" y="0" z="35000."/>
      <rotation name="identity"/>
 </define>
 
 <materials>
-     <material Z="1" name="Vacuum" state="gas">
-       <T unit="K" value="2.73"/>
-       <P unit="pascal" value="3e-18"/>
-       <D unit="g/cm3" value="1e-25"/>
-       <atom unit="g/mole" value="1.01"/>
-     </material>
 </materials>
 
 <solids>
-     <box lunit="mm" name="boxMother" x="4000" y="4000" z="80000"/>
+  <box lunit="mm" name="boxMother" x="4000" y="4000" z="80000"/>
+  <tube name="dumpWindow_solid" rmin="0" rmax="1000" z="1" lunit="mm" deltaphi="360" aunit="deg"/>
 </solids>
 
   <structure>
 
+    <volume name="dumpWindow_logical">
+      <materialref ref="G4_WATER"/>
+      <solidref ref="dumpWindow_solid"/>
+      <auxiliary auxtype="SensDet" auxvalue="dumpWindowSD"/>
+      <auxiliary auxtype="DetNo"   auxvalue="9999"/>
+    </volume>
+
     <volume name="logicMother">
-      <materialref ref="Vacuum"/>
+      <materialref ref="G4_Galactic"/>
       <solidref ref="boxMother"/>
 
       <physvol>
@@ -64,6 +67,11 @@
       <positionref ref="hybridCenter"/>
       <rotationref ref="identity"/>
       </physvol> 
+
+      <physvol name="dumpWindow_physical">
+        <volumeref ref="dumpWindow_logical"/>
+        <positionref ref="dumpWindowCenter"/>
+      </physvol>
 
     </volume>
   </structure>
