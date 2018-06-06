@@ -1,0 +1,29 @@
+/run/initialize
+
+# Field maps
+/remoll/addfield map_directory/blockyHybrid_rm_3.0.txt
+/remoll/addfield map_directory/blockyUpstream_rm_1.1.txt
+
+# Beam energy
+/remoll/beamene 11 GeV
+
+# Beam generator
+/remoll/evgen/set beam
+
+# Beam current for rate
+/remoll/beamcurr 85 microampere
+
+/remoll/SD/disable_all
+/remoll/SD/det_28/enable true
+/remoll/SD/det_4060/enable true
+/remoll/SD/det_4061/enable true
+/remoll/SD/det_9999/enable true
+
+# Seed
+/remoll/seed 123456
+
+# Output
+/remoll/filename sim_beam_to_dump.root
+
+# Shoot
+/run/beamOn 2500000
