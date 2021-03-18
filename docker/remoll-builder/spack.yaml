@@ -1,0 +1,27 @@
+spack:
+  definitions:
+  - compilers:
+    - gcc@10.2.0
+  - cxxstd:
+    - cxxstd=17
+  - packages:
+    - clhep
+    - xerces-c
+    - geant4
+    - root -opengl
+  specs:
+  - matrix:
+    - [$packages]
+    - [$cxxstd]
+    - [$%compilers]
+  packages:
+    all:
+      target: [x64_64]
+  concretization: together
+  container:
+    format: docker
+    images:
+      os: centos:7
+      spack: 0.16.1
+  config:
+    install_missing_compilers: true
