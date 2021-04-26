@@ -287,7 +287,7 @@ void remollIO::SearchGDMLforFiles(G4String fn)
                     G4String str_systemId(cstr_systemId);
                     xercesc::XMLString::release(&cstr_systemId);
                     // Add this xml file to list to save
-                    fXMLFileNames.push_back(str_docURI + str_systemId);
+                    fXMLFileNames.emplace_back(str_docURI + str_systemId);
                 }
             }
         }

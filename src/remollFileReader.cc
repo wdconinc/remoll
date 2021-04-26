@@ -32,7 +32,7 @@ remollFileEvent remollFileReader::GetAnEvent()
     {
       G4double vx, vy, vz, px, py, pz, w;
       while ((fInputFile >> vx >> vy >> vz >> px >> py >> pz >> w)) {
-        fEventList.push_back(remollFileEvent(G4ThreeVector(vx,vy,vz),G4ThreeVector(px,py,pz),w));
+        fEventList.emplace_back(G4ThreeVector(vx,vy,vz),G4ThreeVector(px,py,pz),w);
       }
       fInputFile.clear();
       std::string line;

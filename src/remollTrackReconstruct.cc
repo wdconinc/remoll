@@ -82,8 +82,8 @@ G4int remollTrackReconstruct::ReconstructTrack(){
 
   for(size_t i =0; i<aTrackHit.size();i++){
 
-    hitPos.push_back(std::vector <G4ThreeVector>());
-    GEMRes.push_back(std::vector <G4ThreeVector>());
+    hitPos.emplace_back();
+    GEMRes.emplace_back();
     
     copyID=aTrackHit[i]->fCopyID; // usually 0
     if(copyID>maxCopyID) maxCopyID = copyID;

@@ -6,9 +6,9 @@ remollSearchPath::remollSearchPath()
 {
     // add CMAKE_INSTALL_FULL_DATADIR, CMAKE_INSTALL_PREFIX and CWD to search path
     #ifndef NO_FS_SUPPORT
-    fSearchPath.push_back(fs::path(get_current_dir_name()));
-    fSearchPath.push_back(fs::path(CMAKE_INSTALL_PREFIX));
-    fSearchPath.push_back(fs::path(CMAKE_INSTALL_FULL_DATADIR));
+    fSearchPath.emplace_back(get_current_dir_name());
+    fSearchPath.emplace_back(CMAKE_INSTALL_PREFIX);
+    fSearchPath.emplace_back(CMAKE_INSTALL_FULL_DATADIR);
     #endif
 }
 
@@ -26,7 +26,7 @@ void remollSearchPath::add(const std::string& path)
 #ifndef NO_FS_SUPPORT
   // Check if path is an absolute path
   if (fs::exists(fs::path(path))) {
-    fSearchPath.push_back(fs::path(path));
+    fSearchPath.emplace_back(path);
   }
   // Check if the directory to search in is inside the current working directory
   else if(fs::exists(fs::path(std::string(get_current_dir_name()) + "/" + path))) {
@@ -34,15 +34,15 @@ void remollSearchPath::add(const std::string& path)
   }
   // Check if directory to search in is inside CMAKE_INSTALL_PREFIX
   else if(fs::exists(fs::path(std::string(CMAKE_INSTALL_PREFIX) + "/" + path))) {
-    fSearchPath.push_back(fs::path(std::string(CMAKE_INSTALL_PREFIX) + "/" + path));
+    fSearchPath.emplace_back(std::string(CMAKE_INSTALL_PREFIX) + "/" + path);
   }
   // Check if directory to search in is inside CMAKE_INSTALL_FULL_DATADIR
   else if(fs::exists(fs::path(std::string(CMAKE_INSTALL_FULL_DATADIR) + "/" + path))) {
-    fSearchPath.push_back(fs::path(std::string(CMAKE_INSTALL_FULL_DATADIR) + "/" + path));
+    fSearchPath.emplace_back(std::string(CMAKE_INSTALL_FULL_DATADIR) + "/" + path);
   }
   // Check if directory to search in is inside CMAKE_INSTALL_FULL_DATADIR/remoll/
   else if (fs::exists(fs::path(std::string(CMAKE_INSTALL_FULL_DATADIR) + "/remoll/" + path))) {
-    fSearchPath.push_back(fs::path(std::string(CMAKE_INSTALL_FULL_DATADIR) + "/remoll/" + path));
+    fSearchPath.emplace_back(std::string(CMAKE_INSTALL_FULL_DATADIR) + "/remoll/" + path);
   }
 #endif
 }

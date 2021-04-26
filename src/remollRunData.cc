@@ -80,7 +80,7 @@ void remollRunData::AddGDMLFile( const char *fn )
 	}
     }
 
-    fGDMLFiles.push_back(remollTextFile(fn)); 
+    fGDMLFiles.emplace_back(fn); 
 }
 
 void remollRunData::RecreateGDML( const char *adir, bool clobber )
