@@ -38,8 +38,7 @@ remollEvent::remollEvent(G4Event* event)
   }
 }
 
-remollEvent::~remollEvent(){
-}
+remollEvent::~remollEvent()= default;
 
 /**
  * Fill the event particle structure for writing to IO.

@@ -19,8 +19,7 @@ remollGenFlat::remollGenFlat()
     fApplyMultScatt = true;
 }
 
-remollGenFlat::~remollGenFlat(){
-}
+remollGenFlat::~remollGenFlat()= default;
 
 void remollGenFlat::SamplePhysics(remollVertex *vert, remollEvent *evt){
     // Generate event flat in phase space

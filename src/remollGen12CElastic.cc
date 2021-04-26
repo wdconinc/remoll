@@ -35,8 +35,7 @@ remollGen12CElastic::remollGen12CElastic()
     fApplyMultScatt = false;
 }
 
-remollGen12CElastic::~remollGen12CElastic(){
-}
+remollGen12CElastic::~remollGen12CElastic()= default;
 
 // Generate eAl elastic event
 void remollGen12CElastic::SamplePhysics(remollVertex *vert, remollEvent *evt)

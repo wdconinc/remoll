@@ -7,7 +7,7 @@ G4ThreadLocal G4Allocator<remollGenericDetectorSum>* remollGenericDetectorSumAll
 remollGenericDetectorSum::remollGenericDetectorSum(int detid, int copyid)
 : fDetID(detid),fCopyID(copyid),fEdep(0.0),fNhit(0) { }
 
-remollGenericDetectorSum::~remollGenericDetectorSum() { }
+remollGenericDetectorSum::~remollGenericDetectorSum() = default;
 
 void remollGenericDetectorSum::PrintSummary() const
 {

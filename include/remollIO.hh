@@ -53,7 +53,7 @@ class remollSeed_t: public TObject {
     // Copy constructor (not implemented)
     remollSeed_t(const remollSeed_t& orig);
     // Virtual destructor
-    virtual ~remollSeed_t() { };
+    virtual ~remollSeed_t() = default;
     // Setter for run, evt, seed
     void SetSeed(const Int_t& run, const Int_t& evt, const TString& seed)
     { fRunNo = run; fEvtNo = evt; fSeed = seed; };

@@ -8,7 +8,7 @@ class remollFileEvent
   public:
     remollFileEvent(G4ThreeVector r = {0,0,0}, G4ThreeVector p = {0,0,0}, G4double w = 0)
     : fR(r),fP(p),fW(w) { }
-    ~remollFileEvent() { }
+    ~remollFileEvent() = default;
 
     G4ThreeVector r() const { return fR; }
     G4ThreeVector p() const { return fP; }

@@ -27,8 +27,7 @@ remollGenpElastic::remollGenpElastic()
     fApplyMultScatt = true;
 }
 
-remollGenpElastic::~remollGenpElastic(){
-}
+remollGenpElastic::~remollGenpElastic()= default;
 
 void remollGenpElastic::SamplePhysics(remollVertex *vert, remollEvent *evt){
     // Generate ep event

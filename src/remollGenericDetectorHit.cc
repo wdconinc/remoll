@@ -36,7 +36,7 @@ remollGenericDetectorHit::remollGenericDetectorHit(G4int det, G4int copy)
   fEdep  = 0.0;
 }
 
-remollGenericDetectorHit::~remollGenericDetectorHit() { }
+remollGenericDetectorHit::~remollGenericDetectorHit() = default;
 
 remollGenericDetectorHit::remollGenericDetectorHit(const remollGenericDetectorHit &right)
 : G4VHit(right) {

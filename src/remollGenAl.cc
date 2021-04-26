@@ -38,8 +38,7 @@ remollGenAl::remollGenAl(G4int physicsType)
     fApplyMultScatt = true;
 }
 
-remollGenAl::~remollGenAl() {
-}
+remollGenAl::~remollGenAl() = default;
 
 void remollGenAl::SamplePhysics(remollVertex *vert, remollEvent *evt) {
 

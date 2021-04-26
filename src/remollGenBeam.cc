@@ -80,7 +80,7 @@ remollGenBeam::remollGenBeam()
     fThisGenMessenger->DeclareMethod("partName",&remollGenBeam::SetPartName,"name of particle to shoot");
 }
 
-remollGenBeam::~remollGenBeam() { }
+remollGenBeam::~remollGenBeam() = default;
 
 void remollGenBeam::SetOriginXMean(double x){ fOriginMean.setX(x); }
 void remollGenBeam::SetOriginYMean(double y){ fOriginMean.setY(y); }

@@ -17,8 +17,7 @@ remollGenMoller::remollGenMoller()
   fApplyMultScatt = true;
 }
 
-remollGenMoller::~remollGenMoller(){
-}
+remollGenMoller::~remollGenMoller()= default;
 
 void remollGenMoller::SamplePhysics(remollVertex *vert, remollEvent *evt){
   // Generate Moller event

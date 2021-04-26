@@ -7,12 +7,10 @@
 #include "G4GenericMessenger.hh"
 
 remollSteppingAction::remollSteppingAction()
-{
-}
+= default;
 
 remollSteppingAction::~remollSteppingAction()
-{
-}
+= default;
 
 void remollSteppingAction::UserSteppingAction(const G4Step *aStep)
 {

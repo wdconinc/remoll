@@ -13,7 +13,7 @@
 class remollActionInitialization : public G4VUserActionInitialization {
   public:
     remollActionInitialization(): G4VUserActionInitialization() { };
-    virtual ~remollActionInitialization() { };
+    virtual ~remollActionInitialization() = default;
 
     virtual void Build() const;
     virtual void BuildForMaster() const;

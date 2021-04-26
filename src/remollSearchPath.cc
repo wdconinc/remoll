@@ -19,7 +19,7 @@ remollSearchPath *remollSearchPath::getInstance() {
     return fInstance;
 }
 
-remollSearchPath::~remollSearchPath() {}
+remollSearchPath::~remollSearchPath() = default;
 
 void remollSearchPath::add(const std::string& path)
 {

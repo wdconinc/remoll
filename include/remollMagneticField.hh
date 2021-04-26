@@ -43,7 +43,7 @@ class remollMagneticField : public G4MagneticField {
     public:
 
 	remollMagneticField(const G4String&);
-	virtual ~remollMagneticField() { };
+	virtual ~remollMagneticField() = default;
 
 	void AddFieldValue(const G4double point[4], G4double *field) const;
 	void GetFieldValue(const G4double point[4], G4double *field) const;

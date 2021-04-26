@@ -12,5 +12,4 @@ remollVertex::remollVertex(){
     fRadiationLength = 0.0;
 }
 
-remollVertex::~remollVertex(){
-}
+remollVertex::~remollVertex() = default;

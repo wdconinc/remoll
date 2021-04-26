@@ -18,8 +18,7 @@ remollGenpInelastic::remollGenpInelastic()
     fApplyMultScatt = true;
 }
 
-remollGenpInelastic::~remollGenpInelastic(){
-}
+remollGenpInelastic::~remollGenpInelastic()= default;
 
 void remollGenpInelastic::SamplePhysics(remollVertex *vert, remollEvent *evt){
     // Generate inelastic event
