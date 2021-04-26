@@ -29,8 +29,8 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
 
   private:
 
-    remollDetectorConstruction(const remollDetectorConstruction&);
-    remollDetectorConstruction& operator=(remollDetectorConstruction);
+    remollDetectorConstruction(const remollDetectorConstruction&) = delete;
+    remollDetectorConstruction& operator=(remollDetectorConstruction) = delete;
 
 
   public:
