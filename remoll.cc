@@ -10,7 +10,7 @@
 
 #ifdef G4MULTITHREADED
 #include "G4MTRunManager.hh"
-typedef G4MTRunManager RunManager;
+using RunManager = G4MTRunManager;
 #else
 #include "G4RunManager.hh"
 typedef G4RunManager RunManager;

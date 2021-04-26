@@ -53,7 +53,7 @@ class remollGenericDetectorSum : public G4VHit {
 };
 
 
-typedef G4THitsCollection<remollGenericDetectorSum> remollGenericDetectorSumCollection;
+using remollGenericDetectorSumCollection = G4THitsCollection<remollGenericDetectorSum>;
 
 extern G4ThreadLocal G4Allocator<remollGenericDetectorSum>* remollGenericDetectorSumAllocator;
 

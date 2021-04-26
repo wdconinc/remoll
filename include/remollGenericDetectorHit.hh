@@ -98,7 +98,7 @@ class remollGenericDetectorHit : public G4VHit {
 };
 
 
-typedef G4THitsCollection<remollGenericDetectorHit> remollGenericDetectorHitCollection;
+using remollGenericDetectorHitCollection = G4THitsCollection<remollGenericDetectorHit>;
 
 extern G4ThreadLocal G4Allocator<remollGenericDetectorHit>* remollGenericDetectorHitAllocator;
 
