@@ -253,7 +253,7 @@ void remollIO::SearchGDMLforFiles(G4String fn)
 
     xercesc::XMLPlatformUtils::Initialize();
 
-    xercesc::XercesDOMParser *xmlParser = new xercesc::XercesDOMParser();
+    auto *xmlParser = new xercesc::XercesDOMParser();
     xmlParser->parse(fn.data());
 
     // Get document
@@ -280,7 +280,7 @@ void remollIO::SearchGDMLforFiles(G4String fn)
             for (XMLSize_t xx = 0; xx < xmlNamedNodeMap->getLength(); ++xx) {
                 xercesc::DOMNode* currentNode = xmlNamedNodeMap->item(xx);
                 if (currentNode->getNodeType() == xercesc::DOMNode::ENTITY_NODE) { // is entity
-                    xercesc::DOMEntity* currentEntity
+                    auto* currentEntity
                       = dynamic_cast< xercesc::DOMEntity* >( currentNode );
                     const XMLCh* systemId = currentEntity->getSystemId();
                     char* cstr_systemId = xercesc::XMLString::transcode(systemId);
@@ -313,7 +313,7 @@ void remollIO::TraverseChildren( xercesc::DOMElement *thisel )
         if( currentNode->getNodeType() ){   // true is not NULL
 
             if (currentNode->getNodeType() == xercesc::DOMNode::ELEMENT_NODE) { // is element
-                xercesc::DOMElement* currentElement
+                auto* currentElement
                   = dynamic_cast< xercesc::DOMElement* >( currentNode );
                 // transcode
                 XMLCh* str_file = xercesc::XMLString::transcode("file");

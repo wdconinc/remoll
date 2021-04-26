@@ -284,7 +284,7 @@ void remollPhysicsList::ListReferencePhysLists()
 
   G4cout << "Available reference physics lists:" << G4endl;
   list = factory.AvailablePhysLists();
-  for (std::vector<G4String>::const_iterator
+  for (auto
       item  = list.begin();
       item != list.end();
       item++)
@@ -293,7 +293,7 @@ void remollPhysicsList::ListReferencePhysLists()
 
   G4cout << "Available physics list EM options:" << G4endl;
   list = factory.AvailablePhysListsEM();
-  for (std::vector<G4String>::const_iterator
+  for (auto
       item  = list.begin();
       item != list.end();
       item++)

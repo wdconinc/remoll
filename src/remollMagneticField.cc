@@ -445,7 +445,7 @@ void remollMagneticField::AddFieldValue(const G4double point[4], G4double *field
 		modf( (  phi           - fPhiLow)/fxtantSize, &dxtant ):
 		modf( ( (2.0*pi + phi) - fPhiLow)/fxtantSize, &dxtant ); // Wrap around
 
-    G4int xtant = (G4int) dxtant;
+    auto xtant = (G4int) dxtant;
 
     // Local phi (in file coordinates)
     G4double lphi = dphi*fxtantSize + fPhiLow - fPhiMapOffset;

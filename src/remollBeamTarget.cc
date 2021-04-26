@@ -92,7 +92,7 @@ G4double remollBeamTarget::GetEffLumin(SamplingType_t sampling_type)
 
 void remollBeamTarget::PrintTargetInfo()
 {
-    for (std::vector<G4VPhysicalVolume *>::iterator
+    for (auto
         it = fTargetVolumes.begin(); it != fTargetVolumes.end(); it++) {
 
         // Try to cast the target volume into its tubs solid
@@ -131,14 +131,14 @@ void remollBeamTarget::UpdateInfo()
     }
     fMotherTargetAbsolutePosition = fTargetMother->GetTranslation().z();
 
-    for (std::vector<G4VPhysicalVolume *>::iterator
+    for (auto
         it = fTargetVolumes.begin(); it != fTargetVolumes.end(); it++) {
 
         // Try to cast the target volume into its tubs solid
         G4LogicalVolume* volume = (*it)->GetLogicalVolume();
         G4Material* material = volume->GetMaterial();
         G4VSolid* solid = volume->GetSolid();
-        G4Tubs* tubs = dynamic_cast<G4Tubs*>(solid);
+        auto* tubs = dynamic_cast<G4Tubs*>(solid);
 
         // Assume everything is non-nested tubes
 	if( !tubs ){
@@ -243,7 +243,7 @@ remollVertex remollBeamTarget::SampleVertex(SamplingType_t sampling_type)
     double   msZ[__MAX_MAT];
 
     // Figure out the material we are in and the radiation length we traversed
-    for (std::vector<G4VPhysicalVolume *>::iterator
+    for (auto
         it = fTargetVolumes.begin(); it != fTargetVolumes.end() && !found_active_volume; it++ ){
 
         // Relative position of this target volume in mother volume
@@ -253,7 +253,7 @@ remollVertex remollBeamTarget::SampleVertex(SamplingType_t sampling_type)
         G4LogicalVolume* volume = (*it)->GetLogicalVolume();
         G4Material* material = volume->GetMaterial();
         G4VSolid* solid = volume->GetSolid();
-        G4Tubs* tubs = dynamic_cast<G4Tubs*>(solid);
+        auto* tubs = dynamic_cast<G4Tubs*>(solid);
 
         // Effective length of this target volume
         G4double effective_length = tubs->GetZHalfLength()*2.0 * material->GetDensity();

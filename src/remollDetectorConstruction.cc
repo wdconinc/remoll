@@ -283,7 +283,7 @@ void remollDetectorConstruction::AddKryptoniteCandidate(G4String name)
 void remollDetectorConstruction::ListKryptoniteCandidates()
 {
   G4cout << "List of kryptonite candidate materials:" << G4endl;
-  for (std::set<G4String>::const_iterator
+  for (auto
       it  = fKryptoniteCandidates.begin();
       it != fKryptoniteCandidates.end();
       it++)
@@ -298,7 +298,7 @@ void remollDetectorConstruction::InitKryptoniteMaterials()
   // Find kryptonite materials in material tables
   G4MaterialTable* table = G4Material::GetMaterialTable();
   fKryptoniteMaterials.clear();
-  for (G4MaterialTable::const_iterator
+  for (auto
       it  = table->begin();
       it != table->end(); it++) {
     if (fKryptoniteCandidates.find((*it)->GetName()) != fKryptoniteCandidates.end()) {
@@ -435,7 +435,7 @@ void remollDetectorConstruction::AbsoluteRotation(G4String name, G4ThreeVector r
   }
 
   // Construct rotation matrix
-  G4RotationMatrix* rotation = new G4RotationMatrix();
+  auto* rotation = new G4RotationMatrix();
   rotation->rotateX(rotation_xyz.x());
   rotation->rotateY(rotation_xyz.y());
   rotation->rotateZ(rotation_xyz.z());
@@ -478,7 +478,7 @@ void remollDetectorConstruction::RelativeRotation(G4String name, G4ThreeVector r
   if (old_rotation == nullptr) old_rotation = new G4RotationMatrix();
 
   // Apply relative rotation
-  G4RotationMatrix* rotation = new G4RotationMatrix(*old_rotation);
+  auto* rotation = new G4RotationMatrix(*old_rotation);
   rotation->rotateX(rotation_xyz.x());
   rotation->rotateY(rotation_xyz.y());
   rotation->rotateZ(rotation_xyz.z());
@@ -606,13 +606,13 @@ void remollDetectorConstruction::ParseAuxiliaryTargetInfo()
 
     // Loop over volumes with auxiliary information
     const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-    for(G4GDMLAuxMapType::const_iterator
+    for(auto
         iter  = auxmap->begin();
         iter != auxmap->end(); iter++) {
 
       // Loop over auxiliary tags for this logical volume
       G4LogicalVolume* logical_volume = (*iter).first;
-      for (G4GDMLAuxListType::const_iterator
+      for (auto
           vit  = (*iter).second.begin();
           vit != (*iter).second.end(); vit++) {
 
@@ -662,14 +662,14 @@ void remollDetectorConstruction::ParseAuxiliaryTargetInfo()
           // the use of the typedef instead of actual map. Something like a
           // for (G4GDMLAuxListType::const_iterator vit2 =
           //   auxmap[target_logical_volume].begin(); etc
-          for(G4GDMLAuxMapType::const_iterator
+          for(auto
               iter2  = auxmap->begin();
               iter2 != auxmap->end(); iter2++) {
 
             // Only the target logical volume is of interest
             if ((*iter2).first != target_logical_volume) continue;
 
-            for (G4GDMLAuxListType::const_iterator
+            for (auto
                  vit2  = (*iter2).second.begin();
                  vit2 != (*iter2).second.end(); vit2++) {
 
@@ -695,7 +695,7 @@ void remollDetectorConstruction::ParseAuxiliaryTargetInfo()
 void remollDetectorConstruction::ParseAuxiliaryUserLimits()
 {
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for(G4GDMLAuxMapType::const_iterator
+  for(auto
       iter  = auxmap->begin();
       iter != auxmap->end(); iter++) {
 
@@ -705,7 +705,7 @@ void remollDetectorConstruction::ParseAuxiliaryUserLimits()
 
     // Loop over auxiliary tags for this logical volume
     G4LogicalVolume* logical_volume = (*iter).first;
-    for (G4GDMLAuxListType::const_iterator
+    for (auto
         vit  = (*iter).second.begin();
         vit != (*iter).second.end(); vit++) {
 
@@ -729,7 +729,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
 {
   // Loop over volumes with auxiliary information
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for(G4GDMLAuxMapType::const_iterator
+  for(auto
       iter  = auxmap->begin();
       iter != auxmap->end(); iter++) {
 
@@ -738,7 +738,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
              << " has the following list of auxiliary information: "<< G4endl;
 
     // Loop over auxiliary tags for this logical volume
-    for (G4GDMLAuxListType::const_iterator
+    for (auto
          vit  = (*iter).second.begin();
          vit != (*iter).second.end(); vit++) {
 
@@ -805,7 +805,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
 
 
   // Set the world volume to wireframe
-  G4VisAttributes* motherVisAtt = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
+  auto* motherVisAtt = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
   motherVisAtt->SetForceWireframe(true);
   fWorldVolume->GetLogicalVolume()->SetVisAttributes(motherVisAtt);
 }
@@ -820,7 +820,7 @@ void remollDetectorConstruction::ParseAuxiliarySensDetInfo()
 
   // Loop over all volumes with auxiliary tags
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for (G4GDMLAuxMapType::const_iterator iter  = auxmap->begin(); iter != auxmap->end(); iter++) {
+  for (auto iter  = auxmap->begin(); iter != auxmap->end(); iter++) {
 
       G4LogicalVolume* myvol = (*iter).first;
       G4GDMLAuxListType list = (*iter).second;
@@ -1031,7 +1031,7 @@ G4int remollDetectorConstruction::UpdateCopyNo(G4VPhysicalVolume* aVolume,G4int 
   //if (aVolume->GetLogicalVolume()->GetNoDaughters()==0 ){
       aVolume->SetCopyNo(index);
       G4Material* material;
-      G4VisAttributes* kryptoVisAtt= new G4VisAttributes(G4Colour(0.7,0.0,0.0));
+      auto* kryptoVisAtt= new G4VisAttributes(G4Colour(0.7,0.0,0.0));
       //set user limits for Kryptonite materials. When tracks are killed inside Kryptonite materials, energy will be properly deposited
       material = aVolume->GetLogicalVolume()->GetMaterial();
       if (material->GetName() == "Kryptonite") {
@@ -1110,7 +1110,7 @@ void remollDetectorConstruction::PrintGeometryTree(
   G4VSensitiveDetector* sd = aVolume->GetLogicalVolume()->GetSensitiveDetector();
   if (print && sd)
   {
-    remollGenericDetector* remollsd = dynamic_cast<remollGenericDetector*>(sd);
+    auto* remollsd = dynamic_cast<remollGenericDetector*>(sd);
     G4cout << " [" << remollsd->GetDetNo() << "]";
   }
   if (print) {

@@ -63,7 +63,7 @@ void remollGenLUND::SamplePhysics(remollVertex * /*vert*/, remollEvent *evt)
     G4ThreeVector position(line2[11] * cm, line2[12] * cm, line2[13] * cm);
     G4ThreeVector momentum(line2[6] * GeV, line2[7] * GeV, line2[8] * GeV);
 
-    G4int pid = (Int_t) line2[3];
+    auto pid = (Int_t) line2[3];
 
 
     evt->SetRate(ratefactor);

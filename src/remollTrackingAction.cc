@@ -78,7 +78,7 @@ void remollTrackingAction::PostUserTrackingAction(const G4Track* aTrack)
 {
   G4VUserTrackInformation* usertrackinfo = aTrack->GetUserInformation();
   if (usertrackinfo) {
-    remollUserTrackInformation* remollusertrackinfo =
+    auto* remollusertrackinfo =
         dynamic_cast<remollUserTrackInformation*>(usertrackinfo);
     if (remollusertrackinfo) {
       G4StepStatus stepstatus = aTrack->GetStep()->GetPostStepPoint()->GetStepStatus();

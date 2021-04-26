@@ -59,11 +59,11 @@ void remollEventAction::EndOfEventAction(const G4Event* aEvent)
       // Dynamic cast to test types, process however see fit and feed to IO
 
       ////  Generic Detector Hits ///////////////////////////////////
-      if (remollGenericDetectorHitCollection *thiscast =
+      if (auto *thiscast =
           dynamic_cast<remollGenericDetectorHitCollection*>(thiscol)) {
         for (unsigned int hidx = 0; hidx < thiscast->GetSize(); hidx++) {
 
-	  remollGenericDetectorHit *currentHit =
+	  auto *currentHit =
 	    (remollGenericDetectorHit *) thiscast->GetHit(hidx);
 
 	  ////  store GEM hits for track reconstruction
@@ -76,7 +76,7 @@ void remollEventAction::EndOfEventAction(const G4Event* aEvent)
       }
 
       ////  Generic Detector Sum ////////////////////////////////////
-      if (remollGenericDetectorSumCollection *thiscast =
+      if (auto *thiscast =
           dynamic_cast<remollGenericDetectorSumCollection*>(thiscol)) {
         for (unsigned int hidx = 0; hidx < thiscast->GetSize(); hidx++) {
           io->AddGenericDetectorSum((remollGenericDetectorSum *)

@@ -16,23 +16,23 @@
 void remollActionInitialization::Build() const
 {
   // Run action
-  remollRunAction* run_action = new remollRunAction();
+  auto* run_action = new remollRunAction();
   SetUserAction(run_action);
 
   // Event action
-  remollEventAction* event_action = new remollEventAction();
+  auto* event_action = new remollEventAction();
   SetUserAction(event_action);
 
   // Tracking action
-  remollTrackingAction* tracking_action = new remollTrackingAction();
+  auto* tracking_action = new remollTrackingAction();
   SetUserAction(tracking_action);
 
   // Stepping action
-  remollSteppingAction* stepping_action = new remollSteppingAction();
+  auto* stepping_action = new remollSteppingAction();
   SetUserAction(stepping_action);
 
   // Primary generator action
-  remollPrimaryGeneratorAction* gen_action = new remollPrimaryGeneratorAction();
+  auto* gen_action = new remollPrimaryGeneratorAction();
   SetUserAction(gen_action);
   event_action->SetPrimaryGeneratorAction(gen_action);
 }
@@ -40,6 +40,6 @@ void remollActionInitialization::Build() const
 void remollActionInitialization::BuildForMaster() const
 {
   // Run action
-  remollRunAction* run_action = new remollRunAction();
+  auto* run_action = new remollRunAction();
   SetUserAction(run_action);
 }

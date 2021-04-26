@@ -182,7 +182,7 @@ double remollGenPion::wiser_sigma(
     const double mass_Lambda  = 1.116;
 
     double mass[] = {mass_pi, mass_pi, mass_K, mass_K, mass_p, mass_p};
-    double *mass2 = new double[ntype];
+    auto *mass2 = new double[ntype];
     for (int i = 0; i < 6; i++) {
 	mass2[i] = mass[i]*mass[i];
     }
@@ -242,8 +242,8 @@ double remollGenPion::wiser_sigma(
 	const int __WISER_N_LEG_PTS = 100;
 	int np = __WISER_N_LEG_PTS;
 
-	double *x = new double[np];
-	double *w = new double[np];
+	auto *x = new double[np];
+	auto *w = new double[np];
 
         #if ROOT_VERSION_CODE >= ROOT_VERSION(6,0,0)
 	TF1 *wiserfit = new TF1("wiserfit", remollGenPion::wiserfit, E_gamma_min, Ebeam, 5, 1, TF1::EAddToList::kNo);

@@ -42,7 +42,7 @@ void remollGenpElastic::SamplePhysics(remollVertex *vert, remollEvent *evt){
 
     bool bypass_target = false;
 
-    std::vector<G4VPhysicalVolume *>::iterator it = targVols.begin();
+    auto it = targVols.begin();
     if( targVols.size() > 0 ){
 	while( (*it)->GetLogicalVolume()->GetMaterial()->GetName() != "G4_lH2" 
 		&& it != targVols.end() ){ it++; }

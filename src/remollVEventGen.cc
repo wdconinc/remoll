@@ -89,7 +89,7 @@ remollEvent* remollVEventGen::GenerateEvent()
 
     /////////////////////////////////////////////////////////////////////
     // Create and initialize values for event
-    remollEvent *thisev = new remollEvent();
+    auto *thisev = new remollEvent();
     thisev->SetBeamTarget(fBeamTarg);
 
     thisev->fVertexPos    = fBeamTarg->fVer;

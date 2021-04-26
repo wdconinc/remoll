@@ -54,7 +54,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void PrintAll() {
-      for (std::list<remollGenericDetector*>::const_iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -63,7 +63,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void PrintSummary(G4int det) {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -73,7 +73,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void SetAllEnabled() {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -81,7 +81,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
       }
     }
     void SetAllDisabled() {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -90,7 +90,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void SetOneEnabled(G4int det) {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -99,7 +99,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
       }
     }
     void SetOneDisabled(G4int det) {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -109,7 +109,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void SetRangeEnabled(G4TwoVector v) {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -118,7 +118,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
       }
     }
     void SetRangeDisabled(G4TwoVector v) {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -132,7 +132,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void SetRangeDetectorType(G4String type, G4TwoVector v) {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {
@@ -141,7 +141,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
       }
     }
     void SetOneDetectorType(G4String type, G4int det) {
-      for (std::list<remollGenericDetector*>::iterator
+      for (auto
         it  = fGenericDetectors.begin();
         it != fGenericDetectors.end();
         it++) {

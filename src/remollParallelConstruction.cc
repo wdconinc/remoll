@@ -197,7 +197,7 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
 {
   // Loop over volumes with auxiliary information
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for(G4GDMLAuxMapType::const_iterator
+  for(auto
       iter  = auxmap->begin();
       iter != auxmap->end(); iter++) {
 
@@ -206,7 +206,7 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
              << " has the following list of auxiliary information: "<< G4endl;
 
     // Loop over auxiliary tags for this logical volume
-    for (G4GDMLAuxListType::const_iterator
+    for (auto
          vit  = (*iter).second.begin();
          vit != (*iter).second.end(); vit++) {
 
@@ -273,12 +273,12 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
 
 
   // Set the world volume invisible
-  G4VisAttributes* motherVisAtt = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
+  auto* motherVisAtt = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
   motherVisAtt->SetForceWireframe(true);
   fWorldVolume->GetLogicalVolume()->SetVisAttributes(motherVisAtt);
 
   // Set all immediate daughters of the world volume to wireframe
-  G4VisAttributes* daughterVisAtt = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
+  auto* daughterVisAtt = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
   daughterVisAtt->SetForceWireframe(true);
   auto n = fWorldVolume->GetLogicalVolume()->GetNoDaughters();
   for (decltype(n) i = 0; i < n; i++) {
@@ -298,12 +298,12 @@ void remollParallelConstruction::ParseAuxiliarySensDetInfo()
       G4cout << "Beginning sensitive detector assignment" << G4endl;
 
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for (G4GDMLAuxMapType::const_iterator iter  = auxmap->begin(); iter != auxmap->end(); iter++) {
+  for (auto iter  = auxmap->begin(); iter != auxmap->end(); iter++) {
       G4LogicalVolume* myvol = (*iter).first;
       if (fVerboseLevel > 0)
           G4cout << "Volume " << myvol->GetName() << G4endl;
 
-      for (G4GDMLAuxListType::const_iterator
+      for (auto
           vit  = (*iter).second.begin();
           vit != (*iter).second.end(); vit++) {
 
@@ -312,7 +312,7 @@ void remollParallelConstruction::ParseAuxiliarySensDetInfo()
               // Also allow specification of det number ///////////////////
               G4String det_type = "";
               int det_no = -1;
-              for (G4GDMLAuxListType::const_iterator
+              for (auto
                   nit  = (*iter).second.begin();
                   nit != (*iter).second.end(); nit++) {
 
@@ -344,7 +344,7 @@ void remollParallelConstruction::ParseAuxiliarySensDetInfo()
                           << "for volume " << myvol->GetName()
                           <<  G4endl << G4endl;
 
-                  remollGenericDetector* det = new remollGenericDetector(detectorname, det_no);
+                  auto* det = new remollGenericDetector(detectorname, det_no);
                   if (det_type.size() > 0) det->SetDetectorType(det_type);
 
                   SDman->AddNewDetector(det);

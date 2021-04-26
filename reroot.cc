@@ -9,7 +9,7 @@
 int main(int argc, char** argv)
 {
   // Start Root command prompt
-  remollRint* rint = new remollRint("remoll ROOT Analyzer", &argc, argv);
+  auto* rint = new remollRint("remoll ROOT Analyzer", &argc, argv);
 
   // Setup include path
   gROOT->ProcessLine(".include include");

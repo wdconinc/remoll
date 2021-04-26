@@ -59,7 +59,7 @@ G4Run* remollRunAction::GenerateRun()
 void remollRunAction::BeginOfRunAction(const G4Run* run)
 {
   // Cast into remollRun
-  const remollRun* aRun = static_cast<const remollRun*>(run);
+  const auto* aRun = static_cast<const remollRun*>(run);
 
   // Print progress
   G4int evts_to_process = aRun->GetNumberOfEventToBeProcessed();
@@ -85,7 +85,7 @@ void remollRunAction::BeginOfRunAction(const G4Run* run)
 void remollRunAction::EndOfRunAction(const G4Run* run)
 {
   // Cast into remollRun
-  const remollRun* aRun = static_cast<const remollRun*>(run);
+  const auto* aRun = static_cast<const remollRun*>(run);
 
   if (IsMaster())
   {

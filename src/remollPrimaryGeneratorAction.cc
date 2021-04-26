@@ -100,7 +100,7 @@ void remollPrimaryGeneratorAction::SetGenerator(G4String& genname)
     fPriGen = nullptr;
 
     // Find event generator
-    std::map<G4String,remollVEventGen*>::iterator evgen = fEvGenMap.find(genname);
+    auto evgen = fEvGenMap.find(genname);
     if (evgen != fEvGenMap.end()) {
       G4cout << "Setting generator to " << genname << G4endl;
       fPriGen = nullptr;
@@ -111,7 +111,7 @@ void remollPrimaryGeneratorAction::SetGenerator(G4String& genname)
     }
 
     // Find primary generator
-    std::map<G4String,G4VPrimaryGenerator*>::iterator prigen = fPriGenMap.find(genname);
+    auto prigen = fPriGenMap.find(genname);
     if (prigen != fPriGenMap.end()) {
       G4cout << "Setting generator to " << genname << G4endl;
       fPriGen = prigen->second;

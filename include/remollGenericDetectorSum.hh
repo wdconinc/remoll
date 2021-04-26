@@ -42,7 +42,7 @@ class remollGenericDetectorSum : public G4VHit {
         sum.vid = fCopyID;
         sum.edep = fEdep;
         sum.n = fNhit;
-        for (std::map<int,remollGenericDetectorSumByPID_t>::const_iterator
+        for (auto
             it  = fSumByPID.begin();
             it != fSumByPID.end(); ++it) {
           sum.by_pid.push_back(it->second);

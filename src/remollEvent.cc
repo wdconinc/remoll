@@ -79,7 +79,7 @@ std::vector<remollEventParticle_t> remollEvent::GetEventParticleIO() const {
         if(((*trajectoryContainer)[i]->GetParentID() == 0) && ((*trajectoryContainer)[i]->GetTrackID() == G4int(idx+1))){
           //Store each point in the container in the remollEventParticle_t structure
           for(int j = 0; j<(*trajectoryContainer)[i]->GetPointEntries(); j++){
-            G4TrajectoryPoint* point = (G4TrajectoryPoint*)((*trajectoryContainer)[i]->GetPoint(j));
+            auto* point = (G4TrajectoryPoint*)((*trajectoryContainer)[i]->GetPoint(j));
             part.tjx.push_back(point->GetPosition()[0]);
             part.tjy.push_back(point->GetPosition()[1]);
             part.tjz.push_back(point->GetPosition()[2]);
@@ -119,7 +119,7 @@ void remollEvent::ProduceNewParticle(G4ThreeVector pos, G4PrimaryParticle* parti
   fPartSpin.push_back(spin);
   fPartRealMom.push_back(mom);
 
-  G4ParticleDefinition* type = const_cast<G4ParticleDefinition*>(particle->GetParticleDefinition());
+  auto* type = const_cast<G4ParticleDefinition*>(particle->GetParticleDefinition());
   fPartType.push_back(type);
 }
 

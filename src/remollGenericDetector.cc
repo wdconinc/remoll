@@ -148,7 +148,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
     G4ParticleDefinition* particle = track->GetDefinition();
 
     // Get copy ID from touchable history
-    G4TouchableHistory* hist
+    auto* hist
       = (G4TouchableHistory*) (prepoint->GetTouchable());
     G4VPhysicalVolume* volume = hist->GetVolume();
     G4int copyID = volume->GetCopyNo();
@@ -161,7 +161,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
 
     // Create a detector sum for this detector, if necessary
     if (! fSumMap.count(copyID)) {
-      remollGenericDetectorSum* sum = new remollGenericDetectorSum(fDetNo, copyID);
+      auto* sum = new remollGenericDetectorSum(fDetNo, copyID);
       fSumMap[copyID] = sum;
       fSumColl->insert(sum);
     }
@@ -171,7 +171,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
 
     // Create a running sum for this detector, if necessary
     if (! fRunningSumMap.count(copyID)) {
-      remollGenericDetectorSum* sum = new remollGenericDetectorSum(fDetNo, copyID);
+      auto* sum = new remollGenericDetectorSum(fDetNo, copyID);
       fRunningSumMap[copyID] = sum;
     }
     // Add to running sum of all events
@@ -220,7 +220,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
     else if (prepoint->GetStepStatus() == fUndefined) {
       // get track user information and cast in our own format
       G4VUserTrackInformation* usertrackinfo = track->GetUserInformation();
-      remollUserTrackInformation* remollusertrackinfo =
+      auto* remollusertrackinfo =
           dynamic_cast<remollUserTrackInformation*>(usertrackinfo);
       if (remollusertrackinfo) {
         // if stored postpoint status is fGeomBoundary
@@ -265,7 +265,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
 
     /////////////////////////////////////////////////////
 
-    remollGenericDetectorHit* hit = new remollGenericDetectorHit(fDetNo, copyID);
+    auto* hit = new remollGenericDetectorHit(fDetNo, copyID);
     fHitColl->insert(hit);
 
 

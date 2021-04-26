@@ -10,7 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_CLANG_TIDY
     clang-tidy;
     -header-filter=.;
-    -checks=modernize-use-nullptr,modernize-use-bool-literals,modernize-avoid-bind,modernize-use-using,modernize-use-emplace,modernize-use-equals-default,modernize-use-equals-delete;)
+    -checks=modernize-use-nullptr,modernize-use-bool-literals,modernize-avoid-bind,modernize-use-using,modernize-use-emplace,modernize-use-equals-default,modernize-use-equals-delete,modernize-use-auto;)
 
 # Disallow in-source builds
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})

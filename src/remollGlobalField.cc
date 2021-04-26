@@ -197,7 +197,7 @@ void remollGlobalField::AddNewField(G4String& name)
   if (GetFieldByName(name) != nullptr) return;
 
   // Load new field
-  remollMagneticField *thisfield = new remollMagneticField(name);
+  auto *thisfield = new remollMagneticField(name);
   fFields.push_back(thisfield);
 
   if (fVerboseLevel > 0)
