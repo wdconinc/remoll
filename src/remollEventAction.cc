@@ -94,8 +94,8 @@ void remollEventAction::EndOfEventAction(const G4Event* aEvent)
 
     std::vector<remollGenericDetectorHit*> rechits = track.GetTrack();
 
-    for (size_t j = 0; j < rechits.size(); j++)
-      io->AddGenericDetectorHit((remollGenericDetectorHit *) rechits[j]);
+    for (auto & rechit : rechits)
+      io->AddGenericDetectorHit((remollGenericDetectorHit *) rechit);
   }
 
   // Fill tree and reset buffers

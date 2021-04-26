@@ -119,10 +119,8 @@ void remollGenExternal::SamplePhysics(remollVertex* /* vert */, remollEvent* evt
     evt->SetW2(4e15);
     evt->SetAsymmetry(-42.0*ppb);
     // Loop over all hits in this event
-    for (size_t i = 0; i < fHit->size(); i++) {
+    for (auto hit : *fHit) {
       // Create local copy of this hit
-      remollGenericDetectorHit_t hit = fHit->at(i);
-
       // Select only the requested detector ID
       if (hit.det != fDetectorID) continue;
 

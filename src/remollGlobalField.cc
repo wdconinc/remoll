@@ -232,9 +232,9 @@ void remollGlobalField::AddNewField(G4String& name)
 
 remollMagneticField* remollGlobalField::GetFieldByName(const G4String& name) const
 {
-    for (auto it = fFields.begin(); it != fFields.end(); it++)
-        if ((*it)->GetName() == name)
-          return (*it);
+    for (auto & fField : fFields)
+        if (fField->GetName() == name)
+          return fField;
 
     return nullptr;
 }
@@ -245,8 +245,8 @@ void remollGlobalField::PrintFieldValue(const G4ThreeVector& r)
     G4double p[] = {r.x()*m, r.y()*m, r.z()*m, 0.0};
     GetFieldValue(p, B);
     G4cout << "At r" << r << " [m]: B = ";
-    for (int i = 0; i < __GLOBAL_NDIM; i++) {
-        G4cout << B[i]/tesla << " ";
+    for (double i : B) {
+        G4cout << i/tesla << " ";
     }
     G4cout << "T" << G4endl;
 }
@@ -257,8 +257,8 @@ void remollGlobalField::GetFieldValue(const G4double p[], G4double *field) const
     field[0] = 0.0;
     field[1] = 0.0;
     field[2] = 0.0;
-    for (auto it = fFields.begin(); it != fFields.end(); it++)
-        (*it)->AddFieldValue(p, field);
+    for (auto & fField : fFields)
+        fField->AddFieldValue(p, field);
 }
 
 void remollGlobalField::SetZOffset(const G4String& name, G4double offset)

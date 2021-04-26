@@ -284,20 +284,14 @@ void remollPhysicsList::ListReferencePhysLists()
 
   G4cout << "Available reference physics lists:" << G4endl;
   list = factory.AvailablePhysLists();
-  for (auto
-      item  = list.begin();
-      item != list.end();
-      item++)
-    G4cout << " " << *item << G4endl;
+  for (auto & item : list)
+    G4cout << " " << item << G4endl;
   G4cout << G4endl;
 
   G4cout << "Available physics list EM options:" << G4endl;
   list = factory.AvailablePhysListsEM();
-  for (auto
-      item  = list.begin();
-      item != list.end();
-      item++)
-    G4cout << " " << *item << G4endl;
+  for (auto & item : list)
+    G4cout << " " << item << G4endl;
   G4cout << G4endl;
 }
 

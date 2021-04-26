@@ -36,9 +36,9 @@ void remollTrackReconstruct::AddHit(remollGenericDetectorHit* aHit){
 
   // if there is more than one hit per plane, then sort them out by trackID
   // fix me:: need to do something to sort out the case when there is more than 1 hit per plane, but of the same trackID.
-  for(size_t i=0;i<aTrackHit.size();i++){
-    if(aTrackHit[i]->fDetID==aHit->fDetID) // look if this planeID has been recorded already
-      if(aTrackHit[i]->fTrID!=aHit->fTrID) // if the trackID is different, temporarily flag it using fCopyID
+  for(auto & i : aTrackHit){
+    if(i->fDetID==aHit->fDetID) // look if this planeID has been recorded already
+      if(i->fTrID!=aHit->fTrID) // if the trackID is different, temporarily flag it using fCopyID
 	aHit->fCopyID += 1; // fCopyID==0 by default, for now..
   }
 
@@ -80,15 +80,15 @@ G4int remollTrackReconstruct::ReconstructTrack(){
 
   //  G4cout << "aTrackHit.size():: " << aTrackHit.size() << G4endl;
 
-  for(size_t i =0; i<aTrackHit.size();i++){
+  for(auto & i : aTrackHit){
 
     hitPos.emplace_back();
     GEMRes.emplace_back();
     
-    copyID=aTrackHit[i]->fCopyID; // usually 0
+    copyID=i->fCopyID; // usually 0
     if(copyID>maxCopyID) maxCopyID = copyID;
 
-    hitPos[copyID].push_back(aTrackHit[i]->f3X*mm);  // in mm already -- default unit
+    hitPos[copyID].push_back(i->f3X*mm);  // in mm already -- default unit
     
     G4double GEMRES=0.075*mm; // 75 um GEM res
     G4double GEMRES_x = GEMRES;
@@ -218,8 +218,8 @@ G4ThreeVector remollTrackReconstruct::EvaluateTrack(std::vector <G4double> rPosX
 
   if(TrackingVerbose>0 && EvalTrackVerbose>0) {
     G4cout << "Matrix:" << G4endl;
-    for (size_t imat = 0; imat < dim; imat++) {
-      G4cout << "\t" << matXZ[imat][0] << "\t" << matXZ[imat][1] << G4endl;
+    for (auto & imat : matXZ) {
+      G4cout << "\t" << imat[0] << "\t" << imat[1] << G4endl;
     }
   }
 
@@ -232,8 +232,8 @@ G4ThreeVector remollTrackReconstruct::EvaluateTrack(std::vector <G4double> rPosX
 
   if(TrackingVerbose>0 && EvalTrackVerbose>0){
     G4cout << "Data vector:" << G4endl;
-    for (size_t idim = 0; idim < dim; idim++)
-      G4cout << "\n\t" << vecXZ[idim];
+    for (double idim : vecXZ)
+      G4cout << "\n\t" << idim;
     G4cout << G4endl;
   }
 
@@ -255,8 +255,8 @@ G4ThreeVector remollTrackReconstruct::EvaluateTrack(std::vector <G4double> rPosX
 
   if(TrackingVerbose>0 && EvalTrackVerbose>0){
     G4cout << "Inverted Matrix:" << G4endl;
-    for (size_t imat = 0; imat < dim; imat++) {
-      G4cout << "\t" << matXZI[imat][0] << "\t" << matXZI[imat][1] << G4endl;
+    for (auto & imat : matXZI) {
+      G4cout << "\t" << imat[0] << "\t" << imat[1] << G4endl;
     }
   }
 
@@ -339,15 +339,15 @@ void remollTrackReconstruct::EvalTheta()
   theta.resize(aTrackHit.size());
   
   // evaluate th from individual GEM rec vars
-  for(size_t i=0;i<aTrackHit.size();i++){
+  for(auto & i : aTrackHit){
     // // use the original det vars for comparision // -- needs to be changed back
     // rec_r.push_back(aTrackHit[i]->f3X.perp()/m);
     // rec_ph.push_back(aTrackHit[i]->f3X.phi()/deg);
     // rec_dr.push_back(aTrackHit[i]->f3dP.perp());
 
-    rec_r.push_back(aTrackHit[i]->f3XRec.perp()/m);
-    rec_ph.push_back(aTrackHit[i]->f3XRec.phi()/deg);
-    rec_dr.push_back(aTrackHit[i]->f3dPRec.perp());
+    rec_r.push_back(i->f3XRec.perp()/m);
+    rec_ph.push_back(i->f3XRec.phi()/deg);
+    rec_dr.push_back(i->f3dPRec.perp());
     // G4cout << rec_r[i] <<"\t" << rec_ph[i] <<"\t" << rec_dr[i] << G4endl;
   }
 

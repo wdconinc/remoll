@@ -42,11 +42,9 @@ class remollGenericDetectorSum : public G4VHit {
         sum.vid = fCopyID;
         sum.edep = fEdep;
         sum.n = fNhit;
-        for (auto
-            it  = fSumByPID.begin();
-            it != fSumByPID.end(); ++it) {
-          sum.by_pid.push_back(it->second);
-          sum.by_pid.back().pid = it->first;
+        for (const auto & it : fSumByPID) {
+          sum.by_pid.push_back(it.second);
+          sum.by_pid.back().pid = it.first;
         }
         return sum;
       }

@@ -206,17 +206,17 @@ void remollIO::GrabGDMLFiles(G4String fn)
     SearchGDMLforFiles(fn);
 
     // Resolve relative path, turn daughter/../ into nothing
-    for(unsigned int idx = 0; idx < fXMLFileNames.size(); idx++ ){
+    for(auto & fXMLFileName : fXMLFileNames){
       size_t pos = std::string::npos;
       // as long as there is a ../ keep replacing
-      while ((pos = fXMLFileNames[idx].find("/../")) != std::string::npos) {
-        auto begin = fXMLFileNames[idx].begin();
+      while ((pos = fXMLFileName.find("/../")) != std::string::npos) {
+        auto begin = fXMLFileName.begin();
         // find last / before /../, cut from character after that /
-        size_t parent = fXMLFileNames[idx].find_last_of("/", pos - 1) + 1;
+        size_t parent = fXMLFileName.find_last_of("/", pos - 1) + 1;
         // if not found, we have daughter/../file.xml, so cut from 0
         if (parent == std::string::npos) parent = 0;
         // cut until 4 characters after start of /../
-        fXMLFileNames[idx].erase(begin + parent, begin + pos + 4);
+        fXMLFileName.erase(begin + parent, begin + pos + 4);
       }
     }
 
@@ -225,13 +225,13 @@ void remollIO::GrabGDMLFiles(G4String fn)
     fXMLFileNames.erase(std::unique(fXMLFileNames.begin(), fXMLFileNames.end()), fXMLFileNames.end());
 
     // Store filename and copy content into buffers
-    for(unsigned int idx = 0; idx < fGDMLFileNames.size(); idx++ ){
-        G4cout << "Found GDML file " << fGDMLFileNames[idx] << G4endl;
-        rundata->AddGDMLFile(fGDMLFileNames[idx]);
+    for(auto & fGDMLFileName : fGDMLFileNames){
+        G4cout << "Found GDML file " << fGDMLFileName << G4endl;
+        rundata->AddGDMLFile(fGDMLFileName);
     }
-    for(unsigned int idx = 0; idx < fXMLFileNames.size(); idx++ ){
-        G4cout << "Found XML file " << fXMLFileNames[idx] << G4endl;
-        rundata->AddGDMLFile(fXMLFileNames[idx]);
+    for(auto & fXMLFileName : fXMLFileNames){
+        G4cout << "Found XML file " << fXMLFileName << G4endl;
+        rundata->AddGDMLFile(fXMLFileName);
     }
 }
 

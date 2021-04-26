@@ -92,20 +92,19 @@ G4double remollBeamTarget::GetEffLumin(SamplingType_t sampling_type)
 
 void remollBeamTarget::PrintTargetInfo()
 {
-    for (auto
-        it = fTargetVolumes.begin(); it != fTargetVolumes.end(); it++) {
+    for (auto & fTargetVolume : fTargetVolumes) {
 
         // Try to cast the target volume into its tubs solid
-        G4LogicalVolume* volume = (*it)->GetLogicalVolume();
+        G4LogicalVolume* volume = fTargetVolume->GetLogicalVolume();
         G4Material* material = volume->GetMaterial();
         G4VSolid* solid = volume->GetSolid();
 
-        G4cout << "Target volume " << (*it)->GetName() << ":" << G4endl;
+        G4cout << "Target volume " << fTargetVolume->GetName() << ":" << G4endl;
         G4cout << " volume:   " << volume->GetName() << G4endl;
         G4cout << " material: " << material->GetName() << G4endl;
         G4cout << " solid: "    << solid->GetName() << G4endl;
 
-	if( (*it)->GetLogicalVolume()->GetName() == fActiveTargetVolume ){
+	if( fTargetVolume->GetLogicalVolume()->GetName() == fActiveTargetVolume ){
             G4cout << " active volume: " << fActiveTargetVolume << G4endl;
         }
     }
@@ -131,11 +130,10 @@ void remollBeamTarget::UpdateInfo()
     }
     fMotherTargetAbsolutePosition = fTargetMother->GetTranslation().z();
 
-    for (auto
-        it = fTargetVolumes.begin(); it != fTargetVolumes.end(); it++) {
+    for (auto & fTargetVolume : fTargetVolumes) {
 
         // Try to cast the target volume into its tubs solid
-        G4LogicalVolume* volume = (*it)->GetLogicalVolume();
+        G4LogicalVolume* volume = fTargetVolume->GetLogicalVolume();
         G4Material* material = volume->GetMaterial();
         G4VSolid* solid = volume->GetSolid();
         auto* tubs = dynamic_cast<G4Tubs*>(solid);
@@ -147,7 +145,7 @@ void remollBeamTarget::UpdateInfo()
 	    exit(1);
 	}
 
-	if( (*it)->GetLogicalVolume()->GetName() == fActiveTargetVolume ){
+	if( fTargetVolume->GetLogicalVolume()->GetName() == fActiveTargetVolume ){
 
 	    if( fActiveTargetEffectiveLength >= 0.0 ){
 		G4cerr << "ERROR:  " << __PRETTY_FUNCTION__ << " line " << __LINE__ <<
@@ -158,7 +156,7 @@ void remollBeamTarget::UpdateInfo()
 	    fActiveTargetEffectiveLength = tubs->GetZHalfLength()*2.0
 		* material->GetDensity();
 
-	    fActiveTargetRelativePosition = (*it)->GetTranslation().z();
+	    fActiveTargetRelativePosition = fTargetVolume->GetTranslation().z();
 
 	    fTotalTargetEffectiveLength += tubs->GetZHalfLength()*2.0
 		* material->GetDensity();

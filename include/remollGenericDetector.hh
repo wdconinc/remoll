@@ -54,76 +54,52 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void PrintAll() {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          (*it)->PrintEnabled();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          fGenericDetector->PrintEnabled();
       }
     }
 
     void PrintSummary(G4int det) {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          if ((*it)->fDetNo == det)
-            (*it)->PrintSummary();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          if (fGenericDetector->fDetNo == det)
+            fGenericDetector->PrintSummary();
       }
     }
 
     void SetAllEnabled() {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          (*it)->SetEnabled();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          fGenericDetector->SetEnabled();
       }
     }
     void SetAllDisabled() {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          (*it)->SetDisabled();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          fGenericDetector->SetDisabled();
       }
     }
 
     void SetOneEnabled(G4int det) {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          if ((*it)->fDetNo == det)
-            (*it)->SetEnabled();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          if (fGenericDetector->fDetNo == det)
+            fGenericDetector->SetEnabled();
       }
     }
     void SetOneDisabled(G4int det) {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          if ((*it)->fDetNo == det)
-            (*it)->SetDisabled();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          if (fGenericDetector->fDetNo == det)
+            fGenericDetector->SetDisabled();
       }
     }
 
     void SetRangeEnabled(G4TwoVector v) {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          if ((*it)->fDetNo >= v.x() && (*it)->fDetNo <= v.y())
-            (*it)->SetEnabled();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          if (fGenericDetector->fDetNo >= v.x() && fGenericDetector->fDetNo <= v.y())
+            fGenericDetector->SetEnabled();
       }
     }
     void SetRangeDisabled(G4TwoVector v) {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          if ((*it)->fDetNo >= v.x() && (*it)->fDetNo <= v.y())
-            (*it)->SetDisabled();
+      for (auto & fGenericDetector : fGenericDetectors) {
+          if (fGenericDetector->fDetNo >= v.x() && fGenericDetector->fDetNo <= v.y())
+            fGenericDetector->SetDisabled();
       }
     }
 
@@ -132,21 +108,15 @@ class remollGenericDetector : public G4VSensitiveDetector {
     }
 
     void SetRangeDetectorType(G4String type, G4TwoVector v) {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          if ((*it)->fDetNo >= v.x() && (*it)->fDetNo <= v.y())
-            (*it)->SetDetectorType(type);
+      for (auto & fGenericDetector : fGenericDetectors) {
+          if (fGenericDetector->fDetNo >= v.x() && fGenericDetector->fDetNo <= v.y())
+            fGenericDetector->SetDetectorType(type);
       }
     }
     void SetOneDetectorType(G4String type, G4int det) {
-      for (auto
-        it  = fGenericDetectors.begin();
-        it != fGenericDetectors.end();
-        it++) {
-          if ((*it)->fDetNo == det)
-            (*it)->SetDetectorType(type);
+      for (auto & fGenericDetector : fGenericDetectors) {
+          if (fGenericDetector->fDetNo == det)
+            fGenericDetector->SetDetectorType(type);
       }
     }
 
@@ -220,10 +190,10 @@ class remollGenericDetector : public G4VSensitiveDetector {
       };
 
       void PrintSummary() const {
-        for (auto it = fRunningSumMap.begin(); it != fRunningSumMap.end(); it++) {
+        for (auto it : fRunningSumMap) {
           G4cout << "Det no " << fDetNo << ", "
-                 << "copy no " << it->first << ": " << G4endl;
-          it->second->PrintSummary();
+                 << "copy no " << it.first << ": " << G4endl;
+          it.second->PrintSummary();
         }
       };
 

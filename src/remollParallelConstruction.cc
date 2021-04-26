@@ -197,18 +197,16 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
 {
   // Loop over volumes with auxiliary information
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for(auto
-      iter  = auxmap->begin();
-      iter != auxmap->end(); iter++) {
+  for(const auto & iter : *auxmap) {
 
     if (fVerboseLevel > 0)
-      G4cout << "Volume " << ((*iter).first)->GetName()
+      G4cout << "Volume " << (iter.first)->GetName()
              << " has the following list of auxiliary information: "<< G4endl;
 
     // Loop over auxiliary tags for this logical volume
     for (auto
-         vit  = (*iter).second.begin();
-         vit != (*iter).second.end(); vit++) {
+         vit  = iter.second.begin();
+         vit != iter.second.end(); vit++) {
 
       if (fVerboseLevel > 0)
         G4cout << "--> Type: " << (*vit).type
@@ -217,7 +215,7 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
       // Visibility = true|false|wireframe
       if ((*vit).type == "Visibility") {
         G4Colour colour(1.0,1.0,1.0);
-        const G4VisAttributes* visAttribute_old = ((*iter).first)->GetVisAttributes();
+        const G4VisAttributes* visAttribute_old = (iter.first)->GetVisAttributes();
         if (visAttribute_old)
           colour = visAttribute_old->GetColour();
         G4VisAttributes visAttribute_new(colour);
@@ -228,7 +226,7 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
         if ((*vit).value == "wireframe")
           visAttribute_new.SetForceWireframe(false);
 
-        ((*iter).first)->SetVisAttributes(visAttribute_new);
+        (iter.first)->SetVisAttributes(visAttribute_new);
       }
 
       // Color = name
@@ -240,7 +238,7 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
             G4cout << "Setting color to " << (*vit).value << "." << G4endl;
 
           G4VisAttributes visAttribute(colour);
-          ((*iter).first)->SetVisAttributes(visAttribute);
+          (iter.first)->SetVisAttributes(visAttribute);
 
         } else {
 
@@ -253,7 +251,7 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
       // Alpha = float between 0 and 1
       if ((*vit).type == "Alpha") {
         G4Colour colour(1.0,1.0,1.0);
-        const G4VisAttributes* visAttribute_old = ((*iter).first)->GetVisAttributes();
+        const G4VisAttributes* visAttribute_old = (iter.first)->GetVisAttributes();
 
         if (visAttribute_old)
           colour = visAttribute_old->GetColour();
@@ -264,7 +262,7 @@ void remollParallelConstruction::ParseAuxiliaryVisibilityInfo()
             colour.GetBlue(),
             std::atof((*vit).value.c_str()));
         G4VisAttributes visAttribute_new(colour_new);
-        ((*iter).first)->SetVisAttributes(visAttribute_new);
+        (iter.first)->SetVisAttributes(visAttribute_new);
       }
     }
   }
@@ -298,30 +296,28 @@ void remollParallelConstruction::ParseAuxiliarySensDetInfo()
       G4cout << "Beginning sensitive detector assignment" << G4endl;
 
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for (auto iter  = auxmap->begin(); iter != auxmap->end(); iter++) {
-      G4LogicalVolume* myvol = (*iter).first;
+  for (const auto & iter : *auxmap) {
+      G4LogicalVolume* myvol = iter.first;
       if (fVerboseLevel > 0)
           G4cout << "Volume " << myvol->GetName() << G4endl;
 
       for (auto
-          vit  = (*iter).second.begin();
-          vit != (*iter).second.end(); vit++) {
+          vit  = iter.second.begin();
+          vit != iter.second.end(); vit++) {
 
           if ((*vit).type == "SensDet") {
 
               // Also allow specification of det number ///////////////////
               G4String det_type = "";
               int det_no = -1;
-              for (auto
-                  nit  = (*iter).second.begin();
-                  nit != (*iter).second.end(); nit++) {
+              for (const auto & nit : iter.second) {
 
-                  if ((*nit).type == "DetNo") {
-                      det_no = atoi((*nit).value.data());
+                  if (nit.type == "DetNo") {
+                      det_no = atoi(nit.value.data());
                   }
 
-                  if ((*nit).type == "DetType") {
-                      det_type = (*nit).value.data();
+                  if (nit.type == "DetType") {
+                      det_type = nit.value.data();
                   }
               }
               if (det_no <= 0) {

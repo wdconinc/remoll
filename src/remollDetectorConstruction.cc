@@ -283,11 +283,8 @@ void remollDetectorConstruction::AddKryptoniteCandidate(G4String name)
 void remollDetectorConstruction::ListKryptoniteCandidates()
 {
   G4cout << "List of kryptonite candidate materials:" << G4endl;
-  for (auto
-      it  = fKryptoniteCandidates.begin();
-      it != fKryptoniteCandidates.end();
-      it++)
-    G4cout << *it << G4endl;
+  for (const auto & fKryptoniteCandidate : fKryptoniteCandidates)
+    G4cout << fKryptoniteCandidate << G4endl;
 }
 
 void remollDetectorConstruction::InitKryptoniteMaterials()
@@ -298,11 +295,9 @@ void remollDetectorConstruction::InitKryptoniteMaterials()
   // Find kryptonite materials in material tables
   G4MaterialTable* table = G4Material::GetMaterialTable();
   fKryptoniteMaterials.clear();
-  for (auto
-      it  = table->begin();
-      it != table->end(); it++) {
-    if (fKryptoniteCandidates.find((*it)->GetName()) != fKryptoniteCandidates.end()) {
-      fKryptoniteMaterials.insert(*it);
+  for (auto & it : *table) {
+    if (fKryptoniteCandidates.find(it->GetName()) != fKryptoniteCandidates.end()) {
+      fKryptoniteMaterials.insert(it);
     }
   }
 }
@@ -612,12 +607,10 @@ void remollDetectorConstruction::ParseAuxiliaryTargetInfo()
 
       // Loop over auxiliary tags for this logical volume
       G4LogicalVolume* logical_volume = (*iter).first;
-      for (auto
-          vit  = (*iter).second.begin();
-          vit != (*iter).second.end(); vit++) {
+      for (const auto & vit : (*iter).second) {
 
         // Treat auxiliary type "TargetSystem" only
-        if ((*vit).type != "TargetSystem") continue;
+        if (vit.type != "TargetSystem") continue;
 
         // Found target mother logical volume
         G4LogicalVolume* mother_logical_volume = logical_volume;
@@ -662,19 +655,15 @@ void remollDetectorConstruction::ParseAuxiliaryTargetInfo()
           // the use of the typedef instead of actual map. Something like a
           // for (G4GDMLAuxListType::const_iterator vit2 =
           //   auxmap[target_logical_volume].begin(); etc
-          for(auto
-              iter2  = auxmap->begin();
-              iter2 != auxmap->end(); iter2++) {
+          for(const auto & iter2 : *auxmap) {
 
             // Only the target logical volume is of interest
-            if ((*iter2).first != target_logical_volume) continue;
+            if (iter2.first != target_logical_volume) continue;
 
-            for (auto
-                 vit2  = (*iter2).second.begin();
-                 vit2 != (*iter2).second.end(); vit2++) {
+            for (const auto & vit2 : iter2.second) {
 
               // If the logical volume is tagged as "TargetSamplingVolume"
-              if ((*vit2).type != "TargetSamplingVolume") continue;
+              if (vit2.type != "TargetSamplingVolume") continue;
 
               // Add target volume
               G4cout << "Adding target sampling volume "
@@ -695,29 +684,25 @@ void remollDetectorConstruction::ParseAuxiliaryTargetInfo()
 void remollDetectorConstruction::ParseAuxiliaryUserLimits()
 {
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for(auto
-      iter  = auxmap->begin();
-      iter != auxmap->end(); iter++) {
+  for(const auto & iter : *auxmap) {
 
     if (fVerboseLevel > 0)
-      G4cout << "Volume " << ((*iter).first)->GetName()
+      G4cout << "Volume " << (iter.first)->GetName()
              << " has the following list of auxiliary information: "<< G4endl;
 
     // Loop over auxiliary tags for this logical volume
-    G4LogicalVolume* logical_volume = (*iter).first;
-    for (auto
-        vit  = (*iter).second.begin();
-        vit != (*iter).second.end(); vit++) {
+    G4LogicalVolume* logical_volume = iter.first;
+    for (const auto & vit : iter.second) {
 
       if (fVerboseLevel > 0)
-        G4cout << "--> Type: " << (*vit).type
-	       << " Value: "   << (*vit).value << std::endl;
+        G4cout << "--> Type: " << vit.type
+	       << " Value: "   << vit.value << std::endl;
 
       // Skip if not starting with "User"
-      if (! (*vit).type.contains("User")) continue;
+      if (! vit.type.contains("User")) continue;
 
       // Set user limits
-      SetUserLimits(logical_volume, (*vit).type, (*vit).value);
+      SetUserLimits(logical_volume, vit.type, vit.value);
     }
   }
 
@@ -729,18 +714,16 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
 {
   // Loop over volumes with auxiliary information
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for(auto
-      iter  = auxmap->begin();
-      iter != auxmap->end(); iter++) {
+  for(const auto & iter : *auxmap) {
 
     if (fVerboseLevel > 0)
-      G4cout << "Volume " << ((*iter).first)->GetName()
+      G4cout << "Volume " << (iter.first)->GetName()
              << " has the following list of auxiliary information: "<< G4endl;
 
     // Loop over auxiliary tags for this logical volume
     for (auto
-         vit  = (*iter).second.begin();
-         vit != (*iter).second.end(); vit++) {
+         vit  = iter.second.begin();
+         vit != iter.second.end(); vit++) {
 
       if (fVerboseLevel > 0)
         G4cout << "--> Type: " << (*vit).type
@@ -749,7 +732,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
       // Visibility = true|false|wireframe
       if ((*vit).type == "Visibility") {
         G4Colour colour(1.0,1.0,1.0);
-        const G4VisAttributes* visAttribute_old = ((*iter).first)->GetVisAttributes();
+        const G4VisAttributes* visAttribute_old = (iter.first)->GetVisAttributes();
         if (visAttribute_old)
           colour = visAttribute_old->GetColour();
         G4VisAttributes visAttribute_new(colour);
@@ -760,7 +743,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
         if ((*vit).value == "wireframe")
           visAttribute_new.SetForceWireframe(false);
 
-        ((*iter).first)->SetVisAttributes(visAttribute_new);
+        (iter.first)->SetVisAttributes(visAttribute_new);
       }
 
       // Color = name
@@ -772,7 +755,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
             G4cout << "Setting color to " << (*vit).value << "." << G4endl;
 
           G4VisAttributes visAttribute(colour);
-          ((*iter).first)->SetVisAttributes(visAttribute);
+          (iter.first)->SetVisAttributes(visAttribute);
 
         } else {
 
@@ -785,7 +768,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
       // Alpha = float between 0 and 1
       if ((*vit).type == "Alpha") {
         G4Colour colour(1.0,1.0,1.0);
-        const G4VisAttributes* visAttribute_old = ((*iter).first)->GetVisAttributes();
+        const G4VisAttributes* visAttribute_old = (iter.first)->GetVisAttributes();
 
         if (visAttribute_old)
           colour = visAttribute_old->GetColour();
@@ -796,7 +779,7 @@ void remollDetectorConstruction::ParseAuxiliaryVisibilityInfo()
             colour.GetBlue(),
             std::atof((*vit).value.c_str()));
         G4VisAttributes visAttribute_new(colour_new);
-        ((*iter).first)->SetVisAttributes(visAttribute_new);
+        (iter.first)->SetVisAttributes(visAttribute_new);
       }
     }
   }
@@ -820,10 +803,10 @@ void remollDetectorConstruction::ParseAuxiliarySensDetInfo()
 
   // Loop over all volumes with auxiliary tags
   const G4GDMLAuxMapType* auxmap = fGDMLParser->GetAuxMap();
-  for (auto iter  = auxmap->begin(); iter != auxmap->end(); iter++) {
+  for (const auto & iter : *auxmap) {
 
-      G4LogicalVolume* myvol = (*iter).first;
-      G4GDMLAuxListType list = (*iter).second;
+      G4LogicalVolume* myvol = iter.first;
+      G4GDMLAuxListType list = iter.second;
 
       if (fVerboseLevel > 0)
         G4cout << "Volume " << myvol->GetName() << G4endl;

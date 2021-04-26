@@ -12,11 +12,11 @@ remollGenericDetectorSum::~remollGenericDetectorSum() = default;
 void remollGenericDetectorSum::PrintSummary() const
 {
   G4cout << "all: edep " << fEdep/MeV << " MeV in " << fNhit << " hits:" << G4endl;
-  for (auto it = fSumByPID.begin(); it != fSumByPID.end(); it++) {
-    G4cout << "pid " << it->first << ": "
-           << "edep " << it->second.edep/MeV << " MeV"
-           << " in " << it->second.n << " hits"
-           << " (avg " << it->second.edep/MeV / it->second.n << " MeV / hit)"
+  for (const auto & it : fSumByPID) {
+    G4cout << "pid " << it.first << ": "
+           << "edep " << it.second.edep/MeV << " MeV"
+           << " in " << it.second.n << " hits"
+           << " (avg " << it.second.edep/MeV / it.second.n << " MeV / hit)"
            << G4endl;
   }
 }
