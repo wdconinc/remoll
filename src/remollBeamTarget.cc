@@ -31,7 +31,7 @@ namespace { G4Mutex remollBeamTargetMutex = G4MUTEX_INITIALIZER; }
 
 // Initialize static geometry objects
 G4String remollBeamTarget::fActiveTargetVolume = "h2Targ";
-G4VPhysicalVolume* remollBeamTarget::fTargetMother = 0;
+G4VPhysicalVolume* remollBeamTarget::fTargetMother = nullptr;
 std::vector <G4VPhysicalVolume *> remollBeamTarget::fTargetVolumes;
 
 G4double remollBeamTarget::fActiveTargetEffectiveLength  = -1e9;
@@ -191,7 +191,7 @@ remollVertex remollBeamTarget::SampleVertex(SamplingType_t sampling_type)
     }
 
     // Check if target mother volume exists
-    if (fTargetMother == 0) {
+    if (fTargetMother == nullptr) {
       G4cerr << "ERROR:  " << __PRETTY_FUNCTION__ << " line " << __LINE__ << ": " <<
                 "No target mother volume defined!" << G4endl;
     }

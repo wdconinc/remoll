@@ -40,24 +40,24 @@
 #include "G4AutoLock.hh"
 namespace { G4Mutex remollDetectorConstructionMutex = G4MUTEX_INITIALIZER; }
 
-G4ThreadLocal remollGlobalField* remollDetectorConstruction::fGlobalField = 0;
+G4ThreadLocal remollGlobalField* remollDetectorConstruction::fGlobalField = nullptr;
 
 G4UserLimits* remollDetectorConstruction::fKryptoniteUserLimits = new G4UserLimits(0,0,0,DBL_MAX,DBL_MAX);
 
 remollDetectorConstruction::remollDetectorConstruction(const G4String& name, const G4String& gdmlfile)
 : fVerboseLevel(0),
-  fGDMLParser(0),
+  fGDMLParser(nullptr),
   fGDMLValidate(false),
   fGDMLOverlapCheck(true),
   fGDMLPath(""),
   fGDMLFile(""),
-  fMessenger(0),
-  fGeometryMessenger(0),
-  fUserLimitsMessenger(0),
-  fKryptoniteMessenger(0),
+  fMessenger(nullptr),
+  fGeometryMessenger(nullptr),
+  fUserLimitsMessenger(nullptr),
+  fKryptoniteMessenger(nullptr),
   fKryptoniteEnable(true),
   fKryptoniteVerbose(0),
-  fWorldVolume(0),
+  fWorldVolume(nullptr),
   fWorldName(name)
 {
   // Define some engineering units
@@ -310,9 +310,9 @@ void remollDetectorConstruction::InitKryptoniteMaterials()
 void remollDetectorConstruction::SetKryptoniteUserLimits(G4VPhysicalVolume* volume)
 {
   // If null volume, pick entire world
-  if (volume == 0) volume = fWorldVolume;
+  if (volume == nullptr) volume = fWorldVolume;
   // If still null, give up
-  if (volume == 0) return;
+  if (volume == nullptr) return;
 
   // Get logical volume
   G4LogicalVolume* logical_volume = volume->GetLogicalVolume();
@@ -327,7 +327,7 @@ void remollDetectorConstruction::SetKryptoniteUserLimits(G4VPhysicalVolume* volu
     if (fKryptoniteEnable)
       logical_volume->SetUserLimits(fKryptoniteUserLimits);
     else
-      logical_volume->SetUserLimits(0);
+      logical_volume->SetUserLimits(nullptr);
   }
 
   // Descend down the tree
@@ -442,7 +442,7 @@ void remollDetectorConstruction::AbsoluteRotation(G4String name, G4ThreeVector r
 
   // Get previous rotation matrix
   G4RotationMatrix* old_rotation = physical_volume->GetRotation();
-  if (old_rotation == 0) old_rotation = new G4RotationMatrix();
+  if (old_rotation == nullptr) old_rotation = new G4RotationMatrix();
 
   // Print verbose
   if (fVerboseLevel > 0)
@@ -475,7 +475,7 @@ void remollDetectorConstruction::RelativeRotation(G4String name, G4ThreeVector r
 
   // Get previous rotation matrix
   G4RotationMatrix* old_rotation = physical_volume->GetRotation();
-  if (old_rotation == 0) old_rotation = new G4RotationMatrix();
+  if (old_rotation == nullptr) old_rotation = new G4RotationMatrix();
 
   // Apply relative rotation
   G4RotationMatrix* rotation = new G4RotationMatrix(*old_rotation);
@@ -626,7 +626,7 @@ void remollDetectorConstruction::ParseAuxiliaryTargetInfo()
                  << mother_logical_volume->GetName() << "." << G4endl;
 
         // Now find target mother physical volume
-        G4VPhysicalVolume* mother_physical_volume = 0;
+        G4VPhysicalVolume* mother_physical_volume = nullptr;
         std::vector<G4VPhysicalVolume*> list =
             GetPhysicalVolumes(fWorldVolume,mother_logical_volume);
         if (list.size() == 1) {
@@ -828,7 +828,7 @@ void remollDetectorConstruction::ParseAuxiliarySensDetInfo()
       if (fVerboseLevel > 0)
         G4cout << "Volume " << myvol->GetName() << G4endl;
 
-      remollGenericDetector* remollsd = 0;
+      remollGenericDetector* remollsd = nullptr;
 
       // Find first aux list entry with type SensDet
       auto it_sensdet = NextAuxWithType(list.begin(), list.end(), "SensDet");
@@ -864,7 +864,7 @@ void remollDetectorConstruction::ParseAuxiliarySensDetInfo()
           remollsd = dynamic_cast<remollGenericDetector*>(sd);
 
           // No such detector yet
-          if (remollsd == 0) {
+          if (remollsd == nullptr) {
 
             if (fVerboseLevel > 0)
               G4cout << "  Creating sensitive detector "
@@ -1092,7 +1092,7 @@ void remollDetectorConstruction::PrintGeometryTree(
     G4bool print)
 {
   // Null volume
-  if (aVolume == 0) aVolume = fWorldVolume;
+  if (aVolume == nullptr) aVolume = fWorldVolume;
 
   // Print spaces
   if (print) {

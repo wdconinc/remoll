@@ -108,7 +108,7 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
     std::set<G4String> fKryptoniteCandidates;
     std::set<G4Material*> fKryptoniteMaterials;
 
-    void SetKryptoniteUserLimits(G4VPhysicalVolume* volume = 0);
+    void SetKryptoniteUserLimits(G4VPhysicalVolume* volume = nullptr);
 
     void InitKryptoniteMaterials();
 
@@ -135,12 +135,12 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
     void PrintElements();
     void PrintMaterials();
     void PrintOverlaps() {
-      PrintGeometryTree(0,0,true,false);
+      PrintGeometryTree(nullptr,0,true,false);
     }
     void PrintGeometry(G4bool surfchk = false) {
-      PrintGeometryTree(0,0,surfchk,true);
+      PrintGeometryTree(nullptr,0,surfchk,true);
     }
-    void PrintGeometryTree(G4VPhysicalVolume* aVolume = 0,
+    void PrintGeometryTree(G4VPhysicalVolume* aVolume = nullptr,
       G4int depth = 0, G4bool surfchk = false, G4bool print = true);
 
     std::vector<G4VPhysicalVolume*> GetPhysicalVolumes(

@@ -18,7 +18,7 @@
 namespace { G4Mutex remollEventActionMutex = G4MUTEX_INITIALIZER; }
 
 remollEventAction::remollEventAction()
-  : fPrimaryGeneratorAction(0) { }
+  : fPrimaryGeneratorAction(nullptr) { }
 
 remollEventAction::~remollEventAction() { }
 

@@ -41,7 +41,7 @@ class remollRunData : public TObject {
 	void AddGDMLFile(const char *fn);
 	remollTextFile GetGDMLFile(int i) const { return fGDMLFiles[i]; }
 	void ClearGDMLFiles(){ fGDMLFiles.clear(); }
-	void RecreateGDML(const char *adir = NULL, bool clobber = false);
+	void RecreateGDML(const char *adir = nullptr, bool clobber = false);
 
     private:
 	long int fNthrown;

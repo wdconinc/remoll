@@ -12,7 +12,7 @@
 #include "G4ParticleTable.hh"
 
 remollEvent::remollEvent()
-: fBeamTarget(0),
+: fBeamTarget(nullptr),
   fBeamMomentum(0,0,0),
   fBeamPolarization(0,0,0),
   fVertexPos(0,0,0),
@@ -25,7 +25,7 @@ remollEvent::remollEvent()
 }
 
 remollEvent::remollEvent(G4Event* event)
-: fBeamTarget(0)
+: fBeamTarget(nullptr)
 {
   Reset();
   for (G4int i = 0; i < event->GetNumberOfPrimaryVertex(); i++) {
@@ -71,7 +71,7 @@ std::vector<remollEventParticle_t> remollEvent::GetEventParticleIO() const {
 	G4RunManager::GetRunManager()->GetCurrentEvent()->GetTrajectoryContainer();
 
 
-    if(trajectoryContainer==0){
+    if(trajectoryContainer==nullptr){
     }
     else {
       auto n = trajectoryContainer->entries();

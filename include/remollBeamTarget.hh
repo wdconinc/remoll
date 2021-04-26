@@ -49,7 +49,7 @@ class remollBeamTarget {
 
     public:
         // Static geometry functions
-        static void ResetTargetVolumes(){ fTargetVolumes.clear(); fTargetMother = 0; UpdateInfo(); }
+        static void ResetTargetVolumes(){ fTargetVolumes.clear(); fTargetMother = nullptr; UpdateInfo(); }
         static void SetMotherVolume( G4VPhysicalVolume *v ){ fTargetMother = v; UpdateInfo(); }
         static void AddTargetVolume( G4VPhysicalVolume *v ){ fTargetVolumes.push_back(v); UpdateInfo(); }
         static std::vector<G4VPhysicalVolume*> GetTargetVolumes(){ return fTargetVolumes; }

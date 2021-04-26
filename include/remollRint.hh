@@ -27,7 +27,7 @@ class remollRint : public TRint {
   public:
     /// \brief Constructor
     remollRint (const char* appClassName, int* argc, char** argv,
-                void* options = 0, int numOptions = 0, bool noLogo = kFALSE);
+                void* options = nullptr, int numOptions = 0, bool noLogo = kFALSE);
 
     /// \brief Destructor
     virtual ~remollRint();

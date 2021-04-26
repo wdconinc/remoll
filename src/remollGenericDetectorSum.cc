@@ -2,7 +2,7 @@
 
 #include "remollSystemOfUnits.hh"
 
-G4ThreadLocal G4Allocator<remollGenericDetectorSum>* remollGenericDetectorSumAllocator = 0;
+G4ThreadLocal G4Allocator<remollGenericDetectorSum>* remollGenericDetectorSumAllocator = nullptr;
 
 remollGenericDetectorSum::remollGenericDetectorSum(int detid, int copyid)
 : fDetID(detid),fCopyID(copyid),fEdep(0.0),fNhit(0) { }

@@ -30,16 +30,16 @@
 ClassImp(remollSeed_t)
 
 // Singleton
-remollIO* remollIO::gInstance = 0;
+remollIO* remollIO::gInstance = nullptr;
 remollIO* remollIO::GetInstance(const G4String& outputfile) {
-  if (gInstance == 0) {
+  if (gInstance == nullptr) {
     gInstance = new remollIO(outputfile);
   }
   return gInstance;
 }
 
 remollIO::remollIO(const G4String& outputfile)
-: fFile(0),fTree(0),fFilename(outputfile),fRate(0)
+: fFile(nullptr),fTree(nullptr),fFilename(outputfile),fRate(0)
 {
     // Create generic messenger
     fMessenger = new G4GenericMessenger(this,"/remoll/","Remoll properties");
@@ -51,12 +51,12 @@ remollIO::~remollIO()
     // Delete tree
     if (fTree) {
         delete fTree;
-        fTree = NULL;
+        fTree = nullptr;
     }
     // Delete file
     if (fFile) {
         delete fFile;
-        fFile = NULL;
+        fFile = nullptr;
     }
 
     delete fMessenger;
@@ -67,13 +67,13 @@ void remollIO::InitializeTree()
     if (fFile) {
         fFile->Close();
         delete fFile;
-        fFile = NULL;
-        fTree = NULL;
+        fFile = nullptr;
+        fTree = nullptr;
     }
 
     if (fTree) {
         delete fTree;
-        fTree = NULL;
+        fTree = nullptr;
     }
 
     fFile = new TFile(fFilename, "RECREATE");
@@ -150,12 +150,12 @@ void remollIO::WriteTree()
 
     fTree->ResetBranchAddresses();
     delete fTree;
-    fTree = NULL;
+    fTree = nullptr;
 
     fFile->Close();
 
     delete fFile;
-    fFile = NULL;
+    fFile = nullptr;
 
     G4cout << "done" << G4endl;
 }

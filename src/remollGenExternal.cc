@@ -21,9 +21,9 @@ G4Mutex inFileMutex = G4MUTEX_INITIALIZER;
 
 remollGenExternal::remollGenExternal()
 : remollVEventGen("external"),
-  fFile(0), fTree(0),
+  fFile(nullptr), fTree(nullptr),
   fEntry(0), fEntries(0),
-  fEvent(0), fHit(0),
+  fEvent(nullptr), fHit(nullptr),
   fzOffset(0), fDetectorID(28), fLoopID(1)
 {
   fSamplingType = kNoTargetVolume;
@@ -41,7 +41,7 @@ remollGenExternal::~remollGenExternal()
   // Close file which deletes tree
   if (fFile) {
     fFile->Close();
-    fTree = 0;
+    fTree = nullptr;
   }
 }
 
@@ -52,7 +52,7 @@ void remollGenExternal::SetGenExternalFile(G4String& filename)
   // Close previous file
   if (fFile) {
     fFile->Close();
-    fFile = 0;
+    fFile = nullptr;
   }
 
   // Try to open filename

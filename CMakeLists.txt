@@ -6,6 +6,12 @@ project(remoll LANGUAGES CXX C)
 # Export compile commands as json for run-clang-tidy
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Also use clang-tidy integration in CMake 3.8
+set(CMAKE_CXX_CLANG_TIDY
+    clang-tidy;
+    -header-filter=.;
+    -checks=modernize-use-nullptr;)
+
 # Disallow in-source builds
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
   message(FATAL_ERROR "remoll requires an out-of-source build.")

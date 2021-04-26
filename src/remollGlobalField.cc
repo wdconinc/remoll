@@ -45,9 +45,9 @@ remollGlobalField::remollGlobalField()
   fMinStep(0.01*mm),fDeltaChord(3.0*mm),
   fDeltaOneStep(0.01*mm),fDeltaIntersection(0.1*mm),
   fEpsMin(1.0e-5*mm),fEpsMax(1.0e-4*mm),
-  fEquation(0),fEquationDoF(0),
-  fFieldManager(0),fFieldPropagator(0),
-  fStepper(0),fChordFinder(0),
+  fEquation(nullptr),fEquationDoF(0),
+  fFieldManager(nullptr),fFieldPropagator(nullptr),
+  fStepper(nullptr),fChordFinder(nullptr),
   fVerboseLevel(0)
 {
     // Get field propagator and managers
@@ -137,7 +137,7 @@ void remollGlobalField::SetEquation()
       fEquation = new G4Mag_SpinEqRhs(this);
       fEquationDoF = 12;
       break;
-    default: fEquation = 0;
+    default: fEquation = nullptr;
   }
 
   SetStepper();
@@ -173,7 +173,7 @@ void remollGlobalField::SetStepper()
       fStepper = new G4CashKarpRKF45(fEquation, fEquationDoF);
       if (fVerboseLevel > 0) G4cout << "G4CashKarpRKF45 is called" << G4endl;
       break;
-    default: fStepper = 0;
+    default: fStepper = nullptr;
   }
 
   SetChordFinder();
@@ -194,7 +194,7 @@ void remollGlobalField::AddNewField(G4String& name)
   G4AutoLock lock(&remollGlobalFieldMutex);
 
   // If this field has already been loaded
-  if (GetFieldByName(name) != 0) return;
+  if (GetFieldByName(name) != nullptr) return;
 
   // Load new field
   remollMagneticField *thisfield = new remollMagneticField(name);
@@ -236,7 +236,7 @@ remollMagneticField* remollGlobalField::GetFieldByName(const G4String& name) con
         if ((*it)->GetName() == name)
           return (*it);
 
-    return 0;
+    return nullptr;
 }
 
 void remollGlobalField::PrintFieldValue(const G4ThreeVector& r)

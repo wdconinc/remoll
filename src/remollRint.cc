@@ -8,10 +8,10 @@
 #include <TROOT.h>
 
 // Global pointers
-remollRint* gRemollRint = NULL;
+remollRint* gRemollRint = nullptr;
 
 // Pointer to self
-remollRint* remollRint::fExists = NULL;
+remollRint* remollRint::fExists = nullptr;
 
 
 //--------------------------------------------------------------------------
@@ -33,6 +33,6 @@ remollRint::~remollRint()
 {
   // Reset point to self
   if (fExists == this)
-    fExists = NULL;
+    fExists = nullptr;
 }
 

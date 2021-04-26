@@ -20,7 +20,7 @@
 #include "G4AutoLock.hh"
 namespace { G4Mutex remollGenHyperonMutex = G4MUTEX_INITIALIZER; }
 
-remollFileReader* remollGenHyperon::fFileReader = 0;
+remollFileReader* remollGenHyperon::fFileReader = nullptr;
 
 remollGenHyperon::remollGenHyperon()
 : remollVEventGen("hyperon"),
@@ -41,7 +41,7 @@ remollGenHyperon::remollGenHyperon()
 remollGenHyperon::~remollGenHyperon()
 {
   G4AutoLock lock(&remollGenHyperonMutex);
-  if (fFileReader) { delete fFileReader; fFileReader = 0; }
+  if (fFileReader) { delete fFileReader; fFileReader = nullptr; }
 }
 
 remollFileReader* remollGenHyperon::GetFileReader() const

@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
     }
 
     // Initialize the random seed
-    G4long seed = time(0) + (int) getpid();
+    G4long seed = time(nullptr) + (int) getpid();
     // Open /dev/urandom
     std::ifstream urandom("/dev/urandom", std::ios::in | std::ios::binary);
     // If stream is open

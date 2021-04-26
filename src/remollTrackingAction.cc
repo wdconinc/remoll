@@ -10,7 +10,7 @@
 #include "G4GenericMessenger.hh"
 
 remollTrackingAction::remollTrackingAction()
-: fMessenger(0),fTrackingFlag(3)
+: fMessenger(nullptr),fTrackingFlag(3)
 {
   fMessenger = new G4GenericMessenger(this,"/remoll/tracking/","Remoll tracking properties");
   fMessenger->DeclareProperty("set",fTrackingFlag)

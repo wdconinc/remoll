@@ -35,7 +35,7 @@
 #include "remollGenHyperon.hh"
 
 remollPrimaryGeneratorAction::remollPrimaryGeneratorAction()
-: fEventGen(0),fPriGen(0),fParticleGun(0),fBeamTarg(0),fEvent(0),fMessenger(0),fEffCrossSection(0)
+: fEventGen(nullptr),fPriGen(nullptr),fParticleGun(nullptr),fBeamTarg(nullptr),fEvent(nullptr),fMessenger(nullptr),fEffCrossSection(0)
 {
     static bool has_been_warned = false;
     if (! has_been_warned) {
@@ -96,14 +96,14 @@ remollPrimaryGeneratorAction::~remollPrimaryGeneratorAction()
 void remollPrimaryGeneratorAction::SetGenerator(G4String& genname)
 {
     // Set generator to null
-    fEventGen = 0;
-    fPriGen = 0;
+    fEventGen = nullptr;
+    fPriGen = nullptr;
 
     // Find event generator
     std::map<G4String,remollVEventGen*>::iterator evgen = fEvGenMap.find(genname);
     if (evgen != fEvGenMap.end()) {
       G4cout << "Setting generator to " << genname << G4endl;
-      fPriGen = 0;
+      fPriGen = nullptr;
       fPriGenName = "";
       fEventGen = evgen->second;
       fEventGenName = evgen->first;
@@ -116,9 +116,9 @@ void remollPrimaryGeneratorAction::SetGenerator(G4String& genname)
       G4cout << "Setting generator to " << genname << G4endl;
       fPriGen = prigen->second;
       fPriGenName = prigen->first;
-      fEventGen = 0;
+      fEventGen = nullptr;
       fEventGenName = "";
-      fParticleGun = 0;
+      fParticleGun = nullptr;
     }
 
     // No generator found
@@ -143,7 +143,7 @@ void remollPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     // Delete old primary event
     if (fEvent) {
       delete fEvent;
-      fEvent = 0;
+      fEvent = nullptr;
     }
 
     // 1. Using primary generator interface

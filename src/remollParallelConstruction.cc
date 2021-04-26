@@ -18,12 +18,12 @@
 remollParallelConstruction::remollParallelConstruction(const G4String& name, const G4String& gdmlfile)
 : G4VUserParallelWorld(name),
   fGDMLPath(""),fGDMLFile(""),
-  fGDMLParser(0),
+  fGDMLParser(nullptr),
   fGDMLValidate(false),
   fGDMLOverlapCheck(true),
   fVerboseLevel(0),
-  fParallelMessenger(0),
-  fWorldVolume(0),
+  fParallelMessenger(nullptr),
+  fWorldVolume(nullptr),
   fWorldName(name)
 {
   SetGDMLFile("geometry/mollerParallel.gdml");
@@ -176,7 +176,7 @@ G4VPhysicalVolume* remollParallelConstruction::ParseGDMLFile()
   G4LogicalVolume* worldlogical = worldvolume->GetLogicalVolume();
 
   // Place parallel world into world volume
-  new G4PVPlacement(0,G4ThreeVector(0.,0.,0.),
+  new G4PVPlacement(nullptr,G4ThreeVector(0.,0.,0.),
                     parallellogical,"parallel_logic_PV",
                     worldlogical,false,0);
 
@@ -338,7 +338,7 @@ void remollParallelConstruction::ParseAuxiliarySensDetInfo()
 
               G4VSensitiveDetector* thisdet = SDman->FindSensitiveDetector(detectorname,(fVerboseLevel > 0));
 
-              if( thisdet == 0 ) {
+              if( thisdet == nullptr ) {
                   if (fVerboseLevel > 0)
                       G4cout << "  Creating sensitive detector "
                           << "for volume " << myvol->GetName()

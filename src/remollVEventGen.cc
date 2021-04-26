@@ -24,8 +24,8 @@ G4double remollVEventGen::fE_max = 11.0*GeV;
 remollVEventGen::remollVEventGen(const G4String name)
 : fName(name),
   fBeamPol("0"),
-  fNumberOfParticles(1),fParticleGun(0),
-  fBeamTarg(0)
+  fNumberOfParticles(1),fParticleGun(nullptr),
+  fBeamTarg(nullptr)
 {
     // Set initial number of particles and create particle gun
     SetNumberOfParticles(fNumberOfParticles);
@@ -76,7 +76,7 @@ void remollVEventGen::SetNumberOfParticles(G4int n)
   // Delete old particle gun
   if (fParticleGun) {
     delete fParticleGun;
-    fParticleGun = 0;
+    fParticleGun = nullptr;
   }
   // Create new particle gun
   fParticleGun = new G4ParticleGun(fNumberOfParticles);

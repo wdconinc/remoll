@@ -2,7 +2,7 @@
 
 #include "remollSystemOfUnits.hh"
 
-G4ThreadLocal G4Allocator<remollGenericDetectorHit>* remollGenericDetectorHitAllocator = 0;
+G4ThreadLocal G4Allocator<remollGenericDetectorHit>* remollGenericDetectorHitAllocator = nullptr;
 
 remollGenericDetectorHit::remollGenericDetectorHit(G4int det, G4int copy)
 : fDetID(det),fCopyID(copy)

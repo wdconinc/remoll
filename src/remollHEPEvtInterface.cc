@@ -41,7 +41,7 @@ namespace {
  G4Mutex remollHEPEvtInterfaceMutex = G4MUTEX_INITIALIZER;
 }
 
-G4VPrimaryGenerator* remollHEPEvtInterface::fHEPEvtInterface = 0;
+G4VPrimaryGenerator* remollHEPEvtInterface::fHEPEvtInterface = nullptr;
 
 remollHEPEvtInterface::remollHEPEvtInterface()
 : fVerbose(0), fFilename("hepevt.dat")
@@ -52,14 +52,14 @@ remollHEPEvtInterface::remollHEPEvtInterface()
 remollHEPEvtInterface::~remollHEPEvtInterface()
 {
   G4AutoLock lock(&remollHEPEvtInterfaceMutex);
-  if(fHEPEvtInterface) { delete fHEPEvtInterface; fHEPEvtInterface = 0; }
+  if(fHEPEvtInterface) { delete fHEPEvtInterface; fHEPEvtInterface = nullptr; }
   delete fMessenger;
 }
 
 void remollHEPEvtInterface::Initialize()
 {
   G4AutoLock lock(&remollHEPEvtInterfaceMutex);
-  if (fHEPEvtInterface) { delete fHEPEvtInterface; fHEPEvtInterface = 0; }
+  if (fHEPEvtInterface) { delete fHEPEvtInterface; fHEPEvtInterface = nullptr; }
   fHEPEvtInterface = new G4HEPEvtInterface(fFilename,fVerbose);
 }
 

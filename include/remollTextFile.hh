@@ -21,7 +21,7 @@ class remollTextFile : public TObject {
 	const char *GetFilename(){ return fFilename; }
 	unsigned long long int GetBufferSize(){ return fBufferSize; }
 	
-	void Recreate(const char *fn = NULL, bool clobber = false);
+	void Recreate(const char *fn = nullptr, bool clobber = false);
 	void RecreateInDir(const char *path, bool clobber = false);
 
     private:
@@ -31,7 +31,7 @@ class remollTextFile : public TObject {
 	unsigned long long int fBufferSize;
 	char *fBuffer;
 
-	const char *GetBaseFile(const char *fp = NULL);
+	const char *GetBaseFile(const char *fp = nullptr);
 
 	ClassDef(remollTextFile, 1);
 };

@@ -2,7 +2,7 @@
 
 #include "remollRunData.hh"
 
-remollRunData* remollRun::fRunData = 0;
+remollRunData* remollRun::fRunData = nullptr;
 
 remollRunData* remollRun::GetRunData()
 {

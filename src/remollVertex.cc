@@ -7,7 +7,7 @@
 
 remollVertex::remollVertex(){
     // Some default material
-    fMaterial = NULL;
+    fMaterial = nullptr;
     fBeamEnergy = 0.0*GeV;
     fRadiationLength = 0.0;
 }

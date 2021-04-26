@@ -18,14 +18,14 @@
 
 remollPhysicsList::remollPhysicsList()
 : G4VModularPhysicsList(),
-  fReferencePhysList(0),
-  fParallelPhysics(0),
-  fOpticalPhysics(0),
-  fStepLimiterPhysics(0),
-  fPhysListMessenger(0),
-  fOpticalMessenger(0),
-  fParallelMessenger(0),
-  fBaseMessenger(0)
+  fReferencePhysList(nullptr),
+  fParallelPhysics(nullptr),
+  fOpticalPhysics(nullptr),
+  fStepLimiterPhysics(nullptr),
+  fPhysListMessenger(nullptr),
+  fOpticalMessenger(nullptr),
+  fParallelMessenger(nullptr),
+  fBaseMessenger(nullptr)
 {
   // Let users know to ignore the warning by Particle HP package
   G4cout << "remoll: Since the high precision neutron simulation in the some physics lists  " << G4endl;
@@ -184,7 +184,7 @@ void remollPhysicsList::DisableParallelPhysics()
 
   // Delete Parallel physics
   delete fParallelPhysics;
-  fParallelPhysics = 0;
+  fParallelPhysics = nullptr;
 }
 
 void remollPhysicsList::SetOpticalPhysics(G4bool flag)
@@ -227,7 +227,7 @@ void remollPhysicsList::DisableOpticalPhysics()
 
   // Delete optical physics
   delete fOpticalPhysics;
-  fOpticalPhysics = 0;
+  fOpticalPhysics = nullptr;
 }
 
 void remollPhysicsList::SetStepLimiterPhysics(G4bool flag)
@@ -274,7 +274,7 @@ void remollPhysicsList::DisableStepLimiterPhysics()
 
   // Delete step limiter physics
   delete fStepLimiterPhysics;
-  fStepLimiterPhysics = 0;
+  fStepLimiterPhysics = nullptr;
 }
 
 void remollPhysicsList::ListReferencePhysLists()
@@ -309,8 +309,8 @@ void remollPhysicsList::RemoveReferencePhysList()
 
   // Remove physics in previous reference list
   G4int i = 0;
-  G4VPhysicsConstructor* elem = 0;
-  while ((elem = const_cast<G4VPhysicsConstructor*>(fReferencePhysList->GetPhysics(i++))) != 0) {
+  G4VPhysicsConstructor* elem = nullptr;
+  while ((elem = const_cast<G4VPhysicsConstructor*>(fReferencePhysList->GetPhysics(i++))) != nullptr) {
     // Print output
     if (GetVerboseLevel() > 0)
       G4cout << "Removing " << elem->GetPhysicsName() << G4endl;
@@ -321,7 +321,7 @@ void remollPhysicsList::RemoveReferencePhysList()
 
   // Delete reference physics list
   fReferencePhysicsListToDelete.push_back(fReferencePhysList);
-  fReferencePhysList = 0;
+  fReferencePhysList = nullptr;
 }
 
 void remollPhysicsList::RegisterReferencePhysList(G4String name)
@@ -354,8 +354,8 @@ void remollPhysicsList::RegisterReferencePhysList(G4String name)
 
   // Register physics from this list
   G4int i = 0;
-  G4VPhysicsConstructor* elem = 0;
-  while ((elem = const_cast<G4VPhysicsConstructor*>(fReferencePhysList->GetPhysics(i++))) != 0) {
+  G4VPhysicsConstructor* elem = nullptr;
+  while ((elem = const_cast<G4VPhysicsConstructor*>(fReferencePhysList->GetPhysics(i++))) != nullptr) {
     // Change verbose level
     elem->SetVerboseLevel(GetVerboseLevel());
 

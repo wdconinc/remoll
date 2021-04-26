@@ -16,10 +16,10 @@
 
 std::list<remollGenericDetector*> remollGenericDetector::fGenericDetectors = std::list<remollGenericDetector*>();
 
-G4GenericMessenger* remollGenericDetector::fStaticMessenger = 0;
+G4GenericMessenger* remollGenericDetector::fStaticMessenger = nullptr;
 
 remollGenericDetector::remollGenericDetector( G4String name, G4int detnum )
-: G4VSensitiveDetector(name),fHitColl(0),fSumColl(0),fEnabled(true)
+: G4VSensitiveDetector(name),fHitColl(nullptr),fSumColl(nullptr),fEnabled(true)
 {
   assert(detnum > 0);
   SetDetNo(detnum);
@@ -248,7 +248,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
 
     // Ignore interior tracks
     if (! fDetectSecondaries
-        && track->GetCreatorProcess() != 0 && ! firststepinvolume) {
+        && track->GetCreatorProcess() != nullptr && ! firststepinvolume) {
       static bool has_been_warned = false;
       if (! has_been_warned) {
         G4cout << "remoll: Only full hits from primary tracks are being stored by default." << G4endl;
@@ -270,7 +270,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
 
 
     // Which point do we store? (important for optical photons at boundaries)
-    G4StepPoint* point = 0;
+    G4StepPoint* point = nullptr;
     // optical absorption
     if (particle == G4OpticalPhoton::OpticalPhotonDefinition()
      && postpoint->GetStepStatus() == fGeomBoundary) {

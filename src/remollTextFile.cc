@@ -9,7 +9,7 @@
 remollTextFile::remollTextFile()
 : TObject() {
     fFilenameSize = 0;
-    fFilename = NULL;
+    fFilename = nullptr;
 
     fBufferSize = 1;
     fBuffer = new char[1];
@@ -19,7 +19,7 @@ remollTextFile::remollTextFile()
 remollTextFile::remollTextFile(const char *fn)
 : TObject() {
     fFilenameSize = 0;
-    fFilename = NULL;
+    fFilename = nullptr;
 
     fBufferSize = 1;
     fBuffer = new char[1];
@@ -71,7 +71,7 @@ void remollTextFile::copyFileIn(const char *fn){
     stat(fn, &filedata);
 
     FILE *fd = fopen(fn, "r");
-    if( fd != NULL ){
+    if( fd != nullptr ){
 	fFilenameSize = strlen(fn)+1; // +1 so we pick up \0
 	fFilename = new char[fFilenameSize];
 	strncpy(fFilename, fn, fFilenameSize);
@@ -95,7 +95,7 @@ void remollTextFile::copyFileIn(const char *fn){
 void remollTextFile::RecreateInDir(const char *adir, bool clobber ){
     char *thisdir;
 
-    if( adir == NULL ){
+    if( adir == nullptr ){
 	thisdir = new char[2];
 	strcpy(thisdir, ".");
     } else {
@@ -114,15 +114,15 @@ void remollTextFile::RecreateInDir(const char *adir, bool clobber ){
 
     if( ret == -1 && errno != EEXIST ){ 
 	fprintf(stderr, "%s - %s\n", thisdir, strerror(errno) );
-	delete thisdir;
-	delete catpath;
+	delete[] thisdir;
+	delete[] catpath;
 	return;
     }
 
     Recreate(catpath, clobber);
 
-    delete thisdir;
-    delete catpath;
+    delete[] thisdir;
+    delete[] catpath;
 }
 
 void remollTextFile::Recreate(const char *fn, bool clobber ){
@@ -130,7 +130,7 @@ void remollTextFile::Recreate(const char *fn, bool clobber ){
     //    don't clobber, end with error if we are asked to do this
     //    If directory structure doesn't exist, make file in present directory        
 
-    if( fn == NULL ){ fn = fFilename; }
+    if( fn == nullptr ){ fn = fFilename; }
 
     struct stat fdata;
     int ret = stat(fn, &fdata);
@@ -143,14 +143,14 @@ void remollTextFile::Recreate(const char *fn, bool clobber ){
     FILE *fd;
     fd = fopen(fn, "w");
 
-    if( fd == NULL ){
+    if( fd == nullptr ){
 	printf("errno = %d\n", errno ); 
 	printf("%s - %s\n", fn, strerror(errno) ); 
 	printf("Attempting to write %s to present directory\n", GetBaseFile(fn) );
 	fd = fopen(GetBaseFile(fn), "w");
     }
 
-    if( fd == NULL ){
+    if( fd == nullptr ){
 	printf("Failed %s - %s\n", GetBaseFile(), strerror(errno) ); 
 	return;
     }
@@ -178,7 +178,7 @@ void remollTextFile::Print(){
 }
 
 const char *remollTextFile::GetBaseFile(const char *fp){
-    if( fp == NULL ) fp = fFilename;
+    if( fp == nullptr ) fp = fFilename;
 
     int idx = strlen(fp)-1;
 

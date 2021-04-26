@@ -30,7 +30,7 @@ void remollRunData::Init()
     }
 
     char runpath[length];
-    if (getcwd(runpath, length) == NULL) {
+    if (getcwd(runpath, length) == nullptr) {
 	G4cerr << "Error:  " << __PRETTY_FUNCTION__ << " line " << __LINE__ << ": "
                << "could not get current working directory" << G4endl;
     } else {
