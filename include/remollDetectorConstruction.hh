@@ -27,8 +27,6 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
     remollDetectorConstruction(const G4String& name, const G4String& gdmlfile);
     virtual ~remollDetectorConstruction();
 
-  private:
-
     remollDetectorConstruction(const remollDetectorConstruction&) = delete;
     remollDetectorConstruction& operator=(remollDetectorConstruction) = delete;
 
