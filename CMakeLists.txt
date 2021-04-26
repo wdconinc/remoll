@@ -1,10 +1,9 @@
-#----------------------------------------------------------------------------
-# Setup the project
-#
-cmake_minimum_required(VERSION 3.5)
-project(remoll VERSION 0.1 LANGUAGES CXX C)
+cmake_minimum_required(VERSION 3.8)
 
-# Export compile commands as json
+# Setup the project
+project(remoll LANGUAGES CXX C)
+
+# Export compile commands as json for run-clang-tidy
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Disallow in-source builds
