@@ -72,7 +72,7 @@ remollGenericDetectorHit::remollGenericDetectorHit(const remollGenericDetectorHi
 }
 
 const remollGenericDetectorHit& remollGenericDetectorHit::operator=(const remollGenericDetectorHit &right) {
-  (*this) = right;
+  G4VHit::operator=(right);
   return *this;
 }
 
