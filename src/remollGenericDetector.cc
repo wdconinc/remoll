@@ -185,7 +185,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
       if (! has_been_warned) {
         G4cout << "remoll: Optical photons simulated but not stored for some detectors." << G4endl;
         G4cout << "remoll: To save optical photon hits, use the following in gdml:" << G4endl;
-        G4cout << "remoll:   <auxiliary auxtype=\"DetType\" auxvalue=\"opticalphoton\"/>" << G4endl;
+        G4cout << R"(remoll:   <auxiliary auxtype="DetType" auxvalue="opticalphoton"/>)" << G4endl;
         G4cout << "remoll: or use the following in your macro:" << G4endl;
         G4cout << "remoll:   /remoll/SD/detect opticalphoton 4001" << G4endl;
         has_been_warned = true;
@@ -203,7 +203,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
       if (! has_been_warned) {
         G4cout << "remoll: <0.1 MeV neutrals simulated but not stored for some detectors." << G4endl;
         G4cout << "remoll: To save low energy neutral hits, use the following in gdml:" << G4endl;
-        G4cout << "remoll:   <auxiliary auxtype=\"DetType\" auxvalue=\"lowenergyneutral\"/>" << G4endl;
+        G4cout << R"(remoll:   <auxiliary auxtype="DetType" auxvalue="lowenergyneutral"/>)" << G4endl;
         G4cout << "remoll: or use the following in your macro:" << G4endl;
         G4cout << "remoll:   /remoll/SD/detect lowenergyneutral 4001" << G4endl;
         has_been_warned = true;
@@ -237,7 +237,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
       if (! has_been_warned) {
         G4cout << "remoll: Only hits at the entry boundary are stored for some detectors." << G4endl;
         G4cout << "remoll: To save entry boundary hits alone, use the following in gdml:" << G4endl;
-        G4cout << "remoll:   <auxiliary auxtype=\"DetType\" auxvalue=\"boundaryhits\"/>" << G4endl;
+        G4cout << R"(remoll:   <auxiliary auxtype="DetType" auxvalue="boundaryhits"/>)" << G4endl;
         G4cout << "remoll: or use the following in your macro:" << G4endl;
         G4cout << "remoll:   /remoll/SD/detect boundaryhits 4001" << G4endl;
         has_been_warned = true;
@@ -254,7 +254,7 @@ G4bool remollGenericDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
         G4cout << "remoll: Only full hits from primary tracks are being stored by default." << G4endl;
         G4cout << "remoll: For secondaries only the first hit in the volume is stored." << G4endl;
         G4cout << "remoll: To save secondary track hits too, use the following in gdml:" << G4endl;
-        G4cout << "remoll:   <auxiliary auxtype=\"DetType\" auxvalue=\"secondaries\"/>" << G4endl;
+        G4cout << R"(remoll:   <auxiliary auxtype="DetType" auxvalue="secondaries"/>)" << G4endl;
         G4cout << "remoll: or use the following in your macro:" << G4endl;
         G4cout << "remoll:   /remoll/SD/detect secondaries 4001" << G4endl;
         has_been_warned = true;
