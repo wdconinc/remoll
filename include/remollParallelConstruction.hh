@@ -28,8 +28,8 @@ class remollParallelConstruction : public G4VUserParallelWorld
     void ConstructSD() override;
 
   private:
-    G4String fGDMLPath;
-    G4String fGDMLFile;
+    G4String fGDMLPath{""};
+    G4String fGDMLFile{""};
 
     void SetGDMLFile(G4String gdmlfile) {
       gdmlfile = remollSearchPath::resolve(gdmlfile);

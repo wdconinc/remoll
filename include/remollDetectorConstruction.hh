@@ -53,8 +53,8 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
     G4bool fGDMLValidate{false};
     G4bool fGDMLOverlapCheck{true};
 
-    G4String fGDMLPath;
-    G4String fGDMLFile;
+    G4String fGDMLPath{""};
+    G4String fGDMLFile{""};
 
     void SetGDMLFile(G4String gdmlfile) {
       gdmlfile = remollSearchPath::resolve(gdmlfile);
@@ -99,10 +99,10 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
 
   private:
 
-    G4GenericMessenger* fKryptoniteMessenger;
+    G4GenericMessenger* fKryptoniteMessenger{nullptr};
     static G4UserLimits* fKryptoniteUserLimits;
-    G4bool fKryptoniteEnable;
-    G4int fKryptoniteVerbose;
+    G4bool fKryptoniteEnable{true};
+    G4int fKryptoniteVerbose{0};
     std::set<G4String> fKryptoniteCandidates;
     std::set<G4Material*> fKryptoniteMaterials;
 
@@ -125,7 +125,7 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
 
     static G4ThreadLocal remollGlobalField* fGlobalField;
 
-    G4VPhysicalVolume* fWorldVolume;
+    G4VPhysicalVolume* fWorldVolume{nullptr};
     G4String           fWorldName;
 
   public:

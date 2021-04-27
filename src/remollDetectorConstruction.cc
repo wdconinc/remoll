@@ -45,20 +45,7 @@ G4ThreadLocal remollGlobalField* remollDetectorConstruction::fGlobalField = null
 G4UserLimits* remollDetectorConstruction::fKryptoniteUserLimits = new G4UserLimits(0,0,0,DBL_MAX,DBL_MAX);
 
 remollDetectorConstruction::remollDetectorConstruction(const G4String& name, const G4String& gdmlfile)
-: fVerboseLevel(0),
-  fGDMLParser(nullptr),
-  fGDMLValidate(false),
-  fGDMLOverlapCheck(true),
-  fGDMLPath(""),
-  fGDMLFile(""),
-  fMessenger(nullptr),
-  fGeometryMessenger(nullptr),
-  fUserLimitsMessenger(nullptr),
-  fKryptoniteMessenger(nullptr),
-  fKryptoniteEnable(true),
-  fKryptoniteVerbose(0),
-  fWorldVolume(nullptr),
-  fWorldName(name)
+: fWorldName(name)
 {
   // Define some engineering units
   new G4UnitDefinition("inch","in","Length",25.4*CLHEP::millimeter);

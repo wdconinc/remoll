@@ -20,7 +20,6 @@ remollEvent::remollEvent()
 }
 
 remollEvent::remollEvent(G4Event* event)
-: fBeamTarget(nullptr)
 {
   Reset();
   for (G4int i = 0; i < event->GetNumberOfPrimaryVertex(); i++) {
