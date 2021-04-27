@@ -13,14 +13,14 @@
 class remollGenFlat : public remollVEventGen {
     public:
 	remollGenFlat();
-	virtual ~remollGenFlat();
+	~remollGenFlat() override;
 
 	void SetParticleName(const G4String& name) {
 	  fParticleName = name;
 	}
 
     private:
-	void SamplePhysics(remollVertex *, remollEvent *);
+	void SamplePhysics(remollVertex *, remollEvent *) override;
 
         G4String fParticleName;
 };

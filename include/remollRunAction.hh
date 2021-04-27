@@ -12,13 +12,13 @@ class remollRunAction : public G4UserRunAction
 {
   public:
     remollRunAction();
-    virtual ~remollRunAction();
+    ~remollRunAction() override;
 
   public:
-    G4Run* GenerateRun();
+    G4Run* GenerateRun() override;
 
-    void BeginOfRunAction(const G4Run* aRun);
-    void EndOfRunAction(const G4Run* aRun);
+    void BeginOfRunAction(const G4Run* aRun) override;
+    void EndOfRunAction(const G4Run* aRun) override;
 
     void UpdateSeed(const G4long seed);
 

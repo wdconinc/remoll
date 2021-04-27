@@ -15,7 +15,7 @@
 class remollGenericDetectorSum : public G4VHit {
     public:
 	remollGenericDetectorSum(G4int, G4int);
-	virtual ~remollGenericDetectorSum();
+	~remollGenericDetectorSum() override;
 
 	remollGenericDetectorSum(const remollGenericDetectorSum &right);
 	const remollGenericDetectorSum& operator=(const remollGenericDetectorSum &right);

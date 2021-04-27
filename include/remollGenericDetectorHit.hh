@@ -11,7 +11,7 @@
 class remollGenericDetectorHit : public G4VHit {
     public:
 	remollGenericDetectorHit(G4int, G4int);
-	virtual ~remollGenericDetectorHit();
+	~remollGenericDetectorHit() override;
 
 	remollGenericDetectorHit(const remollGenericDetectorHit &right);
 	const remollGenericDetectorHit& operator=(const remollGenericDetectorHit &right);
@@ -20,7 +20,7 @@ class remollGenericDetectorHit : public G4VHit {
 	inline void *operator new(size_t);
 	inline void operator delete(void *aHit);
 
-        void Print();
+        void Print() override;
 
     private:
 

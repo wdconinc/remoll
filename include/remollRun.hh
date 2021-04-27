@@ -17,7 +17,7 @@ class remollRun: public G4Run {
 
   public:
     remollRun(): G4Run() { };
-    virtual ~remollRun() = default;
+    ~remollRun() override = default;
 
   // Static run data access
   private:

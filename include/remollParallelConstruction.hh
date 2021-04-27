@@ -20,12 +20,12 @@ class remollParallelConstruction : public G4VUserParallelWorld
 {
   public:
     remollParallelConstruction(const G4String& name, const G4String& gdmlfile);
-    virtual ~remollParallelConstruction();
+    ~remollParallelConstruction() override;
 
   public:
 
-    virtual void Construct();
-    virtual void ConstructSD();
+    void Construct() override;
+    void ConstructSD() override;
 
   private:
     G4String fGDMLPath;

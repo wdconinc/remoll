@@ -9,10 +9,10 @@ class remollGenHyperon : public remollVEventGen {
 
   public:
     remollGenHyperon();
-    virtual ~remollGenHyperon();
+    ~remollGenHyperon() override;
 
   private:
-    void SamplePhysics(remollVertex*, remollEvent*);
+    void SamplePhysics(remollVertex*, remollEvent*) override;
 
     static remollFileReader* fFileReader;
     remollFileReader* GetFileReader() const;

@@ -13,9 +13,9 @@ class remollSteppingAction : public G4UserSteppingAction
 {
   public:
     remollSteppingAction();
-    virtual ~remollSteppingAction();
+    ~remollSteppingAction() override;
 
-    virtual void UserSteppingAction(const G4Step*);
+    void UserSteppingAction(const G4Step*) override;
 };
 
 #endif // REMOLLSTEPPINGACTION_HH

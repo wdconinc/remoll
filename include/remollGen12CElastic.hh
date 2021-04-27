@@ -16,10 +16,10 @@ class remollBeamTarget;
 class remollGen12CElastic : public remollVEventGen {
     public:
 	remollGen12CElastic();
-	~remollGen12CElastic();
+	~remollGen12CElastic() override;
 
     private:
-	void SamplePhysics(remollVertex *, remollEvent *);
+	void SamplePhysics(remollVertex *, remollEvent *) override;
 
 	G4double RadProfile(G4double,G4double);
 	G4double EnergNumInt(G4double,G4double,G4double);

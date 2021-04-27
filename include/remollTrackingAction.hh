@@ -12,10 +12,10 @@ class remollTrackingAction : public G4UserTrackingAction
 {
   public:
     remollTrackingAction();
-    virtual ~remollTrackingAction();
+    ~remollTrackingAction() override;
 
-    void  PreUserTrackingAction(const G4Track* aTrack);
-    void PostUserTrackingAction(const G4Track* aTrack);
+    void  PreUserTrackingAction(const G4Track* aTrack) override;
+    void PostUserTrackingAction(const G4Track* aTrack) override;
 
   private:
     G4GenericMessenger* fMessenger;

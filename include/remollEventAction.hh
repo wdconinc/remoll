@@ -15,11 +15,11 @@ class remollEventAction : public G4UserEventAction
 {
   public:
     remollEventAction();
-    virtual ~remollEventAction();
+    ~remollEventAction() override;
 
   public:
-    virtual void BeginOfEventAction(const G4Event*);
-    virtual void EndOfEventAction(const G4Event*);
+    void BeginOfEventAction(const G4Event*) override;
+    void EndOfEventAction(const G4Event*) override;
 
   private:
     // Pointer to primary generator action

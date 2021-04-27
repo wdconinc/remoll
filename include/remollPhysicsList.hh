@@ -10,7 +10,7 @@ class remollPhysicsList: public G4VModularPhysicsList
 {
   public:
     remollPhysicsList();
-    virtual ~remollPhysicsList();
+    ~remollPhysicsList() override;
 
   public:
     // Set verbose level

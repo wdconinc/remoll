@@ -8,7 +8,7 @@ class remollUserTrackInformation : public G4VUserTrackInformation
 {
   public:
     remollUserTrackInformation() { fStepStatus = fUndefined; };
-    virtual ~remollUserTrackInformation() = default;
+    ~remollUserTrackInformation() override = default;
     G4StepStatus GetStepStatus() const { return fStepStatus; };
     void SetStepStatus(G4StepStatus stepstatus) { fStepStatus = stepstatus; };
   private:

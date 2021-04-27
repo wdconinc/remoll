@@ -16,10 +16,10 @@ class remollBeamTarget;
 class remollGenMoller : public remollVEventGen {
     public:
 	remollGenMoller();
-	virtual ~remollGenMoller();
+	~remollGenMoller() override;
 
     private:
-	void SamplePhysics(remollVertex *, remollEvent *);
+	void SamplePhysics(remollVertex *, remollEvent *) override;
 
 	remollBeamTarget *fBeamTarg;
 

@@ -13,10 +13,10 @@ class G4UIcmdWithAnInteger;
 class remollHEPEvtMessenger : public G4UImessenger {
 public:
   remollHEPEvtMessenger(remollHEPEvtInterface* iface);
-  virtual ~remollHEPEvtMessenger();
+  ~remollHEPEvtMessenger() override;
 
-  void SetNewValue(G4UIcommand* command, G4String newValues);
-  G4String GetCurrentValue(G4UIcommand* command);
+  void SetNewValue(G4UIcommand* command, G4String newValues) override;
+  G4String GetCurrentValue(G4UIcommand* command) override;
 
 private:
   remollHEPEvtInterface* fHEPEvtInterface;

@@ -17,7 +17,7 @@ protected:
 
 public:
   remollHEPEvtInterface();
-  virtual ~remollHEPEvtInterface();
+  ~remollHEPEvtInterface() override;
 
   // set/get methods
   void SetFileName(G4String name);
@@ -29,7 +29,7 @@ public:
   // methods...
   void Initialize();
 
-  virtual void GeneratePrimaryVertex(G4Event* anEvent);
+  void GeneratePrimaryVertex(G4Event* anEvent) override;
 };
 
 // ====================================================================

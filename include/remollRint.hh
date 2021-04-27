@@ -30,7 +30,7 @@ class remollRint : public TRint {
                 void* options = nullptr, int numOptions = 0, bool noLogo = kFALSE);
 
     /// \brief Destructor
-    virtual ~remollRint();
+    ~remollRint() override;
 
 }; // class remollRint
 

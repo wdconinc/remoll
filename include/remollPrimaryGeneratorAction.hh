@@ -18,10 +18,10 @@ class remollPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
   public:
     remollPrimaryGeneratorAction();
-    virtual ~remollPrimaryGeneratorAction();
+    ~remollPrimaryGeneratorAction() override;
 
   public:
-    void GeneratePrimaries(G4Event* anEvent);
+    void GeneratePrimaries(G4Event* anEvent) override;
 
     const remollEvent* GetEvent() const { return fEvent; }
 

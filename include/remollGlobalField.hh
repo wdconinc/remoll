@@ -23,7 +23,7 @@ class remollMagneticField;
 class remollGlobalField : public G4MagneticField {
     public:
         remollGlobalField();
-        virtual ~remollGlobalField();
+        ~remollGlobalField() override;
 
         void AddNewField(G4String& name);
 
@@ -34,7 +34,7 @@ class remollGlobalField : public G4MagneticField {
 
         void PrintFieldValue(const G4ThreeVector&);
 
-        void GetFieldValue(const G4double[], G4double*) const;
+        void GetFieldValue(const G4double[], G4double*) const override;
 
     private:
         /// Set the stepper

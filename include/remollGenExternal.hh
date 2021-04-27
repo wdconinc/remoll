@@ -37,7 +37,7 @@ class remollGenExternal : public remollVEventGen {
 
     public:
         remollGenExternal();
-        virtual ~remollGenExternal();
+        ~remollGenExternal() override;
 
         void SetGenExternalFile(G4String& filename);
         void SetGenExternalZOffset(G4double tempzOffset) {
@@ -51,7 +51,7 @@ class remollGenExternal : public remollVEventGen {
         }
 
     private:
-        void SamplePhysics(remollVertex *, remollEvent *);
+        void SamplePhysics(remollVertex *, remollEvent *) override;
         // External event file and tree, entry number
         TFile* fFile;
         TTree* fTree;

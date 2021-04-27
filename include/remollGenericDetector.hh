@@ -53,7 +53,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
       fGenericDetectors.sort(isBefore);
     }
 
-    void PrintAll() {
+    void PrintAll() override {
       for (auto & fGenericDetector : fGenericDetectors) {
           fGenericDetector->PrintEnabled();
       }
@@ -122,11 +122,11 @@ class remollGenericDetector : public G4VSensitiveDetector {
 
   public:
       remollGenericDetector( G4String name, G4int detnum );
-      virtual ~remollGenericDetector();
+      ~remollGenericDetector() override;
 
-      virtual void Initialize(G4HCofThisEvent*);
-      virtual G4bool ProcessHits(G4Step*,G4TouchableHistory*);
-      virtual void EndOfEvent(G4HCofThisEvent*);
+      void Initialize(G4HCofThisEvent*) override;
+      G4bool ProcessHits(G4Step*,G4TouchableHistory*) override;
+      void EndOfEvent(G4HCofThisEvent*) override;
 
       void BuildStaticMessenger();
 

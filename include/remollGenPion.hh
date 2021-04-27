@@ -14,7 +14,7 @@
 class remollGenPion : public remollVEventGen {
   public:
     remollGenPion();
-    virtual ~remollGenPion();
+    ~remollGenPion() override;
 
     enum Pion_t {kPiPlus, kPiMinus, kPi0};
 
@@ -35,7 +35,7 @@ class remollGenPion : public remollVEventGen {
     Pion_t fPionType;
 
   private:
-    void SamplePhysics(remollVertex *, remollEvent *);
+    void SamplePhysics(remollVertex *, remollEvent *) override;
 
     double wiser_sigma(double Ebeam, double pf, double thf, double rad_len, int type);
     static double wiserfit(double *x, double *par);

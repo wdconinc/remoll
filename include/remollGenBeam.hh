@@ -13,7 +13,7 @@
 class remollGenBeam : public remollVEventGen {
   public:
     remollGenBeam();
-    virtual ~remollGenBeam();
+    ~remollGenBeam() override;
 
     void SetOriginXMean(double x);
     void SetOriginYMean(double y);
@@ -60,7 +60,7 @@ class remollGenBeam : public remollVEventGen {
     void SetPartName(G4String& name);
 
   private:
-    void SamplePhysics(remollVertex *, remollEvent *);
+    void SamplePhysics(remollVertex *, remollEvent *) override;
 
     G4ThreeVector fOriginMean;
     G4ThreeVector fOriginSpread;

@@ -19,7 +19,7 @@ class remollRunData : public TObject {
   using TObject::Print;
     public:
 	remollRunData() = default;
-	virtual ~remollRunData() = default;
+	~remollRunData() override = default;
 
         void Init();
 

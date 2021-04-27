@@ -24,12 +24,12 @@ class remollGenLUND : public remollVEventGen {
     remollGenLUND();
 
     // virtual destructor
-    virtual ~remollGenLUND();
+    ~remollGenLUND() override;
 
     void SetLUNDFile(G4String& f);
 
   private:
-    void SamplePhysics(remollVertex *, remollEvent *);
+    void SamplePhysics(remollVertex *, remollEvent *) override;
 
     remollRunData *fRunData;
 

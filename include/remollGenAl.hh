@@ -8,7 +8,7 @@
 class remollGenAl : public remollVEventGen {
 public:
   remollGenAl(G4int physicsType);
-  virtual ~remollGenAl();
+  ~remollGenAl() override;
   
 private:
   G4int type;
@@ -16,7 +16,7 @@ private:
   static std::map<G4int,G4String> fNamesMap;
   static std::map<G4int,G4String> CreateNamesMap();
 
-  void SamplePhysics(remollVertex *, remollEvent *);
+  void SamplePhysics(remollVertex *, remollEvent *) override;
 
   ///Christy Bosted fit 
   void GenInelastic(G4double beamE,G4double theta,

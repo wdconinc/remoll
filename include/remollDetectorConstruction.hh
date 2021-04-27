@@ -25,7 +25,7 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
   public:
 
     remollDetectorConstruction(const G4String& name, const G4String& gdmlfile);
-    virtual ~remollDetectorConstruction();
+    ~remollDetectorConstruction() override;
 
     remollDetectorConstruction(const remollDetectorConstruction&) = delete;
     remollDetectorConstruction& operator=(remollDetectorConstruction) = delete;
@@ -33,8 +33,8 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
 
   public:
 
-    G4VPhysicalVolume* Construct();
-    void ConstructSDandField();
+    G4VPhysicalVolume* Construct() override;
+    void ConstructSDandField() override;
 
 
   public:

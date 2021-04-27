@@ -14,10 +14,10 @@
 class remollGenpInelastic : public remollVEventGen {
     public:
 	remollGenpInelastic();
-	virtual ~remollGenpInelastic();
+	~remollGenpInelastic() override;
 
     private:
-	void SamplePhysics(remollVertex *, remollEvent *);
+	void SamplePhysics(remollVertex *, remollEvent *) override;
 
 };
 
