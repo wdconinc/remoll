@@ -6,7 +6,7 @@
 #include "G4TrajectoryContainer.hh"
 #include "G4TrajectoryPoint.hh"
 
-#include <math.h>
+#include <cmath>
 
 #include "G4Event.hh"
 #include "G4ParticleTable.hh"

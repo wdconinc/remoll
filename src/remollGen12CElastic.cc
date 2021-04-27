@@ -17,7 +17,7 @@
 
 #include "remolltypes.hh"
 
-#include <math.h>
+#include <cmath>
 
 #define Euler 0.5772157
 #define NINTERVAL 3

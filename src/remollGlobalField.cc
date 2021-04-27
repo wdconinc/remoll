@@ -29,7 +29,7 @@
 #include <TMD5.h>
 #include <sys/stat.h>
 
-#include <stdio.h>
+#include <cstdio>
 
 #define GLOBAL_NDIM 3
 

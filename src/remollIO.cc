@@ -14,10 +14,10 @@
 #include "remollRunData.hh"
 #include "remollBeamTarget.hh"
 
+#include <cerrno>
 #include <sys/param.h>
-#include <sys/types.h>
 #include <sys/stat.h>
-#include <errno.h>
+#include <sys/types.h>
 
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/dom/DOMEntityReference.hpp>

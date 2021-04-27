@@ -13,8 +13,8 @@
 #include <iostream>
 #include <fstream>
 
-#include <assert.h>
-#include <math.h>
+#include <cassert>
+#include <cmath>
 
 // Boost headers
 #ifdef __USE_BOOST_IOSTREAMS

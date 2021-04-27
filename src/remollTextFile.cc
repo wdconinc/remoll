@@ -1,9 +1,9 @@
 #include "remollTextFile.hh"
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
+#include <cerrno>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <sys/stat.h>
 
 remollTextFile::remollTextFile()

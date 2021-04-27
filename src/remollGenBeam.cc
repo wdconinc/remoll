@@ -17,7 +17,7 @@
 
 #include "remolltypes.hh"
 
-#include <math.h>
+#include <cmath>
 
 remollGenBeam::remollGenBeam()
 : remollVEventGen("beam"),

@@ -2,11 +2,11 @@
 
 #include "Randomize.hh"
 
-#include <math.h>
-#include <assert.h>
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
+#include <cassert>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 
 #include "G4SystemOfUnits.hh"
 #include "G4PhysicalConstants.hh"

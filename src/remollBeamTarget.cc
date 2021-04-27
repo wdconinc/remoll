@@ -21,7 +21,7 @@
 #include "remollBeamTarget.hh"
 #include "remollMultScatt.hh"
 
-#include <math.h>
+#include <cmath>
 
 #define MAX_MAT 100
 

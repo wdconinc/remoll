@@ -2,8 +2,8 @@
 
 #include "G4ios.hh"
 
-#include <string.h>
-#include <errno.h>
+#include <cerrno>
+#include <cstring>
 
 #ifdef __APPLE__
 #include <unistd.h>
