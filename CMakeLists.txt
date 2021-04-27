@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.9)
 
 # Setup the project
 project(remoll LANGUAGES CXX C)
@@ -58,6 +58,17 @@ file(GLOB headers include/remoll*.hh)
 set(minimum_root_version 6.0)
 find_package(ROOT ${minimum_root_version} REQUIRED)
 config_add_dependency(ROOT ${minimum_root_version})
+if(ROOT_CXX_FLAGS MATCHES "-std=c\\+\\+\([0-9]{2}\)")
+  message(STATUS "ROOT was built with C++${CMAKE_MATCH_1} support")
+  set(CMAKE_CXX_STANDARD ${CMAKE_MATCH_1})
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+  set(CMAKE_CXX_EXTENSIONS OFF)
+else()
+  message(STATUS "ROOT does not specify a C++ standard; using C++11")
+  set(CMAKE_CXX_STANDARD 11)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+  set(CMAKE_CXX_EXTENSIONS OFF)
+endif()
 
 
 #----------------------------------------------------------------------------
