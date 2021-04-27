@@ -41,9 +41,7 @@ G4double remollBeamTarget::fTotalTargetEffectiveLength = 0.0;
 
 remollBeamTarget::remollBeamTarget()
 : fBeamEnergy(gDefaultBeamE),fBeamCurrent(gDefaultBeamCur),fBeamPolarization(gDefaultBeamPol),
-  fOldRaster(true),fRasterX(5.0*mm),fRasterY(5.0*mm),
-  fX0(0.0),fY0(0.0),fTh0(0.0),fPh0(0.0),
-  fdTh(0.0),fdPh(0.0),fCorrTh(0.0),fCorrPh(0.0)
+  fRasterX(5.0*mm),fRasterY(5.0*mm)
 {
     // Create new multiple scattering
     fMS = new remollMultScatt();

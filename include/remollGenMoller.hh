@@ -21,7 +21,7 @@ class remollGenMoller : public remollVEventGen {
     private:
 	void SamplePhysics(remollVertex *, remollEvent *) override;
 
-	remollBeamTarget *fBeamTarg;
+	remollBeamTarget *fBeamTarg{nullptr};
 
 };
 

@@ -44,10 +44,10 @@ class remollPhysicsList: public G4VModularPhysicsList
 
   private:
     G4String fReferencePhysListName;
-    G4VModularPhysicsList* fReferencePhysList;
-    G4VPhysicsConstructor* fParallelPhysics;
-    G4VPhysicsConstructor* fOpticalPhysics;
-    G4VPhysicsConstructor* fStepLimiterPhysics;
+    G4VModularPhysicsList* fReferencePhysList{nullptr};
+    G4VPhysicsConstructor* fParallelPhysics{nullptr};
+    G4VPhysicsConstructor* fOpticalPhysics{nullptr};
+    G4VPhysicsConstructor* fStepLimiterPhysics{nullptr};
 
     // Deleting an unused physics list also deletes particles, causing
     // all kinds of issues with new reference physics lists
@@ -55,11 +55,11 @@ class remollPhysicsList: public G4VModularPhysicsList
 
   protected:
     // Generic messenger as protected to be used in derived classes
-    G4GenericMessenger* fPhysListMessenger;
-    G4GenericMessenger* fOpticalMessenger;
-    G4GenericMessenger* fParallelMessenger;
-    G4GenericMessenger* fStepLimiterMessenger;
-    G4GenericMessenger* fBaseMessenger;
+    G4GenericMessenger* fPhysListMessenger{nullptr};
+    G4GenericMessenger* fOpticalMessenger{nullptr};
+    G4GenericMessenger* fParallelMessenger{nullptr};
+    G4GenericMessenger* fStepLimiterMessenger{nullptr};
+    G4GenericMessenger* fBaseMessenger{nullptr};
 };
 
 #endif // REMOLLPHYSICSLIST_HH

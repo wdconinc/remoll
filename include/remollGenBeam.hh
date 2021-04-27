@@ -64,11 +64,11 @@ class remollGenBeam : public remollVEventGen {
 
     G4ThreeVector fOriginMean;
     G4ThreeVector fOriginSpread;
-    EOriginModel  fOriginModelX, fOriginModelY, fOriginModelZ;
+    EOriginModel  fOriginModelX{kOriginModelFlat}, fOriginModelY{kOriginModelFlat}, fOriginModelZ{kOriginModelFlat};
     G4ThreeVector fDirection;
-    G4double      fOriginShift;
-    G4bool        fIsotropic;
-    G4double      fIsotropicThetaMin;
+    G4double      fOriginShift{0.0};
+    G4bool        fIsotropic{false};
+    G4double      fIsotropicThetaMin{0.0};
     G4double      fIsotropicThetaMax;
     G4ThreeVector fCorrelation;
     G4ThreeVector fPolarization;

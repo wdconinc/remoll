@@ -35,7 +35,6 @@
 #include "remollGenHyperon.hh"
 
 remollPrimaryGeneratorAction::remollPrimaryGeneratorAction()
-: fEventGen(nullptr),fPriGen(nullptr),fParticleGun(nullptr),fBeamTarg(nullptr),fEvent(nullptr),fMessenger(nullptr),fEffCrossSection(0)
 {
     static bool has_been_warned = false;
     if (! has_been_warned) {

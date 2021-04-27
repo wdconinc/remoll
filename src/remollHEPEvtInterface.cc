@@ -44,7 +44,7 @@ namespace {
 G4VPrimaryGenerator* remollHEPEvtInterface::fHEPEvtInterface = nullptr;
 
 remollHEPEvtInterface::remollHEPEvtInterface()
-: fVerbose(0), fFilename("hepevt.dat")
+: fFilename("hepevt.dat")
 {
   fMessenger = new remollHEPEvtMessenger(this);
 }

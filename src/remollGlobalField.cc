@@ -41,14 +41,9 @@ std::vector<remollMagneticField*> remollGlobalField::fFields;
 
 remollGlobalField::remollGlobalField()
 // NOTE: when changing defaults below, also change guidance in messenger commands
-: fEquationType(0),fStepperType(4),
-  fMinStep(0.01*mm),fDeltaChord(3.0*mm),
+: fMinStep(0.01*mm),fDeltaChord(3.0*mm),
   fDeltaOneStep(0.01*mm),fDeltaIntersection(0.1*mm),
-  fEpsMin(1.0e-5*mm),fEpsMax(1.0e-4*mm),
-  fEquation(nullptr),fEquationDoF(0),
-  fFieldManager(nullptr),fFieldPropagator(nullptr),
-  fStepper(nullptr),fChordFinder(nullptr),
-  fVerboseLevel(0)
+  fEpsMin(1.0e-5*mm),fEpsMax(1.0e-4*mm)
 {
     // Get field propagator and managers
     G4TransportationManager* transportationmanager = G4TransportationManager::GetTransportationManager();

@@ -97,9 +97,9 @@ public:
 
     private:
 	// Generic messenger as protected to be used in derived classes
-	G4GenericMessenger* fEvGenMessenger;
+	G4GenericMessenger* fEvGenMessenger{nullptr};
     protected:
-	G4GenericMessenger* fThisGenMessenger;
+	G4GenericMessenger* fThisGenMessenger{nullptr};
 };
 
 

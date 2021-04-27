@@ -18,8 +18,8 @@ class remollTrackingAction : public G4UserTrackingAction
     void PostUserTrackingAction(const G4Track* aTrack) override;
 
   private:
-    G4GenericMessenger* fMessenger;
-    G4int fTrackingFlag;
+    G4GenericMessenger* fMessenger{nullptr};
+    G4int fTrackingFlag{3};
 };
 
 #endif // REMOLLTRACKINGACTION_HH

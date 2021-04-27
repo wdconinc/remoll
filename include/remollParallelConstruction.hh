@@ -40,16 +40,16 @@ class remollParallelConstruction : public G4VUserParallelWorld
       fGDMLFile = gdmlfile.substr(i + 1);
     }
 
-    G4GDMLParser *fGDMLParser;
+    G4GDMLParser *fGDMLParser{nullptr};
 
-    G4bool fGDMLValidate;
-    G4bool fGDMLOverlapCheck;
+    G4bool fGDMLValidate{false};
+    G4bool fGDMLOverlapCheck{true};
 
-    G4int fVerboseLevel;
+    G4int fVerboseLevel{0};
 
-    G4GenericMessenger* fParallelMessenger;
+    G4GenericMessenger* fParallelMessenger{nullptr};
 
-    G4VPhysicalVolume* fWorldVolume;
+    G4VPhysicalVolume* fWorldVolume{nullptr};
     G4String           fWorldName;
 
   private:

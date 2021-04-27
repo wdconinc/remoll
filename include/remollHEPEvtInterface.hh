@@ -8,7 +8,7 @@ class remollHEPEvtMessenger;
 
 class remollHEPEvtInterface : public G4VPrimaryGenerator {
 protected:
-  G4int fVerbose;
+  G4int fVerbose{0};
   G4String fFilename;
 
   remollHEPEvtMessenger* fMessenger;
@@ -20,40 +20,16 @@ public:
   ~remollHEPEvtInterface() override;
 
   // set/get methods
-  void SetFileName(G4String name);
-  G4String GetFileName() const;
+  void SetFileName(G4String name) { fFilename = name; };
+  G4String GetFileName() const { return fFilename; };
 
-  void SetVerboseLevel(G4int i);
-  G4int GetVerboseLevel() const;
+  void SetVerboseLevel(G4int i) { fVerbose = i; };
+  G4int GetVerboseLevel() const { return fVerbose; };
 
   // methods...
   void Initialize();
 
   void GeneratePrimaryVertex(G4Event* anEvent) override;
 };
-
-// ====================================================================
-// inline functions
-// ====================================================================
-
-inline void remollHEPEvtInterface::SetFileName(G4String name)
-{
-  fFilename = name;
-}
-
-inline G4String remollHEPEvtInterface::GetFileName() const
-{
-  return fFilename;
-}
-
-inline void remollHEPEvtInterface::SetVerboseLevel(G4int i)
-{
-  fVerbose = i;
-}
-
-inline G4int remollHEPEvtInterface::GetVerboseLevel() const
-{
-  return fVerbose;
-}
 
 #endif

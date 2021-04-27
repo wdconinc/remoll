@@ -32,7 +32,7 @@ class remollGenPion : public remollVEventGen {
     void SetPionType(Pion_t t) { fPionType = t; }
 
   protected:
-    Pion_t fPionType;
+    Pion_t fPionType{kPiMinus};
 
   private:
     void SamplePhysics(remollVertex *, remollEvent *) override;

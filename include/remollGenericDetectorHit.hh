@@ -34,7 +34,7 @@ class remollGenericDetectorHit : public G4VHit {
 	G4ThreeVector f3S;
 
 	// Position and momentum in local volume coordinate system
-	G4ThreeVector f3Pl; 
+	G4ThreeVector f3Pl;
 	G4ThreeVector f3Xl;
 
         // Global time

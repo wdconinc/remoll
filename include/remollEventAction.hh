@@ -14,8 +14,8 @@ class remollTrackReconstruct;
 class remollEventAction : public G4UserEventAction
 {
   public:
-    remollEventAction();
-    ~remollEventAction() override;
+    remollEventAction() = default;
+    ~remollEventAction() override = default;
 
   public:
     void BeginOfEventAction(const G4Event*) override;
@@ -23,7 +23,7 @@ class remollEventAction : public G4UserEventAction
 
   private:
     // Pointer to primary generator action
-    remollPrimaryGeneratorAction* fPrimaryGeneratorAction;
+    remollPrimaryGeneratorAction* fPrimaryGeneratorAction{nullptr};
     remollTrackReconstruct* rTrack;
 
     // Timer for benchmarking of simulation time per event

@@ -17,11 +17,6 @@
 #include "G4AutoLock.hh"
 namespace { G4Mutex remollEventActionMutex = G4MUTEX_INITIALIZER; }
 
-remollEventAction::remollEventAction()
-  : fPrimaryGeneratorAction(nullptr) { }
-
-remollEventAction::~remollEventAction() = default;
-
 void remollEventAction::BeginOfEventAction(const G4Event* /* event */) { }
 
 void remollEventAction::EndOfEventAction(const G4Event* aEvent)

@@ -20,11 +20,7 @@
 G4Mutex inFileMutex = G4MUTEX_INITIALIZER;
 
 remollGenExternal::remollGenExternal()
-: remollVEventGen("external"),
-  fFile(nullptr), fTree(nullptr),
-  fEntry(0), fEntries(0),
-  fEvent(nullptr), fHit(nullptr),
-  fzOffset(0), fDetectorID(28), fLoopID(1)
+: remollVEventGen("external")
 {
   fSamplingType = kNoTargetVolume;
 

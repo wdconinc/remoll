@@ -17,15 +17,7 @@
 #endif
 
 remollPhysicsList::remollPhysicsList()
-: G4VModularPhysicsList(),
-  fReferencePhysList(nullptr),
-  fParallelPhysics(nullptr),
-  fOpticalPhysics(nullptr),
-  fStepLimiterPhysics(nullptr),
-  fPhysListMessenger(nullptr),
-  fOpticalMessenger(nullptr),
-  fParallelMessenger(nullptr),
-  fBaseMessenger(nullptr)
+: G4VModularPhysicsList()
 {
   // Let users know to ignore the warning by Particle HP package
   G4cout << "remoll: Since the high precision neutron simulation in the some physics lists  " << G4endl;

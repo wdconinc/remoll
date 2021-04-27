@@ -81,8 +81,8 @@ class remollGlobalField : public G4MagneticField {
         void PrintAccuracyParameters();
 
     private:
-        G4int fEquationType;
-        G4int fStepperType;
+        G4int fEquationType{0};
+        G4int fStepperType{4};
 
         G4double fMinStep;
         G4double fDeltaChord;
@@ -91,13 +91,13 @@ class remollGlobalField : public G4MagneticField {
         G4double fEpsMin;
         G4double fEpsMax;
 
-        G4EquationOfMotion*     fEquation;
-        G4int                   fEquationDoF;
+        G4EquationOfMotion*     fEquation{nullptr};
+        G4int                   fEquationDoF{0};
 
-        G4FieldManager*         fFieldManager;
-        G4PropagatorInField*    fFieldPropagator;
-        G4MagIntegratorStepper* fStepper;
-        G4ChordFinder*          fChordFinder;
+        G4FieldManager*         fFieldManager{nullptr};
+        G4PropagatorInField*    fFieldPropagator{nullptr};
+        G4MagIntegratorStepper* fStepper{nullptr};
+        G4ChordFinder*          fChordFinder{nullptr};
 
     private:
         static std::vector<remollMagneticField*> fFields;
@@ -107,7 +107,7 @@ class remollGlobalField : public G4MagneticField {
         G4GenericMessenger* fMessenger;
         G4GenericMessenger* fGlobalFieldMessenger;
 
-        G4int fVerboseLevel;
+        G4int fVerboseLevel{0};
 
 };
 

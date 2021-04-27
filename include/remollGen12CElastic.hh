@@ -24,7 +24,7 @@ class remollGen12CElastic : public remollVEventGen {
 	G4double RadProfile(G4double,G4double);
 	G4double EnergNumInt(G4double,G4double,G4double);
 
-	remollBeamTarget *fBeamTarg;
+	remollBeamTarget *fBeamTarg{nullptr};
 };
 
 #endif // REMOLLGEN12CELASTIC_HH

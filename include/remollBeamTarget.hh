@@ -91,11 +91,11 @@ class remollBeamTarget {
         G4double fEnergyCut;
 
 	// Base position/angle sampling info
-        G4bool fOldRaster;
+        G4bool fOldRaster{true};
 	G4double fRasterX, fRasterY;
-	G4double fX0, fY0;
-	G4double fTh0, fPh0;
-	G4double fdTh, fdPh, fCorrTh, fCorrPh;
+	G4double fX0{0.0}, fY0{0.0};
+	G4double fTh0{0.0}, fPh0{0.0};
+	G4double fdTh{0.0}, fdPh{0.0}, fCorrTh{0.0}, fCorrPh{0.0};
 
     public:
         remollBeamTarget_t GetBeamTargetIO() const {

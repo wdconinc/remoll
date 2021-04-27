@@ -29,24 +29,24 @@ class remollPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   private:
     std::map<G4String,remollVEventGen*> fEvGenMap;
-    remollVEventGen *fEventGen;
+    remollVEventGen *fEventGen{nullptr};
     G4String fEventGenName;
 
     std::map<G4String,G4VPrimaryGenerator*> fPriGenMap;
-    G4VPrimaryGenerator *fPriGen;
+    G4VPrimaryGenerator *fPriGen{nullptr};
     G4String fPriGenName;
 
-    G4ParticleGun* fParticleGun;
+    G4ParticleGun* fParticleGun{nullptr};
 
-    remollBeamTarget *fBeamTarg;
+    remollBeamTarget *fBeamTarg{nullptr};
 
 
-    remollEvent *fEvent;
+    remollEvent *fEvent{nullptr};
 
-    G4GenericMessenger* fMessenger;
-    G4GenericMessenger* fEvGenMessenger;
+    G4GenericMessenger* fMessenger{nullptr};
+    G4GenericMessenger* fEvGenMessenger{nullptr};
 
-    G4double fEffCrossSection;
+    G4double fEffCrossSection{0};
 };
 
 #endif // REMOLLPRIMARYGENERATORACTION_HH

@@ -218,7 +218,7 @@ class remollGenericDetector : public G4VSensitiveDetector {
 
       G4bool fEnabled;
 
-      G4GenericMessenger* fMessenger;
+      G4GenericMessenger* fMessenger{nullptr};
 
 };
 

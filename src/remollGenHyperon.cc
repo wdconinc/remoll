@@ -24,7 +24,6 @@ remollFileReader* remollGenHyperon::fFileReader = nullptr;
 
 remollGenHyperon::remollGenHyperon()
 : remollVEventGen("hyperon"),
-  fDebugLevel(0),
   fFile("generators/aniol/hyperon_outp.dat"),fParticle("lambda"),
   fRUnit(cm),fPUnit(GeV),fWUnit(barn)
 {

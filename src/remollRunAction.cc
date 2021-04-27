@@ -14,7 +14,6 @@
 namespace { G4Mutex remollRunActionMutex = G4MUTEX_INITIALIZER; }
 
 remollRunAction::remollRunAction()
-: fInterval(10)
 {
   // Create messenger to set the seed with single long int
   fMessenger = new G4GenericMessenger(this,"/remoll/","Remoll properties");

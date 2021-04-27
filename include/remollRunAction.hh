@@ -23,11 +23,11 @@ class remollRunAction : public G4UserRunAction
     void UpdateSeed(const G4long seed);
 
   private:
-    G4GenericMessenger* fMessenger;
-    G4Timer* fTimer;
+    G4GenericMessenger* fMessenger{nullptr};
+    G4Timer* fTimer{nullptr};
 
   private:
-    G4int fInterval;
+    G4int fInterval{10};
   public:
     void SetUpdateInterval(G4int interval) { fInterval = interval; };
 };

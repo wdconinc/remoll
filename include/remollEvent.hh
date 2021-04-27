@@ -45,7 +45,7 @@ class remollEvent {
 	void   Print();
 
     private:
-	remollBeamTarget* fBeamTarget;
+	remollBeamTarget* fBeamTarget{nullptr};
     public:
 	const remollBeamTarget* GetBeamTarget() const { return fBeamTarget; }
 	void SetBeamTarget(remollBeamTarget* bt) { fBeamTarget = bt; }
@@ -63,15 +63,15 @@ class remollEvent {
 	std::vector<G4ThreeVector>    fPartRealMom; // Direction to go to Geant4
 	std::vector<G4ParticleDefinition*> fPartType;
 
-	G4double fBeamE;
-	G4double fRate;
-	G4double fEffXs;
-	G4double fAsym, fmAsym;
+	G4double fBeamE{0};
+	G4double fRate{0};
+	G4double fEffXs{0};
+	G4double fAsym{0}, fmAsym{0};
 
-	G4double fQ2;
-	G4double fW2;
-	G4double fXbj;
-	G4double fThCoM;
+	G4double fQ2{0};
+	G4double fW2{0};
+	G4double fXbj{0};
+	G4double fThCoM{0};
 
     public:
         remollEvent_t GetEventIO() const;

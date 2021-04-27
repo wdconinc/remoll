@@ -7,7 +7,7 @@
 
 class remollTextFile : public TObject {
   using TObject::Print;
-     public:       
+     public:
 	 remollTextFile();
 	 remollTextFile(const remollTextFile &);
 	 const remollTextFile& operator=(const remollTextFile &);
@@ -20,7 +20,7 @@ class remollTextFile : public TObject {
 
 	const char *GetFilename(){ return fFilename; }
 	unsigned long long int GetBufferSize(){ return fBufferSize; }
-	
+
 	void Recreate(const char *fn = nullptr, bool clobber = false);
 	void RecreateInDir(const char *path, bool clobber = false);
 

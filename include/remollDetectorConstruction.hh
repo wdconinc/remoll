@@ -43,15 +43,15 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
 
   private:
 
-    G4int fVerboseLevel;
+    G4int fVerboseLevel{0};
 
 
   private:
 
-    G4GDMLParser *fGDMLParser;
+    G4GDMLParser *fGDMLParser{nullptr};
 
-    G4bool fGDMLValidate;
-    G4bool fGDMLOverlapCheck;
+    G4bool fGDMLValidate{false};
+    G4bool fGDMLOverlapCheck{true};
 
     G4String fGDMLPath;
     G4String fGDMLFile;
@@ -65,8 +65,8 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
       fGDMLFile = gdmlfile.substr(i + 1);
     }
 
-    G4GenericMessenger* fMessenger;
-    G4GenericMessenger* fGeometryMessenger;
+    G4GenericMessenger* fMessenger{nullptr};
+    G4GenericMessenger* fGeometryMessenger{nullptr};
 
     void ReloadGeometry(const G4String gdmlfile);
 
