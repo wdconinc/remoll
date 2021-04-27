@@ -75,7 +75,7 @@ class remollIO {
         // Singleton pointer
         static remollIO* gInstance;
         // Private constructor
-        remollIO(const G4String& outputfile);
+        remollIO(G4String outputfile);
 
     public:
         // Public destructor

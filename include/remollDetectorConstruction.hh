@@ -24,7 +24,7 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
 {
   public:
 
-    remollDetectorConstruction(const G4String& name, const G4String& gdmlfile);
+    remollDetectorConstruction(G4String name, const G4String& gdmlfile);
     ~remollDetectorConstruction() override;
 
     remollDetectorConstruction(const remollDetectorConstruction&) = delete;

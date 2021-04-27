@@ -19,13 +19,14 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include <xercesc/parsers/XercesDOMParser.hpp>
-#include <xercesc/dom/DOMEntityReference.hpp>
-#include <xercesc/dom/DOMEntity.hpp>
+#include <utility>
 #include <xercesc/dom/DOMElement.hpp>
+#include <xercesc/dom/DOMEntity.hpp>
+#include <xercesc/dom/DOMEntityReference.hpp>
 #include <xercesc/dom/DOMNamedNodeMap.hpp>
-#include <xercesc/dom/DOMNodeList.hpp>
 #include <xercesc/dom/DOMNode.hpp>
+#include <xercesc/dom/DOMNodeList.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp>
 
 ClassImp(remollSeed_t)
 
@@ -38,8 +39,8 @@ remollIO* remollIO::GetInstance(const G4String& outputfile) {
   return gInstance;
 }
 
-remollIO::remollIO(const G4String& outputfile)
-: fFile(nullptr),fTree(nullptr),fFilename(outputfile),fRate(0)
+remollIO::remollIO(G4String  outputfile)
+: fFile(nullptr),fTree(nullptr),fFilename(std::move(outputfile)),fRate(0)
 {
     // Create generic messenger
     fMessenger = new G4GenericMessenger(this,"/remoll/","Remoll properties");

@@ -35,6 +35,7 @@
 
 #include <algorithm>
 #include <sys/param.h>
+#include <utility>
 
 #include "G4Threading.hh"
 #include "G4AutoLock.hh"
@@ -44,8 +45,8 @@ G4ThreadLocal remollGlobalField* remollDetectorConstruction::fGlobalField = null
 
 G4UserLimits* remollDetectorConstruction::fKryptoniteUserLimits = new G4UserLimits(0,0,0,DBL_MAX,DBL_MAX);
 
-remollDetectorConstruction::remollDetectorConstruction(const G4String& name, const G4String& gdmlfile)
-: fWorldName(name)
+remollDetectorConstruction::remollDetectorConstruction(G4String  name, const G4String& gdmlfile)
+: fWorldName(std::move(name))
 {
   // Define some engineering units
   new G4UnitDefinition("inch","in","Length",25.4*CLHEP::millimeter);
