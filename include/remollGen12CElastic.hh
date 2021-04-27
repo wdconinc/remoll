@@ -1,5 +1,5 @@
-#ifndef __REMOLLGEN12CELASTIC_HH 
-#define __REMOLLGEN12CELASTIC_HH 
+#ifndef REMOLLGEN12CELASTIC_HH
+#define REMOLLGEN12CELASTIC_HH
 /*!
  * e12C elastic event generator
  *
@@ -27,4 +27,4 @@ class remollGen12CElastic : public remollVEventGen {
 	remollBeamTarget *fBeamTarg;
 };
 
-#endif// __REMOLLGEN12CELASTIC_HH 
+#endif // REMOLLGEN12CELASTIC_HH

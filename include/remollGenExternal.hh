@@ -5,8 +5,8 @@
  *      Author: wdconinc
  */
 
-#ifndef __REMOLLGENEXTERNAL_HH
-#define __REMOLLGENEXTERNAL_HH
+#ifndef REMOLLGENEXTERNAL_HH
+#define REMOLLGENEXTERNAL_HH
 
 /*!
  * External event generator
@@ -68,4 +68,4 @@ class remollGenExternal : public remollVEventGen {
 
 };
 
-#endif //__REMOLLGENEXTERNAL_HH
+#endif // REMOLLGENEXTERNAL_HH

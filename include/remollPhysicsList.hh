@@ -1,5 +1,5 @@
-#ifndef remollPhysicsList_h
-#define remollPhysicsList_h 1
+#ifndef REMOLLPHYSICSLIST_HH
+#define REMOLLPHYSICSLIST_HH
 
 #include "G4VModularPhysicsList.hh"
 
@@ -62,4 +62,4 @@ class remollPhysicsList: public G4VModularPhysicsList
     G4GenericMessenger* fBaseMessenger;
 };
 
-#endif
+#endif // REMOLLPHYSICSLIST_HH

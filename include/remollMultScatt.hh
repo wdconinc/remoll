@@ -1,5 +1,5 @@
-#ifndef __REMOLLMULTSCATT_HH
-#define __REMOLLMULTSCATT_HH
+#ifndef REMOLLMULTSCATT_HH
+#define REMOLLMULTSCATT_HH
 
 /*
    -------------------------------------------------
@@ -120,4 +120,4 @@ class remollMultScatt {
 	void   InitInternal();
 };
 
-#endif//__REMOLLMULTSCATT_HH
+#endif // REMOLLMULTSCATT_HH

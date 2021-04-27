@@ -239,8 +239,8 @@ double remollGenPion::wiser_sigma(
     delete[] mass2;
 
     if( E_gamma_min > 0.0 && E_gamma_min < Ebeam ){
-	const int __WISER_N_LEG_PTS = 100;
-	int np = __WISER_N_LEG_PTS;
+	const int WISER_N_LEG_PTS = 100;
+	int np = WISER_N_LEG_PTS;
 
 	auto *x = new double[np];
 	auto *w = new double[np];

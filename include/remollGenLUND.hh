@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENLUND_HH 
-#define __REMOLLGENLUND_HH 
+#ifndef REMOLLGENLUND_HH
+#define REMOLLGENLUND_HH
 /*!
  * event generator based on LUND files
  *
@@ -41,4 +41,4 @@ class remollGenLUND : public remollVEventGen {
     std::map<int,G4String> pidname;
 };
 
-#endif//__REMOLLGENLUND_HH 
+#endif // REMOLLGENLUND_HH

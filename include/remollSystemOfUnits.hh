@@ -1,5 +1,5 @@
-#ifndef __REMOLLSYSTEMOFUNITS_HH
-#define __REMOLLSYSTEMOFUNITS_HH
+#ifndef REMOLLSYSTEMOFUNITS_HH
+#define REMOLLSYSTEMOFUNITS_HH
 
 #include "G4Types.hh"
 #include "G4SystemOfUnits.hh"
@@ -14,4 +14,4 @@ namespace remoll {
 using remoll::ppm;
 using remoll::ppb;
 
-#endif // __REMOLLSYSTEMOFUNITS_HH
+#endif // REMOLLSYSTEMOFUNITS_HH

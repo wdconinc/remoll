@@ -1,5 +1,5 @@
-#ifndef __REMOLL_TYPES_HH
-#define __REMOLL_TYPES_HH
+#ifndef REMOLLTYPES_HH
+#define REMOLLTYPES_HH
 
 /*
    remolltypes.hh
@@ -12,8 +12,8 @@
 //#include <G4Types.hh>
 //#endif
 
-#define __RUNSTR_LEN 255
-#define __MAXFILE_LEN 1048576 // MB file size limit
+#define RUNSTR_LEN 255
+#define MAXFILE_LEN 1048576 // MB file size limit
 
 #include "TTimeStamp.h"
 
@@ -24,8 +24,8 @@ enum SamplingType_t {
 };
 
 struct filedata_t {
-    char filename[__RUNSTR_LEN];
-    char hashsum[__RUNSTR_LEN];
+    char filename[RUNSTR_LEN];
+    char hashsum[RUNSTR_LEN];
     TTimeStamp timestamp;
 };
 
@@ -143,4 +143,4 @@ struct remollUnits_t
   const double GHz;
 };
 
-#endif // __REMOLL_TYPES_HH
+#endif // REMOLLTYPES_HH

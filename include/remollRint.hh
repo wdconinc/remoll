@@ -1,5 +1,5 @@
-#ifndef __remollRint_h__
-#define __remollRint_h__
+#ifndef REMOLLRINT_HH
+#define REMOLLRINT_HH
 
 // ROOT headers
 #include <TRint.h>
@@ -34,5 +34,5 @@ class remollRint : public TRint {
 
 }; // class remollRint
 
-#endif // __remollRint_h__
+#endif // REMOLLRINT_HH
 

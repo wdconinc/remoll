@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENPION_HH
-#define __REMOLLGENPION_HH
+#ifndef REMOLLGENPION_HH
+#define REMOLLGENPION_HH
 /*!
  * Pion event generator
  * from Wiser parameterization
@@ -41,4 +41,4 @@ class remollGenPion : public remollVEventGen {
     static double wiserfit(double *x, double *par);
 };
 
-#endif //__REMOLLGENPION_HH
+#endif // REMOLLGENPION_HH

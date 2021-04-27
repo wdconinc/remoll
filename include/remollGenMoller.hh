@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENMOLLER_HH 
-#define __REMOLLGENMOLLER_HH 
+#ifndef REMOLLGENMOLLER_HH
+#define REMOLLGENMOLLER_HH
 /*!
  * Moller (ee) event generator
  *
@@ -25,4 +25,4 @@ class remollGenMoller : public remollVEventGen {
 
 };
 
-#endif//__REMOLLGENMOLLER_HH 
+#endif // REMOLLGENMOLLER_HH

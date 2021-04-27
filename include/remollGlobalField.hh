@@ -1,5 +1,5 @@
-#ifndef __REMOLLGLOBALFIELD_HH
-#define __REMOLLGLOBALFIELD_HH
+#ifndef REMOLLGLOBALFIELD_HH
+#define REMOLLGLOBALFIELD_HH
 
 /*!
    \class remollGlobalField
@@ -112,4 +112,4 @@ class remollGlobalField : public G4MagneticField {
 };
 
 
-#endif//__REMOLLGLOBALFIELD_HH
+#endif // REMOLLGLOBALFIELD_HH

@@ -1,5 +1,5 @@
-#ifndef __REMOLLRUN_HH
-#define __REMOLLRUN_HH
+#ifndef REMOLLRUN_HH
+#define REMOLLRUN_HH
 
 /*!
  * All the information on the run
@@ -26,4 +26,4 @@ class remollRun: public G4Run {
     static remollRunData* GetRunData();
 };
 
-#endif //__REMOLLRUN_HH
+#endif // REMOLLRUN_HH

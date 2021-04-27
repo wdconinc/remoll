@@ -1,5 +1,5 @@
-#ifndef __REMOLLPARALLELCONSTRUCTION_HH
-#define __REMOLLPARALLELCONSTRUCTION_HH 1
+#ifndef REMOLLPARALLELCONSTRUCTION_HH
+#define REMOLLPARALLELCONSTRUCTION_HH
 
 #include <G4VUserParallelWorld.hh>
 
@@ -64,4 +64,4 @@ class remollParallelConstruction : public G4VUserParallelWorld
 
 };
 
-#endif // __REMOLLPARALLELCONSTRUCTION_HH
+#endif // REMOLLPARALLELCONSTRUCTION_HH

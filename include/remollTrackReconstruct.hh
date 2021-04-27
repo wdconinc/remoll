@@ -18,8 +18,8 @@
 //  -- copied from mollersim/backup_Mar20_2013/include/MollerSimGEM_TrackReconstruct.hh
 //
 
-#ifndef __REMOLLTRACKRECONSTRUCT_HH
-#define __REMOLLTRACKRECONSTRUCT_HH
+#ifndef REMOLLTRACKRECONSTRUCT_HH
+#define REMOLLTRACKRECONSTRUCT_HH
 
 #include "remollGenericDetectorHit.hh"
 

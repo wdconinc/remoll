@@ -1,5 +1,5 @@
-#ifndef __REMOLLGLOBS_HH
-#define __REMOLLGLOBS_HH
+#ifndef REMOLLGLOBS_HH
+#define REMOLLGLOBS_HH
 
 #include "remollSystemOfUnits.hh"
 #include "remollPhysicalConstants.hh"
@@ -17,4 +17,4 @@ const double gDefaultBeamE   = 11.0*GeV;
 const double gDefaultBeamPol = 0.85;
 const double gDefaultBeamCur = 65e-6*ampere;
 
-#endif //__REMOLLGLOBS_HH
+#endif // REMOLLGLOBS_HH

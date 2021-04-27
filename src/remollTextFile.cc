@@ -61,7 +61,7 @@ remollTextFile::~remollTextFile(){
 }
 
 void remollTextFile::copyFileIn(const char *fn){
-    if( strlen(fn) > __STRLEN ){
+    if( strlen(fn) > STRLEN ){
 	fprintf(stderr, "%s %d: ERROR filename too long", __PRETTY_FUNCTION__, __LINE__ );
 	exit(1);
     }

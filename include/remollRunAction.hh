@@ -1,5 +1,5 @@
-#ifndef remollRunAction_h
-#define remollRunAction_h 1
+#ifndef REMOLLRUNACTION_HH
+#define REMOLLRUNACTION_HH
 
 #include "globals.hh"
 #include "G4UserRunAction.hh"
@@ -32,5 +32,5 @@ class remollRunAction : public G4UserRunAction
     void SetUpdateInterval(G4int interval) { fInterval = interval; };
 };
 
-#endif
+#endif // REMOLLRUNACTION_HH
 

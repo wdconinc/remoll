@@ -1,5 +1,5 @@
-#ifndef remollIO_HH
-#define remollIO_HH
+#ifndef REMOLLIO_HH
+#define REMOLLIO_HH
 
 #include "TROOT.h"
 #include "TObject.h"
@@ -39,7 +39,7 @@ XERCES_CPP_NAMESPACE_BEGIN
 class DOMElement;
 XERCES_CPP_NAMESPACE_END
 
-#define __FILENAMELEN 255
+#define FILENAMELEN 255
 
 // Helper class to save seed and provide Save functionality
 class remollSeed_t: public TObject {
@@ -172,4 +172,4 @@ class remollIO {
         std::vector<remollGenericDetectorSum_t> fGenDetSum;
 };
 
-#endif//remollIO_HH
+#endif // REMOLLIO_HH

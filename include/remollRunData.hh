@@ -1,5 +1,5 @@
-#ifndef __REMOLLRUNDATA_HH
-#define __REMOLLRUNDATA_HH
+#ifndef REMOLLRUNDATA_HH
+#define REMOLLRUNDATA_HH
 
 #include "TObject.h"
 
@@ -78,4 +78,4 @@ class remollRunData : public TObject {
 	ClassDef(remollRunData, 2);
 };
 
-#endif//__REMOLLRUNDATA_HH
+#endif // REMOLLRUNDATA_HH

@@ -1,7 +1,7 @@
-#ifndef __REMOLLTEXTFILE_HH
-#define __REMOLLTEXTFILE_HH
+#ifndef REMOLLTEXTFILE_HH
+#define REMOLLTEXTFILE_HH
 
-#define __STRLEN 1024
+#define STRLEN 1024
 
 #include "TObject.h"
 
@@ -36,4 +36,4 @@ class remollTextFile : public TObject {
 	ClassDef(remollTextFile, 1);
 };
 
-#endif//__REMOLLTEXTFILE_HH
+#endif // REMOLLTEXTFILE_HH

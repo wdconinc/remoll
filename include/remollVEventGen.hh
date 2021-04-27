@@ -1,5 +1,5 @@
-#ifndef __REMOLLVEVENTGEN_HH
-#define __REMOLLVEVENTGEN_HH
+#ifndef REMOLLVEVENTGEN_HH
+#define REMOLLVEVENTGEN_HH
 
 #include "remolltypes.hh"
 #include "remollglobs.hh"
@@ -103,4 +103,4 @@ public:
 };
 
 
-#endif//__REMOLLVEVENTGEN_HH
+#endif // REMOLLVEVENTGEN_HH

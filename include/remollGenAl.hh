@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENAL_HH
-#define __REMOLLGENAL_HH
+#ifndef REMOLLGENAL_HH
+#define REMOLLGENAL_HH
 
 #include "remollVEventGen.hh"
 
@@ -34,4 +34,4 @@ private:
 
 };
 
-#endif//__REMOLLGENAL_HH 
+#endif // REMOLLGENAL_HH

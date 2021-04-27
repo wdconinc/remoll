@@ -23,7 +23,7 @@
 
 #include <math.h>
 
-#define __MAX_MAT 100
+#define MAX_MAT 100
 
 #include "G4Threading.hh"
 #include "G4AutoLock.hh"
@@ -236,9 +236,9 @@ remollVertex remollBeamTarget::SampleVertex(SamplingType_t sampling_type)
     // this may seem like something that can be made static,
     // but it's probably not worth it since only called once per event.
     int      nmsmat = 0;
-    double   msthick[__MAX_MAT];
-    double   msA[__MAX_MAT];
-    double   msZ[__MAX_MAT];
+    double   msthick[MAX_MAT];
+    double   msA[MAX_MAT];
+    double   msZ[MAX_MAT];
 
     // Figure out the material we are in and the radiation length we traversed
     for (auto

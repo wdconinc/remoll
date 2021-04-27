@@ -1,6 +1,5 @@
-
-#ifndef __REMOLLSTEPPINGACTION_HH
-#define __REMOLLSTEPPINGACTION_HH
+#ifndef REMOLLSTEPPINGACTION_HH
+#define REMOLLSTEPPINGACTION_HH
 
 #include "G4UserSteppingAction.hh"
 #include "globals.hh"
@@ -19,4 +18,4 @@ class remollSteppingAction : public G4UserSteppingAction
     virtual void UserSteppingAction(const G4Step*);
 };
 
-#endif//__REMOLLSTEPPINGACTION_HH
+#endif // REMOLLSTEPPINGACTION_HH

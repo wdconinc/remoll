@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENERICDETECTORSUM_HH
-#define __REMOLLGENERICDETECTORSUM_HH
+#ifndef REMOLLGENERICDETECTORSUM_HH
+#define REMOLLGENERICDETECTORSUM_HH
 
 #include "G4VHit.hh"
 #include "G4THitsCollection.hh"
@@ -65,4 +65,4 @@ inline void remollGenericDetectorSum::operator delete(void *aHit){
   remollGenericDetectorSumAllocator->FreeSingle( (remollGenericDetectorSum*) aHit);
 }
 
-#endif//__REMOLLGENERICDETECTORSUM_HH
+#endif // REMOLLGENERICDETECTORSUM_HH

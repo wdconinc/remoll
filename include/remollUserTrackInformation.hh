@@ -1,5 +1,5 @@
-#ifndef remollUserTrackInformation_h_
-#define remollUserTrackInformation_h_
+#ifndef REMOLLUSERTRACKINFORMATION_HH
+#define REMOLLUSERTRACKINFORMATION_HH
 
 #include "G4StepStatus.hh"
 #include "G4VUserTrackInformation.hh"
@@ -15,4 +15,4 @@ class remollUserTrackInformation : public G4VUserTrackInformation
     G4StepStatus fStepStatus;
 };
 
-#endif /* remollUserTrackInformation_h_ */
+#endif // REMOLLUSERTRACKINFORMATION_HH

@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENERICDETECTORHIT_HH
-#define __REMOLLGENERICDETECTORHIT_HH
+#ifndef REMOLLGENERICDETECTORHIT_HH
+#define REMOLLGENERICDETECTORHIT_HH
 
 #include "G4VHit.hh"
 #include "G4THitsCollection.hh"
@@ -112,4 +112,4 @@ inline void remollGenericDetectorHit::operator delete(void *aHit){
   remollGenericDetectorHitAllocator->FreeSingle( (remollGenericDetectorHit*) aHit);
 }
 
-#endif //__REMOLLGENERICDETECTORHIT_HH
+#endif // REMOLLGENERICDETECTORHIT_HH

@@ -1,5 +1,5 @@
-#ifndef __REMOLLEVENT_HH
-#define __REMOLLEVENT_HH
+#ifndef REMOLLEVENT_HH
+#define REMOLLEVENT_HH
 
 /*!
    Event information class.  This needs to
@@ -78,4 +78,4 @@ class remollEvent {
         std::vector<remollEventParticle_t> GetEventParticleIO() const;
 };
 
-#endif//__REMOLLEVENT_HH
+#endif // REMOLLEVENT_HH

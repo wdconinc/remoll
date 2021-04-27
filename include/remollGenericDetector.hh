@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENERICDETECTOR_HH
-#define __REMOLLGENERICDETECTOR_HH
+#ifndef REMOLLGENERICDETECTOR_HH
+#define REMOLLGENERICDETECTOR_HH
 
 #include "G4VSensitiveDetector.hh"
 #include "G4TwoVector.hh"
@@ -222,4 +222,4 @@ class remollGenericDetector : public G4VSensitiveDetector {
 
 };
 
-#endif//__REMOLLGENERICDETECTOR_HH
+#endif // REMOLLGENERICDETECTOR_HH

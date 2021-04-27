@@ -1,5 +1,5 @@
-#ifndef __CHRISTY_BOSTED_INELASTIC_HH
-#define __CHRISTY_BOSTED_INELASTIC_HH
+#ifndef CHRISTY_BOSTED_INELASTIC_HH
+#define CHRISTY_BOSTED_INELASTIC_HH
 
 /*  Inelastic cross section parameterizations by Peter Bosted and Eric Christy
  *  Proton:  arxiv 0712.3731v4
@@ -1482,7 +1482,7 @@ void F1F2QE09(G4int Z, G4int IA, G4double QSQ,
 }
 
 
-#endif//__CHRISTY_BOSTED_INELASTIC_HH
+#endif // CHRISTY_BOSTED_INELASTIC_HH
 
 
 

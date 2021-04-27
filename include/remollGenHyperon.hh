@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENHYPERON_HH
-#define __REMOLLGENHYPERON_HH 1
+#ifndef REMOLLGENHYPERON_HH
+#define REMOLLGENHYPERON_HH
 
 // remoll includes
 #include "remollVEventGen.hh"
@@ -26,4 +26,4 @@ class remollGenHyperon : public remollVEventGen {
     G4double fWUnit;
 };
 
-#endif //__REMOLLGENHYPERON_HH
+#endif // REMOLLGENHYPERON_HH

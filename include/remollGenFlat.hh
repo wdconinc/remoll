@@ -1,5 +1,5 @@
-#ifndef __REMOLLGENFLAT_HH 
-#define __REMOLLGENFLAT_HH 
+#ifndef REMOLLGENFLAT_HH
+#define REMOLLGENFLAT_HH
 /*!
  * Flat event generator
  *
@@ -25,4 +25,4 @@ class remollGenFlat : public remollVEventGen {
         G4String fParticleName;
 };
 
-#endif//__REMOLLGENMOLLER_HH 
+#endif // REMOLLGENMOLLER_HH

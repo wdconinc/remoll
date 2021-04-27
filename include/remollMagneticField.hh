@@ -1,9 +1,9 @@
-#ifndef __REMOLLMAGNETICFIELD_HH
-#define __REMOLLMAGNETICFIELD_HH
+#ifndef REMOLLMAGNETICFIELD_HH
+#define REMOLLMAGNETICFIELD_HH
 
 #include <vector>
 
-#define __NDIM 3
+#define NDIM 3
 
 #include "G4String.hh"
 #include "G4MagneticField.hh"
@@ -69,15 +69,15 @@ class remollMagneticField : public G4MagneticField {
 	G4String fName;
 	G4String fFilename;
 
-	size_t fN[__NDIM];
-	G4double fUnit[__NDIM], fMin[__NDIM], fMax[__NDIM], fStep[__NDIM];
-	G4double fFileMin[__NDIM], fFileMax[__NDIM];
+	size_t fN[NDIM];
+	G4double fUnit[NDIM], fMin[NDIM], fMax[NDIM], fStep[NDIM];
+	G4double fFileMin[NDIM], fFileMax[NDIM];
 
 	G4int fNxtant; // Number of *tants (septants, or whatever)
 	G4double fPhi0, fPhiLow, fxtantSize;
 
 	// Storage space for the table
-	std::vector< std::vector< std::vector< G4double > > > fBFieldData[__NDIM];
+	std::vector< std::vector< std::vector< G4double > > > fBFieldData[NDIM];
 
 	G4double fZoffset, fPhiOffset;
 	G4double fZMapOffset, fPhiMapOffset;
@@ -148,4 +148,4 @@ class remollMagneticField : public G4MagneticField {
 };
 
 
-#endif//__REMOLLMAGNETICFIELD_HH
+#endif // REMOLLMAGNETICFIELD_HH

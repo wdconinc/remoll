@@ -474,15 +474,15 @@ void remollMagneticField::AddFieldValue(const G4double point[4], G4double *field
     // 3. Get interpolation variables
 
     // the N-1 here is fencepost problem
-    G4double x[__NDIM] = {0};
-    G4double didx[__NDIM] = {0};
+    G4double x[NDIM] = {0};
+    G4double didx[NDIM] = {0};
     x[kR]   = modf( ( r - fMin[kR] )*(fN[kR]-1)/( fMax[kR] - fMin[kR] ),            &(didx[kR])   );
     x[kPhi] = modf( ( lphi - fFileMin[kPhi] )*(fN[kPhi]-1)/( fFileMax[kPhi] - fFileMin[kPhi] ), &(didx[kPhi]) );
     x[kZ]   = modf( ( z - fMin[kZ] )*(fN[kZ]-1)/( fMax[kZ] - fMin[kZ] ),            &(didx[kZ])   );
 
     // Cast these to integers for indexing and check
-    size_t idx[__NDIM] = {0};
-    for (size_t cidx = 0; cidx < __NDIM; cidx++) {
+    size_t idx[NDIM] = {0};
+    for (size_t cidx = 0; cidx < NDIM; cidx++) {
         idx[cidx] = size_t(didx[cidx]);
     }
     assert( 0 <= idx[kR]   && idx[kR]   < fN[kR] );
@@ -516,9 +516,9 @@ void remollMagneticField::AddFieldValue(const G4double point[4], G4double *field
     }
 
     // values of cell vertices
-    thread_local G4double values[__NDIM][64];
+    thread_local G4double values[NDIM][64];
     for (size_t i = 0; i < n; i++) {
-        for (size_t cidx = 0; cidx < __NDIM; cidx++) {
+        for (size_t cidx = 0; cidx < NDIM; cidx++) {
             values[cidx][i] =
                     fBFieldData[cidx]
                            [idx[kR] + map[i][kR]]
@@ -529,7 +529,7 @@ void remollMagneticField::AddFieldValue(const G4double point[4], G4double *field
 
     // Interpolate
     G4ThreeVector Bcart(0.0,0.0,0.0);
-    for(int cidx = 0; cidx < __NDIM; cidx++ ){
+    for(int cidx = 0; cidx < NDIM; cidx++ ){
         switch (type) {
             case kLinear: {
                 Bcart[cidx] = _trilinearInterpolate(values[cidx], x);

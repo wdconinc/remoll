@@ -1,5 +1,5 @@
-#ifndef remollPrimaryGeneratorAction_h
-#define remollPrimaryGeneratorAction_h 1
+#ifndef REMOLLPRIMARYGENERATORACTION_HH
+#define REMOLLPRIMARYGENERATORACTION_HH
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4VPrimaryGenerator.hh"
@@ -49,6 +49,4 @@ class remollPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     G4double fEffCrossSection;
 };
 
-#endif
-
-
+#endif // REMOLLPRIMARYGENERATORACTION_HH

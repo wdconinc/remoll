@@ -31,7 +31,7 @@
 
 #include <stdio.h>
 
-#define __GLOBAL_NDIM 3
+#define GLOBAL_NDIM 3
 
 #include "G4Threading.hh"
 #include "G4AutoLock.hh"
@@ -241,7 +241,7 @@ remollMagneticField* remollGlobalField::GetFieldByName(const G4String& name) con
 
 void remollGlobalField::PrintFieldValue(const G4ThreeVector& r)
 {
-    G4double B[__GLOBAL_NDIM];
+    G4double B[GLOBAL_NDIM];
     G4double p[] = {r.x()*m, r.y()*m, r.z()*m, 0.0};
     GetFieldValue(p, B);
     G4cout << "At r" << r << " [m]: B = ";

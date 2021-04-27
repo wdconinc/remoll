@@ -1,5 +1,5 @@
-#ifndef __REMOLLVERTEX_HH
-#define __REMOLLVERTEX_HH
+#ifndef REMOLLVERTEX_HH
+#define REMOLLVERTEX_HH
 
 #include "G4ThreeVector.hh"
 
@@ -25,4 +25,4 @@ class remollVertex {
 	G4Material* fMaterial;
 };
 
-#endif//__REMOLLVERTEX_HH
+#endif // REMOLLVERTEX_HH

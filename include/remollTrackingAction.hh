@@ -1,5 +1,5 @@
-#ifndef remollTrackingAction_h
-#define remollTrackingAction_h 1
+#ifndef REMOLLTRACKINGACTION_HH
+#define REMOLLTRACKINGACTION_HH
 
 // geant4 includes
 #include "G4Types.hh"
@@ -22,4 +22,4 @@ class remollTrackingAction : public G4UserTrackingAction
     G4int fTrackingFlag;
 };
 
-#endif
+#endif // REMOLLTRACKINGACTION_HH

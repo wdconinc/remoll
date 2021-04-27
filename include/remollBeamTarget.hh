@@ -1,5 +1,5 @@
-#ifndef __REMOLLBEAMTARGET_HH
-#define __REMOLLBEAMTARGET_HH
+#ifndef REMOLLBEAMTARGET_HH
+#define REMOLLBEAMTARGET_HH
 
 #include "remolltypes.hh"
 #include "remollglobs.hh"
@@ -113,5 +113,5 @@ class remollBeamTarget {
 };
 
 
-#endif//__REMOLLBEAMTARGET_HH
+#endif // REMOLLBEAMTARGET_HH
 

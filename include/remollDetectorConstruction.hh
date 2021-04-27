@@ -1,5 +1,5 @@
-#ifndef __MOLLERDETECTORCONSTRUCTION_HH
-#define __MOLLERDETECTORCONSTRUCTION_HH
+#ifndef MOLLERDETECTORCONSTRUCTION_HH
+#define MOLLERDETECTORCONSTRUCTION_HH
 
 #include "G4GDMLParser.hh"
 #include "G4GDMLAuxStructType.hh"
@@ -177,4 +177,4 @@ class remollDetectorConstruction : public G4VUserDetectorConstruction
 
 };
 
-#endif//__MOLLERDETECTORCONSTRUCTION_HH
+#endif // MOLLERDETECTORCONSTRUCTION_HH
