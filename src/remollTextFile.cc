@@ -39,7 +39,9 @@ remollTextFile::remollTextFile(const remollTextFile& r)
     memcpy(fBuffer, r.fBuffer, fBufferSize);
 }
 
-const remollTextFile& remollTextFile::operator=(const remollTextFile& r){
+const remollTextFile& remollTextFile::operator=(const remollTextFile& r)
+{
+  if (&r != this) {
     TObject::operator=(r);
 
     if (fFilename) { delete[] fFilename; }
@@ -51,8 +53,9 @@ const remollTextFile& remollTextFile::operator=(const remollTextFile& r){
     fBufferSize = r.fBufferSize;
     fBuffer = new char[r.fBufferSize];
     memcpy(fBuffer, r.fBuffer, fBufferSize);
+  }
 
-    return *this;
+  return *this;
 }
 
 remollTextFile::~remollTextFile(){
