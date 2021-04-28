@@ -19,7 +19,7 @@
 
 #include "G4PhysicalConstants.hh"
 
-#include <math.h>
+#include <cmath>
 
 double AT_p( int i, double Q2 ) {
     if( i < 0 || i >= 7 ) {
