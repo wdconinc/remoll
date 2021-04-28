@@ -44,16 +44,16 @@ class remollRunData : public TObject {
 	void RecreateGDML(const char *adir = nullptr, bool clobber = false);
 
     private:
-	long int fNthrown;
+	int fNthrown; // int G4Run::GetNumberOfEventToBeProcessed()
     public:
-	void SetNthrown(unsigned long long int n) { fNthrown = n; }
-	unsigned long long int GetNthrown() const { return fNthrown; }
+	void SetNthrown(int n) { fNthrown = n; }
+	int GetNthrown() const { return fNthrown; }
 
     private:
-	long int fSeed;
+	long int fSeed; // CLHEP::HepRandom::setTheSeed(long seed, int lux)
     public:
-	void SetSeed(unsigned long int seed) { fSeed = seed; }
-        unsigned long long int GetSeed() const { return fSeed; }
+	void SetSeed(long int seed) { fSeed = seed; }
+        long int GetSeed() const { return fSeed; }
 
     private:
         std::string fGitInfo;

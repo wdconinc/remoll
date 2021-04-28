@@ -69,7 +69,7 @@ class remollMagneticField : public G4MagneticField {
 	G4String fName;
 	G4String fFilename;
 
-	size_t fN[NDIM];
+	unsigned int fN[NDIM];
 	G4double fUnit[NDIM], fMin[NDIM], fMax[NDIM], fStep[NDIM];
 	G4double fFileMin[NDIM], fFileMax[NDIM];
 

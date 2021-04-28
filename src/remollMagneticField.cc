@@ -280,8 +280,8 @@ remollMagneticField::remollMagneticField(const G4String& filename)
     fMin[kPhi] += fPhiMapOffset;
     fMax[kPhi] += fPhiMapOffset;
     // Put between -180 and 180
-    fMin[kPhi] = fmodf(fMin[kPhi] + pi/2.0, pi) - pi/2.0;
-    fMax[kPhi] = fmodf(fMax[kPhi] + pi/2.0, pi) - pi/2.0;
+    fMin[kPhi] = fmod(fMin[kPhi] + pi/2.0, pi) - pi/2.0;
+    fMax[kPhi] = fmod(fMax[kPhi] + pi/2.0, pi) - pi/2.0;
 
     double mapphirange = fMax[kPhi] - fMin[kPhi];
 

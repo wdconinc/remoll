@@ -180,7 +180,7 @@ void remollTextFile::Print(){
 const char *remollTextFile::GetBaseFile(const char *fp){
     if( fp == nullptr ) fp = fFilename;
 
-    int idx = strlen(fp)-1;
+    size_t idx = strlen(fp)-1;
 
     while( fp[idx] != '/' && idx != 0 ) idx--;
     if( fp[idx] == '/' ) idx++;
