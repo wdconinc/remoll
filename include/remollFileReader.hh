@@ -1,5 +1,6 @@
-#include <list>
 #include <fstream>
+#include <list>
+#include <utility>
 
 #include "G4ThreeVector.hh"
 
@@ -7,7 +8,7 @@ class remollFileEvent
 {
   public:
     remollFileEvent(G4ThreeVector r = {0,0,0}, G4ThreeVector p = {0,0,0}, G4double w = 0)
-    : fR(r),fP(p),fW(w) { }
+    : fR(std::move(r)),fP(std::move(p)),fW(w) { }
     ~remollFileEvent() = default;
 
     G4ThreeVector r() const { return fR; }
