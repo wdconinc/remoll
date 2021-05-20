@@ -54,13 +54,13 @@ class remollGenExternal : public remollVEventGen {
         void SamplePhysics(remollVertex *, remollEvent *) override;
 
         // External event file and tree, entry number
-        static TFile* fFile{nullptr};
-        static TTree* fTree{nullptr};
-        static Int_t fEntry{0}, fEntries{0};
+        static TFile* fFile;
+        static TTree* fTree;
+        static Int_t fEntry, fEntries;
 
         // Event and hit structures
-        static remollEvent_t* fEvent{nullptr};
-        static vector<remollGenericDetectorHit_t>* fHit{nullptr};
+        static remollEvent_t* fEvent;
+        static std::vector<remollGenericDetectorHit_t>* fHit;
 
         G4double fzOffset{0};
 
